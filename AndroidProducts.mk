@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/device_ha3g.mk
+    $(LOCAL_DIR)/full_ha3g.mk

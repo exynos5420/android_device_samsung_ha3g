@@ -1,3 +1,5 @@
 #
 # system.prop for ha3g
 #
+
+rild.libargs=-d /dev/ttyS0

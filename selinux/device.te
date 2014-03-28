@@ -1,0 +1,2 @@
+type secmem_device, dev_type;
+type mtp_device, dev_type, mlstrustedobject;

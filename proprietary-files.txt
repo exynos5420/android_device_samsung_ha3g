@@ -1,0 +1,144 @@
+# Audio
+lib/hw/audio_policy.universal5420.so
+lib/hw/audio.primary.universal5420.so
+lib/libymc_codecctrl.so
+lib/libymc_config.so
+lib/libsamsungSoundbooster_ext.so
+lib/lib_Samsung_Resampler.so
+lib/lib_soundaliveresampler.so
+lib/libsamsungRecord.so
+lib/libsamsungRecord_ns.so
+lib/libsamsungRecord_zoom.so
+lib/libaudiopolicy_sec.so
+lib/lib_SoundAlive_SRC192_ver204.so
+lib/lib_SamsungRec_V04001_He.so
+lib/lib_DNSe_NRSS_ver225.so
+lib/lib_Samsung_AudioZoom_v100.so
+lib/lib_SoundBooster_ver402.so
+lib/libcontrolcsc.so
+
+csc/sales_code.dat
+usr/share/alsa/alsa.conf
+
+vendor/firmware/srp_cga.bin
+vendor/firmware/srp_data.bin
+vendor/firmware/srp_vliw.bin
+
+# Bluetooth
+vendor/firmware/bcm4335_A0.hcd
+vendor/firmware/bcm4335.hcd
+vendor/firmware/bcm4335_semco.hcd
+vendor/firmware/bcm4335_wisol.hcd
+vendor/firmware/bcm4339_A0.hcd
+vendor/firmware/bcm4339.hcd
+vendor/firmware/bcm4339_semco.hcd
+vendor/firmware/bcm4339_wisol.hcd
+vendor/firmware/BT_FW_VER_BCM4339_003.001.009.0055.0246_ORC_H-3G_SEMCO_B67.hcd
+
+# Camera
+#lib/hw/camera.universal5420.so:lib/hw/camera.vendor.universal5420.so
+#lib/hw/camera.universal5420.so
+#lib/libexynoscamera.so
+#lib/libvdis.so
+#lib/libliveframework.so
+#lib/libarcsoft_nighthawk.so
+
+# Graphics
+#lib/libRSSupport.so
+vendor/lib/egl/libGLES_mali.so
+vendor/lib/libmalicore.bc
+vendor/lib/libRSDriverArm.so
+
+# GPS
+bin/gpsd
+lib/libwrappergps.so
+
+# Media
+vendor/firmware/fimc_is_fw2_3L2.bin
+vendor/firmware/fimc_is_fw2.bin
+vendor/firmware/mfc_fw.bin
+vendor/firmware/setfile_3L2.bin
+vendor/firmware/setfile_6b2.bin
+vendor/firmware/setfile_imx135.bin
+
+
+# MobiCore
+app/FFFFFFFF000000000000000000000001.drbin
+app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
+
+# NFC
+vendor/firmware/bcm2079xB4_firmware.ncd
+vendor/firmware/bcm2079xB4_pre_firmware.ncd
+vendor/firmware/bcm2079xB5_firmware.ncd
+vendor/firmware/bcm2079xB5_pre_firmware.ncd
+
+# Power
+vendor/lib/hw/power.exynos5.so
+
+# Sensors
+lib/hw/sensorhubs.universal5420.so
+lib/libgnustl_shared.so
+lib/hw/sensors.universal5420.so
+lib/libarcsoft_sensorndk.so
+lib/libmorpho_sensor_fusion.so
+lib/libmorpho_sensor_fusion_for_viewer.so
+lib/libsensirion_h_3.so
+lib/libsensorhub.so
+lib/libsensorhubcontext.so
+lib/libsensorhubservice.so
+
+# Radio
+lib/libaudio-ril.so
+lib/libsec-ril.so
+lib/libsecnativefeature.so
+
+# Widevine (DRM)
+bin/lpm
+lib/libWVStreamControlAPI_L1.so
+lib/libwvdrm_L1.so
+lib/libQmageDecoder.so
+vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/mediadrm/libwvdrmengine.so
+vendor/lib/liboemcrypto.so
+vendor/lib/libwvm.so
+
+# Wi-Fi
+etc/wifi/bcmdhd_apsta.bin
+etc/wifi/bcmdhd_ibss.bin
+etc/wifi/bcmdhd_mfg.bin
+etc/wifi/bcmdhd_sta.bin
+etc/wifi/cred.conf
+etc/wifi/nvram_mfg.txt
+etc/wifi/nvram_mfg.txt_semco3rd
+etc/wifi/nvram_mfg.txt_wisol
+etc/wifi/nvram_net.txt
+etc/wifi/nvram_net.txt_semco3rd
+etc/wifi/nvram_net.txt_wisol
+etc/wifi/p2p_supplicant_overlay.conf
+etc/wifi/wpa_supplicant_overlay.conf
+
+
+# init depencies
+#bin/bintvoutservice
+#lib/libSecExternalDisplay_jni.so
+#lib/libSecExternalDisplayservice.so
+#lib/libSecExternalDisplayinterface.so
+#lib/libdisplay.so
+#lib/libdisplaymodule.so
+#lib/libhdmi.so
+#lib/libhdmimodule.so
+#lib/libhwcutils.so
+#lib/libhwcutilsmodule.so
+#lib/libmpp.so
+#lib/libvirtualdisplay.so
+#lib/libvirtualdisplaymodule.so
+#lib/libSecEDSVendorBase.so
+
+#bin/at_distributor
+#lib/libatparser.so
+#lib/libomission_avoidance.so
+#lib/libfactoryutil.so
+
+#bin/bootchecker
+
+#bin/actlmand
