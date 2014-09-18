@@ -11,7 +11,7 @@ lib/libsamsungRecord_ns.so
 lib/libsamsungRecord_zoom.so
 lib/libaudiopolicy_sec.so
 lib/lib_SoundAlive_SRC192_ver204.so
-lib/lib_SamsungRec_V04001_He.so
+lib/lib_SamsungRec_V04001.so
 lib/lib_DNSe_NRSS_ver225.so
 lib/lib_Samsung_AudioZoom_v100.so
 lib/lib_SoundBooster_ver402.so
@@ -88,15 +88,16 @@ lib/libsensorhubcontext.so
 lib/libsensorhubservice.so
 
 # Radio
+lib/libril.so
 lib/libaudio-ril.so
 lib/libsec-ril.so
 lib/libsecnativefeature.so
 
 # Widevine (DRM)
 bin/lpm
-lib/libWVStreamControlAPI_L1.so
-lib/libwvdrm_L1.so
-lib/libQmageDecoder.so
+#lib/libWVStreamControlAPI_L1.so
+#lib/libwvdrm_L1.so
+#lib/libQmageDecoder.so
 vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/liboemcrypto.so
