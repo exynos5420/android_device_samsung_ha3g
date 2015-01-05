@@ -171,16 +171,20 @@ BOARD_USES_SCALER := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
-    $(LOCAL_PATH)/selinux
+    device/samsung/ha3g/sepolicy
 
-BOARD_SEPOLICY_UNION := \
+BOARD_SEPOLICY_UNION += \
     file_contexts \
     device.te \
     domain.te \
+    drmserver.te \
+    file.te \
     gpsd.te \
     mediaserver.te \
-    surfaceflinger.te \
-    system.te
+    servicemanager.te \
+    system_app.te \
+    system_server.te \
+    wpa.te
 
 # Webkit
 ENABLE_WEBGL := true

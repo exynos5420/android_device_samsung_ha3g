@@ -1,1 +1,0 @@
-allow mediaserver system:unix_stream_socket { read write setopt };
