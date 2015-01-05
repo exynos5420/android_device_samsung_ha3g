@@ -1,20 +1,34 @@
+#
+# Copyright (C) 2013 The CyanogenMod Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 LOCAL_PATH := device/samsung/ha3g
 
-# inherit from the proprietary version
--include vendor/samsung/ha3g/BoardConfigVendor.mk
-
+# Platform
 BOARD_VENDOR := samsung
+TARGET_BOARD_PLATFORM := exynos5
+TARGET_SLSI_VARIANT := insignal
+TARGET_SOC := exynos5420
 
-# Include path
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
-
+# Architecture
 TARGET_ARCH := arm
-TARGET_NO_BOOTLOADER := true
-TARGET_CPU_VARIANT := generic
+TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_SMP := true
+TARGET_CPU_VARIANT := cortex-a15
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 # bionic libc options
@@ -22,30 +36,118 @@ ARCH_ARM_USE_MEMCPY_ALIGNMENT := true
 BOARD_MEMCPY_ALIGNMENT := 64
 BOARD_MEMCPY_ALIGN_BOUND := 32768
 
-# platform
-TARGET_BOOTLOADER_BOARD_NAME := universal5420
-TARGET_BOARD_PLATFORM := exynos5
-TARGET_SLSI_VARIANT := insignal
-TARGET_SOC := exynos5420
+# Audio
+#BOARD_HAVE_SAMSUNG_AUDIO := true
+#BOARD_USES_ALSA_AUDIO := true
+#BOARD_USES_LIBMEDIA_WITH_AUDIOPARAMETER := true
+HAVE_HTC_AUDIO_DRIVER := true
+BOARD_USES_GENERIC_AUDIO := true
 
-# Kernel Configs
+# Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_BLUEDROID_VENDOR_CONF := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+
+# Bootloader
+TARGET_OTA_ASSERT_DEVICE := ha3g
+TARGET_BOOTLOADER_BOARD_NAME := universal5420
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+
+# Camera
+BOARD_BACK_CAMERA_ROTATION := 270
+BOARD_FRONT_CAMERA_ROTATION := 90
+BOARD_USE_MHB_ION := true
+# BOARD_NEEDS_MEMORYHEAPION := true
+# COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
+# COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
+# COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
+# COMMON_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
+# COMMON_GLOBAL_CFLAGS += -DUSE_CHAR_BUFFERS
+# COMMON_GLOBAL_CFLAGS += -DUSE_CONVERT_WITH_ROTATE
+
+# Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/ha3g
 TARGET_KERNEL_CONFIG := cm_ha3g_00_defconfig
 #TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
-
 BOARD_KERNEL_CMDLINE := console=null vmalloc=512M androidboot.console=null user_debug=31
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
-#BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x002649bc --dt device/samsung/ha3g/dtb --tags_offset 0x10000100
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02900000 --tags_offset 0x02700000
 
-# fs sizes
+# Battery
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
+BOARD_BATTERY_DEVICE_NAME := battery
+
+# Boot animation
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+
+# Build lights 
+TARGET_PROVIDES_LIBLIGHT := true
+
+# FIMG2D
+BOARD_USES_SKIA_FIMGAPI := true
+
+# GSC
+BOARD_USES_ONLY_GSC0_GSC1 := true
+
+# Graphics
+USE_OPENGL_RENDERER := true
+BOARD_USES_HGL := true
+BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+VSYNC_EVENT_PHASE_OFFSET_NS := 0
+OVERRIDE_RS_DRIVER := libRSDriverArm.so
+
+# HWCServices
+BOARD_USES_HWC_SERVICES := true
+#TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+
+# Include path
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+
+
+
+
+# SurfaceFlinger
+# BOARD_USES_SYNC_MODE_FOR_MEDIA := true
+
+# NFC
+BOARD_HAVE_NFC := true
+BOARD_NFC_HAL_SUFFIX := universal5420
+
+# Media
+#COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
+
+# OpenMAX Video
+BOARD_USE_STOREMETADATA := true
+BOARD_USE_METADATABUFFERTYPE := true
+BOARD_USE_S3D_SUPPORT := true
+BOARD_USE_DMA_BUF := true
+BOARD_USE_ANB_OUTBUF_SHARE := true
+BOARD_USE_GSC_RGB_ENCODER := true
+BOARD_USE_IMPROVED_BUFFER := true
+BOARD_USE_CSC_HW := false
+BOARD_USE_H264_PREPEND_SPS_PPS := false
+BOARD_USE_QOS_CTRL := false
+BOARD_USE_VP8ENC_SUPPORT := true
+BOARD_USE_ENCODER_RGBINPUT_SUPPORT := true
+BOARD_USE_DUALDPB_MODE := true
+
+# Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 11534336
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 13631488
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2398552064
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 27912073216
 BOARD_CACHEIMAGE_PARTITION_SIZE := 309616640
 BOARD_FLASH_BLOCK_SIZE := 131072
+
+# Radio
+#BOARD_PROVIDES_LIBRIL := true
+BOARD_MODEM_TYPE := xmm6360
+
 
 # Recovery
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -64,116 +166,10 @@ BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.universal5420
 
-# Audio
-#BOARD_HAVE_SAMSUNG_AUDIO := true
-#BOARD_USES_ALSA_AUDIO := true
-#BOARD_USES_LIBMEDIA_WITH_AUDIOPARAMETER := true
-HAVE_HTC_AUDIO_DRIVER := true
-BOARD_USES_GENERIC_AUDIO := true
-
-# Bluetooth
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUEDROID_VENDOR_CONF := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
-
-# Boot animation
-TARGET_BOOTANIMATION_PRELOAD := true
-TARGET_BOOTANIMATION_TEXTURE_CACHE := true
-
-# Build lights 
-TARGET_PROVIDES_LIBLIGHT := true
-
-# Camera
-BOARD_BACK_CAMERA_ROTATION := 270
-BOARD_FRONT_CAMERA_ROTATION := 90
-BOARD_USE_MHB_ION := true
-# BOARD_NEEDS_MEMORYHEAPION := true
-# COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
-# COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
-# COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
-# COMMON_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
-# COMMON_GLOBAL_CFLAGS += -DUSE_CHAR_BUFFERS
-# COMMON_GLOBAL_CFLAGS += -DUSE_CONVERT_WITH_ROTATE
-
-
-# Graphics
-USE_OPENGL_RENDERER := true
-BOARD_USES_HGL := true
-BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-VSYNC_EVENT_PHASE_OFFSET_NS := 0
-
-#BOARD_EGL_WORKAROUND_BUG_10194508 := true
-#COMMON_GLOBAL_CFLAGS += -DMALI_GPU
-#MALI_ION := 1
-#COMMON_GLOBAL_CFLAGS += -DMALI_ION=$(MALI_ION)
-
-# Display
-OVERRIDE_RS_DRIVER := libRSDriverArm.so
-BOARD_USES_HWC_SERVICES := true
-#TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
-
-# GSC
-BOARD_USES_ONLY_GSC0_GSC1 := true
-
-# FIMG2D
-BOARD_USES_SKIA_FIMGAPI := true
-
-# SCALER
+# Scaler
 BOARD_USES_SCALER := true
 
-# SurfaceFlinger
-# BOARD_USES_SYNC_MODE_FOR_MEDIA := true
-
-# Charging mode
-BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
-BOARD_BATTERY_DEVICE_NAME := battery
-
-# NFC
-BOARD_HAVE_NFC := true
-BOARD_NFC_HAL_SUFFIX := universal5420
-
-# Media
-#COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
-# Samsung OpenMAX Video
-BOARD_USE_STOREMETADATA := true
-BOARD_USE_METADATABUFFERTYPE := true
-BOARD_USE_S3D_SUPPORT := true
-BOARD_USE_DMA_BUF := true
-BOARD_USE_ANB_OUTBUF_SHARE := true
-BOARD_USE_GSC_RGB_ENCODER := true
-BOARD_USE_IMPROVED_BUFFER := true
-BOARD_USE_CSC_HW := false
-BOARD_USE_H264_PREPEND_SPS_PPS := false
-BOARD_USE_QOS_CTRL := false
-BOARD_USE_VP8ENC_SUPPORT := true
-BOARD_USE_ENCODER_RGBINPUT_SUPPORT := true
-BOARD_USE_DUALDPB_MODE := true
-
-# Radio
-#BOARD_PROVIDES_LIBRIL := true
-BOARD_MODEM_TYPE := xmm6360
-
-# Wifi
-BOARD_HAVE_SAMSUNG_WIFI          := true
-BOARD_WLAN_DEVICE                := bcmdhd
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
-WIFI_BAND                        := 802_11_ABG
-
-WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/dhd/parameters/firmware_path"
-WIFI_DRIVER_FW_PATH_STA     := "/system/etc/wifi/bcmdhd_sta.bin"
-WIFI_DRIVER_FW_PATH_AP      := "/system/etc/wifi/bcmdhd_apsta.bin"
-WIFI_DRIVER_FW_PATH_P2P     := "/system/etc/wifi/bcmdhd_p2p.bin"
-
-# Webkit
-ENABLE_WEBGL := true
-
-# Selinux
+# SELinux
 BOARD_SEPOLICY_DIRS += \
     $(LOCAL_PATH)/selinux
 
@@ -185,3 +181,25 @@ BOARD_SEPOLICY_UNION := \
     mediaserver.te \
     surfaceflinger.te \
     system.te
+
+# Webkit
+ENABLE_WEBGL := true
+
+
+# Wifi
+BOARD_HAVE_SAMSUNG_WIFI          := true
+BOARD_WLAN_DEVICE                := bcmdhd
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
+BOARD_HOSTAPD_DRIVER             := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
+WIFI_BAND                        := 802_11_ABG
+
+WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
+WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/wifi/bcmdhd_p2p.bin"
+
+# inherit from the proprietary version
+-include vendor/samsung/ha3g/BoardConfigVendor.mk
