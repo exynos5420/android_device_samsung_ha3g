@@ -1,11 +1,5 @@
-## Specify phone tech before including full_phone
-$(call inherit-product, vendor/cm/config/gsm.mk)
-
 # Inherit device configuration
 $(call inherit-product, device/samsung/ha3g/full_ha3g.mk)
-
-# Release name
-PRODUCT_RELEASE_NAME := ha3g
 
 # Enhanced NFC
 $(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
