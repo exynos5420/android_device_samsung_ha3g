@@ -97,6 +97,7 @@ vendor/lib/libRSDriverArm.so
 
 # GPS
 bin/gpsd
+lib/hw/gps.default.so
 lib/libwrappergps.so
 
 # Media
