@@ -244,8 +244,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
 
 # Power
-# PRODUCT_PACKAGES += \
-#    power.universal5420
+PRODUCT_PACKAGES += \
+    power.universal5420
 
 # Ramdisk
 PRODUCT_PACKAGES += \
