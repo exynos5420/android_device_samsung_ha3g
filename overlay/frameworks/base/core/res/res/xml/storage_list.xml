@@ -35,9 +35,10 @@
 <StorageList xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- internal emulated storage -->
-    <storage android:storageDescription="@string/storage_internal"
-             android:emulated="true"
+    <storage android:mountPoint="/storage/sdcard0"
+             android:storageDescription="@string/storage_internal"
              android:primary="true"
+             android:emulated="true"
              android:mtpReserve="100" />
 
     <!-- external SD card storage -->
@@ -48,37 +49,7 @@
              android:allowMassStorage="true" />
 
     <!-- external usb storage -->
-    <storage android:mountPoint="/storage/UsbDriveA"
-             android:storageDescription="@string/storage_usb"
-             android:primary="false"
-             android:removable="true" />
-
-    <!-- external usb storage -->
-    <storage android:mountPoint="/storage/UsbDriveB"
-             android:storageDescription="@string/storage_usb"
-             android:primary="false"
-             android:removable="true" />
-
-    <!-- external usb storage -->
-    <storage android:mountPoint="/storage/UsbDriveC"
-             android:storageDescription="@string/storage_usb"
-             android:primary="false"
-             android:removable="true" />
-
-    <!-- external usb storage -->
-    <storage android:mountPoint="/storage/UsbDriveD"
-             android:storageDescription="@string/storage_usb"
-             android:primary="false"
-             android:removable="true" />
-
-    <!-- external usb storage -->
-    <storage android:mountPoint="/storage/UsbDriveE"
-             android:storageDescription="@string/storage_usb"
-             android:primary="false"
-             android:removable="true" />
-
-    <!-- external usb storage -->
-    <storage android:mountPoint="/storage/UsbDriveF"
+    <storage android:mountPoint="/storage/usbdisk"
              android:storageDescription="@string/storage_usb"
              android:primary="false"
              android:removable="true" />
