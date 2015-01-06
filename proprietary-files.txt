@@ -90,7 +90,6 @@ media/battery_charging_90.qmg
 media/battery_charging_95.qmg
 media/battery_error.qmg
 # Graphics
-#lib/libRSSupport.so
 vendor/lib/egl/libGLES_mali.so
 vendor/lib/libmalicore.bc
 vendor/lib/libRSDriverArm.so
@@ -173,31 +172,6 @@ etc/wifi/nvram_net.txt_wisol
 etc/wifi/p2p_supplicant_overlay.conf
 etc/wifi/wpa_supplicant_overlay.conf
 
-
-# init depencies
-#bin/bintvoutservice
-#lib/libSecExternalDisplay_jni.so
-#lib/libSecExternalDisplayservice.so
-#lib/libSecExternalDisplayinterface.so
-#lib/libdisplay.so
-#lib/libdisplaymodule.so
-#lib/libhdmi.so
-#lib/libhdmimodule.so
-#lib/libhwcutils.so
-#lib/libhwcutilsmodule.so
-#lib/libmpp.so
-#lib/libvirtualdisplay.so
-#lib/libvirtualdisplaymodule.so
-#lib/libSecEDSVendorBase.so
-
-#bin/at_distributor
-#lib/libatparser.so
-#lib/libomission_avoidance.so
-#lib/libfactoryutil.so
-
-#bin/bootchecker
-
-#bin/actlmand
 
 # Input
 usr/idc/sec_e-pen.idc
