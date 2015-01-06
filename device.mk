@@ -261,8 +261,8 @@ PRODUCT_PACKAGES += \
     init.recovery.universal5420.rc
 
 # Sensors
-PRODUCT_PACKAGES += \
-    sensors.universal5420
+# PRODUCT_PACKAGES += \
+#    sensors.universal5420
 
 # Torch
 PRODUCT_PACKAGES += \

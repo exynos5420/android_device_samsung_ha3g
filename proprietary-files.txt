@@ -89,6 +89,7 @@ media/battery_charging_85.qmg
 media/battery_charging_90.qmg
 media/battery_charging_95.qmg
 media/battery_error.qmg
+
 # Graphics
 vendor/lib/egl/libGLES_mali.so
 vendor/lib/libmalicore.bc
@@ -131,15 +132,12 @@ app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
 bin/scranton_RD
 
 # Sensors
+bin/sensorhubservice
 lib/hw/sensorhubs.universal5420.so
 lib/libgnustl_shared.so
 lib/hw/sensors.universal5420.so
-lib/libarcsoft_sensorndk.so
-lib/libmorpho_sensor_fusion.so
-lib/libmorpho_sensor_fusion_for_viewer.so
 lib/libsensirion_h_3.so
 lib/libsensorhub.so
-lib/libsensorhubcontext.so
 lib/libsensorhubservice.so
 
 # NFC
