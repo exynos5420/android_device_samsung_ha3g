@@ -35,6 +35,9 @@ vendor/firmware/bcm4339_semco.hcd
 vendor/firmware/bcm4339_wisol.hcd
 vendor/firmware/BT_FW_VER_BCM4339_003.001.009.0055.0246_ORC_H-3G_SEMCO_B67.hcd
 
+# OemCrypto
+vendor/lib/liboemcrypto.so
+
 # Camera
 #lib/hw/camera.universal5420.so:lib/hw/camera.vendor.universal5420.so
 #lib/hw/camera.universal5420.so
@@ -42,6 +45,24 @@ vendor/firmware/BT_FW_VER_BCM4339_003.001.009.0055.0246_ORC_H-3G_SEMCO_B67.hcd
 #lib/libvdis.so
 #lib/libliveframework.so
 #lib/libarcsoft_nighthawk.so
+
+# Widevine (DRM)
+bin/drmserver:bin/drmserver.samsung
+lib/libdrmdecrypt.so
+lib/libstagefright_hdcp.so
+lib/libhdcp2.so
+vendor/lib/libwvdrm_L1.so
+lib/libWVphoneAPI.so
+vendor/lib/libWVStreamControlAPI_L1.so
+vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/libwvm.so
+vendor/lib/mediadrm/libwvdrmengine.so
+lib/omx/libOMX.Exynos.AVC.Decoder.so
+lib/omx/libOMX.Exynos.AVC.Encoder.so
+lib/omx/libOMX.Exynos.MPEG4.Decoder.so
+lib/omx/libOMX.Exynos.MPEG4.Encoder.so
+lib/omx/libOMX.Exynos.VP8.Decoder.so
+lib/omx/libOMX.Exynos.VP8.Encoder.so
 
 # Graphics
 #lib/libRSSupport.so
@@ -92,16 +113,6 @@ lib/libril.so
 lib/libaudio-ril.so
 lib/libsec-ril.so
 lib/libsecnativefeature.so
-
-# Widevine (DRM)
-bin/lpm
-#lib/libWVStreamControlAPI_L1.so
-#lib/libwvdrm_L1.so
-#lib/libQmageDecoder.so
-vendor/lib/drm/libdrmwvmplugin.so
-vendor/lib/mediadrm/libwvdrmengine.so
-vendor/lib/liboemcrypto.so
-vendor/lib/libwvm.so
 
 # Wi-Fi
 etc/wifi/bcmdhd_apsta.bin

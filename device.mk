@@ -205,13 +205,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libcsc \
     libExynosOMX_Core \
-	libOMX.Exynos.MP3.Decoder \
-    libOMX.Exynos.MPEG4.Decoder \
-    libOMX.Exynos.AVC.Decoder \
-    libOMX.Exynos.VP8.Decoder \
-    libOMX.Exynos.MPEG4.Encoder \
-    libOMX.Exynos.AVC.Encoder \
-    libOMX.Exynos.VP8.Encoder \
+    libOMX.Exynos.MP3.Decoder \
     libstagefrighthw \
 
 # Permissions
