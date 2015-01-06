@@ -448,13 +448,13 @@ service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     ioprio be 0
     
 # RIL
-service ril-daemon /system/bin/rild
-    class main
-    socket rild stream 660 root radio
-    socket rild-debug stream 660 radio system
-    user root
-    group radio cache inet misc audio sdcard_r sdcard_rw log
-    onrestart restart cpboot-daemon
+# service ril-daemon /system/bin/rild
+#     class main
+#     socket rild stream 660 root radio
+#     socket rild-debug stream 660 radio system
+#     user root
+#     group radio cache inet misc audio sdcard_r sdcard_rw log
+#     onrestart restart cpboot-daemon
 
 # AT Distributor for factory test
 #service at_distributor /system/bin/at_distributor
