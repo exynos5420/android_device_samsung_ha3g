@@ -29,12 +29,6 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := cortex-a15
-ARCH_ARM_HAVE_TLS_REGISTER := true
-
-# bionic libc options
-ARCH_ARM_USE_MEMCPY_ALIGNMENT := true
-BOARD_MEMCPY_ALIGNMENT := 64
-BOARD_MEMCPY_ALIGN_BOUND := 32768
 
 # Audio
 #BOARD_HAVE_SAMSUNG_AUDIO := true
@@ -79,10 +73,6 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02900000 --tags_offset 0x02700000
 # Battery
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_BATTERY_DEVICE_NAME := battery
-
-# Boot animation
-TARGET_BOOTANIMATION_PRELOAD := true
-TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 # Build lights 
 TARGET_PROVIDES_LIBLIGHT := true
@@ -149,7 +139,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 # Radio
 #BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6360
-
 
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
