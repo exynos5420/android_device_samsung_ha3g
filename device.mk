@@ -276,11 +276,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
 PRODUCT_PACKAGES += \
+    dhcpcd.conf \
+    hostapd \
+    hostapd_default.conf \
+    libwpa_client \
+    wpa_supplicant \
     libnetcmdiface \
-    macloader \
-    crda \
-    regulatory.bin \
-    linville.key.pub.pem
+    macloader
 
 # $(call inherit-product, build/target/product/full.mk)
 
