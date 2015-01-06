@@ -143,3 +143,7 @@ etc/wifi/wpa_supplicant_overlay.conf
 #bin/bootchecker
 
 #bin/actlmand
+
+# Input
+usr/idc/sec_e-pen.idc
+usr/idc/sec_touchscreen.idc

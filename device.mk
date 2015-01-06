@@ -148,13 +148,8 @@ PRODUCT_PACKAGES += \
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/sec_touchscreen.idc:system/usr/idc/sec_touchscreen.idc \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl
-
-# support for epen
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/sec_e-pen.idc:system/usr/idc/sec_e-pen.idc
 
 # Keystore
 PRODUCT_PACKAGES += \
