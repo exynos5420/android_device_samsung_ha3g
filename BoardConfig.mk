@@ -201,5 +201,8 @@ WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
 WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/wifi/bcmdhd_p2p.bin"
 
+# CMHW
+BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
+
 # inherit from the proprietary version
 -include vendor/samsung/ha3g/BoardConfigVendor.mk
