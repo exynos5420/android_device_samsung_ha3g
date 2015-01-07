@@ -62,13 +62,13 @@ BOARD_USE_MHB_ION := true
 # COMMON_GLOBAL_CFLAGS += -DUSE_CONVERT_WITH_ROTATE
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/samsung/ha3g
-TARGET_KERNEL_CONFIG := cm_ha3g_00_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/exynos5420
+TARGET_KERNEL_CONFIG := cm_ha3g_defconfig
 #TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
-BOARD_KERNEL_CMDLINE := console=null vmalloc=512M androidboot.console=null user_debug=31
+#BOARD_KERNEL_CMDLINE := console=null vmalloc=512M androidboot.console=null user_debug=31
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02900000 --tags_offset 0x02700000
+#BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02900000 --tags_offset 0x02700000
 
 # Battery
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
