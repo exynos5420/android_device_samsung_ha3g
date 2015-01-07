@@ -3,7 +3,6 @@ import init.universal5420.wifi.rc
 import init.samsung.rc
 
 on init
-
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /mnt/shell/container 0700 system system
     mkdir /storage 0550 system sdcard_r
@@ -27,16 +26,22 @@ on init
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
     symlink /mnt/shell/container /storage/container
-    symlink /storage/sdcard1 /mnt/sdcard1
+    symlink /storage/sdcard1 /extSdCard
+    symlink /storage/sdcard1 /mnt/extSdCard
     symlink /storage/sdcard1 /external_sd
     symlink /storage/usbdisk /usbdisk
     symlink /storage/usbdisk /mnt/usbdisk
+
+    symlink /data/app /factory
 
     mkdir /efs 0771 radio system
 
     symlink /dev/block/mmcblk0p13 /dev/mbin0
     restorecon /dev/mbin0
     symlink /sys/devices/platform/s5p-ehci/ehci_power /dev/ehci_power
+
+    # Make param link
+    symlink /dev/block/mmcblk0p8 /dev/block/param
 
 on early-init
     write /sys/block/mmcblk0/queue/read_ahead_kb 512
@@ -111,7 +116,7 @@ on post-fs-data
     chown system system /sys/class/sec/led/led_lowpower
 
 # Added for TZ Playready DRM Support
-    mkdir /efs/drm 0700 drm system
+    mkdir /efs/drm 0774 drm system
     mkdir /efs/drm/playready 0775 drm system
 
 # Create directory for hostapd
@@ -129,11 +134,6 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
 	oneshot
 
 on boot
-    # override init.rc to keep plenty of large order chunks around
-    # to improve allocation times
-    write /proc/sys/vm/min_free_kbytes 32768
-    write /proc/sys/vm/min_free_order_shift 1
-
     mount debugfs /sys/kernel/debug /sys/kernel/debug
     #setprop ro.radio.noril yes
 
@@ -151,8 +151,10 @@ on boot
     mkdir /data/app/mcRegistry 0775 system system
     chmod 0700 /dev/mobicore
     chmod 0666 /dev/mobicore-user
+    chmod 0660 /dev/s5p-smem
     chown system system /dev/mobicore
     chown radio system /dev/mobicore-user
+    chown system system /dev/s5p-smem
 
 # DRK permission
     mkdir /efs/prov 0770 radio system
@@ -279,6 +281,10 @@ on boot
     chown system radio /sys/class/sensors/ssp_sensor/game_rot_poll_delay
     chown system radio /sys/class/sensors/ssp_sensor/step_det_poll_delay
     chown system radio /sys/class/sensors/ssp_sensor/gyro_poll_delay
+    chown system radio /sys/class/sensors/ssp_sensor/uncalib_gyro_poll_delay
+    chown system radio /sys/class/sensors/ssp_sensor/mag_poll_delay
+    chown system radio /sys/class/sensors/ssp_sensor/uncal_mag_poll_delay
+    chown system radio /sys/class/sensors/ssp_sensor/pressure_poll_delay
     chown system radio /sys/class/sensors/ssp_sensor/ssp_flush
     chmod 0600 /dev/batch_io
     chown system system /dev/batch_io
@@ -432,19 +438,25 @@ on fs
     chown radio radio /sys/devices/virtual/misc/multipdp/waketime
     chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
     chown radio system /sys/devices/virtual/misc/umts_dm0/dm_state
-   
+
+# Support Preload install apks
+    mkdir /preload 0771 system system
+    wait /dev/block/platform/dw_mmc.0/by-name/HIDDEN
+    mount ext4 /dev/block/platform/dw_mmc.0/by-name/HIDDEN /preload nosuid nodev ro barrier=1
+    setprop storage.preload.complete 1
+
 #For Absolute Persistence Partition 
     mkdir /persdata 0755 system system 
     mkdir /persdata/absolute 0750 system system 
-      
-    wait /dev/block/platform/dw_mmc.0/by-name/PERSDATA 
-#   check_fs /dev/block/platform/dw_mmc.0/by-name/PERSDATA ext4 
-    mount ext4 /dev/block/platform/dw_mmc.0/by-name/PERSDATA /persdata/absolute nosuid nodev barrier=1 
-      
-    chown system system /persdata 
-    chmod 0755 /persdata 
-    chown system system /persdata/absolute 
-    chmod 0750 /persdata/absolute 
+
+    wait /dev/block/platform/dw_mmc.0/by-name/PERSDATA
+#   check_fs /dev/block/platform/dw_mmc.0/by-name/PERSDATA ext4
+    mount ext4 /dev/block/platform/dw_mmc.0/by-name/PERSDATA /persdata/absolute nosuid nodev barrier=1
+
+    chown system system /persdata
+    chmod 0755 /persdata
+    chown system system /persdata/absolute
+    chmod 0750 /persdata/absolute
 
     chown system system /sys/class/timed_output/vibrator/enable
 
@@ -624,6 +636,6 @@ service sec-playlpm /system/bin/lpm
 #    start cs_service
 
 # Reactivation lock
-#service actlmand /system/bin/actlmand
-#    class late_start
+#	service reactived /system/bin/reactived
+#	class late_start
 

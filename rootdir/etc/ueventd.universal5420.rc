@@ -83,3 +83,4 @@
 /sys/devices/platform/s3c64xx-spi.0/spi_master/spi0/spi0.0/iio:device*    buffer/length       0660    system    system
 /sys/bus/iio/devices/iio:device*    0664   system     radio
 
+/dev/block/mmcblk0p8      0660   system     system
