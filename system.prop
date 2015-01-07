@@ -2,11 +2,20 @@
 # system.prop for ha3g
 #
 
-ro.chipname=exynos5420
+ro.chipname=universal5420
 ro.sf.lcd_density=480
 ro.opengles.version=196608
 persist.timed.enable=true
 keyguard.no_require_sim=true
+
+persist.hdmi.hdcp_enabled=1
+ro.telephony.default_network=0
+telephony.lteOnCdmaDevice=0
+
+drm.service.enabled=true
+
+ro.hdcp2.rx=tz
+ro.secwvk=220
 
 # Radio
 rild.libargs=-d /dev/ttyS0
@@ -17,3 +26,4 @@ persist.sys.usb.config=mtp
 
 # Wifi
 wifi.interface=wlan0
+wlan.wfd.hdcp=disable
