@@ -160,6 +160,7 @@ BOARD_SEPOLICY_DIRS += \
 
 BOARD_SEPOLICY_UNION += \
     file_contexts \
+    service_contexts \
     device.te \
     domain.te \
     drmserver.te \
