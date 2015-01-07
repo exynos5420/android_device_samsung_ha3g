@@ -39,6 +39,7 @@
 /system/bin/mcDriverDaemon  --  u:object_r:tee_exec:s0
 /system/bin/gpsd                u:object_r:gpsd_exec:s0
 
+/dev/mbin0              u:object_r:radio_device:s0
 /dev/umts_boot0         u:object_r:radio_device:s0
 /dev/umts_csd           u:object_r:radio_device:s0
 /dev/umts_dm0           u:object_r:radio_device:s0
