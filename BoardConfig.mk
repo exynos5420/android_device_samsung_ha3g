@@ -175,6 +175,10 @@ BOARD_SEPOLICY_UNION += \
 # Webkit
 ENABLE_WEBGL := true
 
+# WFD
+# BOARD_USES_WFD_SERVICE did not found anywhere
+BOARD_USES_WFD_SERVICE := true
+BOARD_USES_WFD := true
 
 # Wifi
 BOARD_HAVE_SAMSUNG_WIFI          := true
