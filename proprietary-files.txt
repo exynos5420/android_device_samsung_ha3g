@@ -9,13 +9,13 @@ lib/lib_soundaliveresampler.so
 lib/libsamsungRecord.so
 lib/libsamsungRecord_ns.so
 lib/libsamsungRecord_zoom.so
-lib/libaudiopolicy_sec.so
-lib/lib_SoundAlive_SRC192_ver204.so
-lib/lib_SamsungRec_V04001.so
-lib/lib_DNSe_NRSS_ver225.so
-lib/lib_Samsung_AudioZoom_v100.so
+# lib/libaudiopolicy_sec.so
+lib/lib_SoundAlive_SRC192_ver205.so
+lib/lib_SamsungRec_V04004.so
+lib/lib_DNSe_NRSS_ver226.so
+lib/lib_Samsung_AudioZoom_v102.so
 lib/lib_SoundBooster_ver402.so
-lib/libcontrolcsc.so
+# lib/libcontrolcsc.so
 
 csc/sales_code.dat
 usr/share/alsa/alsa.conf
@@ -29,14 +29,15 @@ vendor/firmware/bcm4335_A0.hcd
 vendor/firmware/bcm4335.hcd
 vendor/firmware/bcm4335_semco.hcd
 vendor/firmware/bcm4335_wisol.hcd
+vendor/firmware/bcm4335_V0091.0405_wisol.hcd
 vendor/firmware/bcm4339_A0.hcd
 vendor/firmware/bcm4339.hcd
 vendor/firmware/bcm4339_semco.hcd
 vendor/firmware/bcm4339_wisol.hcd
-vendor/firmware/BT_FW_VER_BCM4339_003.001.009.0055.0246_ORC_H-3G_SEMCO_B67.hcd
+vendor/firmware/BT_FW_VER_BCM4339_003.001.009.0055.0254_ORC_H-LTE.hcd
 
 # OemCrypto
-vendor/lib/liboemcrypto.so
+lib/liboemcrypto.so
 
 # Camera
 #lib/hw/camera.universal5420.so:lib/hw/camera.vendor.universal5420.so
@@ -52,9 +53,9 @@ lib/libdrmdecrypt.so
 lib/libstagefright_hdcp.so
 lib/libhdcp2.so
 vendor/lib/libwvdrm_L1.so
-lib/libWVphoneAPI.so
+# lib/libWVphoneAPI.so
 vendor/lib/libWVStreamControlAPI_L1.so
-vendor/lib/drm/libdrmwvmplugin.so
+lib/drm/libdrmwvmplugin.so
 vendor/lib/libwvm.so
 vendor/lib/mediadrm/libwvdrmengine.so
 lib/omx/libOMX.Exynos.AVC.Decoder.so
@@ -82,28 +83,28 @@ vendor/firmware/setfile_3L2.bin
 vendor/firmware/setfile_6b2.bin
 vendor/firmware/setfile_imx135.bin
 
-# MobiCore
-app/FFFFFFFF000000000000000000000001.drbin
-app/mcRegistry/00060308060501020000000000000000.tlbin
-app/mcRegistry/02010000080300030000000000000000.tlbin
-app/mcRegistry/07010000000000000000000000000000.tlbin
-app/mcRegistry/07060000000000000000000000000000.tlbin
-app/mcRegistry/ffffffff000000000000000000000003.tlbin
-app/mcRegistry/ffffffff000000000000000000000004.tlbin
-app/mcRegistry/ffffffff000000000000000000000005.tlbin
-app/mcRegistry/ffffffff000000000000000000000007.tlbin
-app/mcRegistry/ffffffff000000000000000000000008.tlbin
-app/mcRegistry/ffffffff000000000000000000000009.tlbin
-app/mcRegistry/ffffffff00000000000000000000000a.tlbin
-app/mcRegistry/ffffffff00000000000000000000000c.tlbin
-app/mcRegistry/ffffffff00000000000000000000000d.tlbin
-app/mcRegistry/ffffffff00000000000000000000000f.tlbin
-app/mcRegistry/ffffffff000000000000000000000010.tlbin
-app/mcRegistry/ffffffff000000000000000000000011.tlbin
-app/mcRegistry/ffffffff000000000000000000000012.tlbin
-app/mcRegistry/ffffffff000000000000000000000013.tlbin
-app/mcRegistry/ffffffffd00000000000000000000004.tlbin
-app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
+# MobiCore (not available in new stock)
+# app/FFFFFFFF000000000000000000000001.drbin
+# app/mcRegistry/00060308060501020000000000000000.tlbin
+# app/mcRegistry/02010000080300030000000000000000.tlbin
+# app/mcRegistry/07010000000000000000000000000000.tlbin
+# app/mcRegistry/07060000000000000000000000000000.tlbin
+# app/mcRegistry/ffffffff000000000000000000000003.tlbin
+# app/mcRegistry/ffffffff000000000000000000000004.tlbin
+# app/mcRegistry/ffffffff000000000000000000000005.tlbin
+# app/mcRegistry/ffffffff000000000000000000000007.tlbin
+# app/mcRegistry/ffffffff000000000000000000000008.tlbin
+# app/mcRegistry/ffffffff000000000000000000000009.tlbin
+# app/mcRegistry/ffffffff00000000000000000000000a.tlbin
+# app/mcRegistry/ffffffff00000000000000000000000c.tlbin
+# app/mcRegistry/ffffffff00000000000000000000000d.tlbin
+# app/mcRegistry/ffffffff00000000000000000000000f.tlbin
+# app/mcRegistry/ffffffff000000000000000000000010.tlbin
+# app/mcRegistry/ffffffff000000000000000000000011.tlbin
+# app/mcRegistry/ffffffff000000000000000000000012.tlbin
+# app/mcRegistry/ffffffff000000000000000000000013.tlbin
+# app/mcRegistry/ffffffffd00000000000000000000004.tlbin
+# app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
 bin/scranton_RD
 
 # Sensors
@@ -122,10 +123,10 @@ vendor/firmware/bcm2079xB5_firmware.ncd
 vendor/firmware/bcm2079xB5_pre_firmware.ncd
 
 # Power
-# vendor/lib/hw/power.exynos5.so
+# lib/hw/power.exynos5.so
 
 # Radio
-lib/libril.so
+# lib/libril.so
 lib/libaudio-ril.so
 lib/libsec-ril.so
 lib/libsecnativefeature.so
@@ -143,6 +144,6 @@ etc/wifi/nvram_net.txt
 etc/wifi/nvram_net.txt_semco3rd
 etc/wifi/nvram_net.txt_wisol
 
-# Input
-usr/idc/sec_e-pen.idc
-usr/idc/sec_touchscreen.idc
+# Input (not exist anymore)
+# usr/idc/sec_e-pen.idc
+# usr/idc/sec_touchscreen.idc
