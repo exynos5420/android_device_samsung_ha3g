@@ -161,9 +161,7 @@ PRODUCT_PACKAGES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-    libnfc-nci \
-    libnfc_nci_jni \
-    nfc_nci.universal5420 \
+    nfc_nci.bcm2079x.universal5420 \
     NfcNci \
     Tag \
     com.android.nfc_extras
