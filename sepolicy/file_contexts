@@ -38,6 +38,14 @@
 /system/bin/mcDriverDaemon  --  u:object_r:tee_exec:s0
 /system/bin/gpsd                u:object_r:gpsd_exec:s0
 
+/dev/umts_boot0         u:object_r:radio_device:s0
+/dev/umts_csd           u:object_r:radio_device:s0
+/dev/umts_dm0           u:object_r:radio_device:s0
+/dev/umts_ipc0          u:object_r:radio_device:s0
+/dev/umts_log           u:object_r:radio_device:s0
+/dev/umts_rfs0          u:object_r:radio_device:s0
+/dev/umts_router        u:object_r:radio_device:s0
+
 /sys/devices/platform/bcm4339_bluetooth/rfkill/rfkill0/state -- u:object_r:sysfs_bluetooth_writable:s0
 /sys/devices/platform/bcm4339_bluetooth/rfkill/rfkill0/type -- u:object_r:sysfs_bluetooth_writable:s0
 /sys/devices/virtual/sec/sec_touchkey/tsp_keys_enabled u:object_r:sysfs_input_file:s0

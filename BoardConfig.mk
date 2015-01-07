@@ -167,6 +167,7 @@ BOARD_SEPOLICY_UNION += \
     gpsd.te \
     macloader.te \
     mediaserver.te \
+    rild.te \
     servicemanager.te \
     system_app.te \
     system_server.te \
