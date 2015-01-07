@@ -1,6 +1,0 @@
-############ aosp and sec_common #############
-sys.mobicoredaemon.enable u:object_r:mobicore_prop:s0
-
-#from NSA
-net.rmnet0              u:object_r:radio_prop:s0
-net.rmnet_usb0.         u:object_r:radio_prop:s0

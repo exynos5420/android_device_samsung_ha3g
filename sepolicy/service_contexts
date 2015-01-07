@@ -1,5 +1,0 @@
-sensorhubservice                            u:object_r:sensorhubservice_service:s0
-
-############ slsi_common #############
-Exynos.HWCService                           u:object_r:surfaceflinger_service:s0
-media.wifi_display                          u:object_r:surfaceflinger_service:s0
