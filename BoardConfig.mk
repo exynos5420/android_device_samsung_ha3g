@@ -139,6 +139,8 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 # Radio
 #BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6360
+# we need define it (because audio.primary.universal5420.so requires it)
+COMMON_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
