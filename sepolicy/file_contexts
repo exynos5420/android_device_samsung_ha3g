@@ -52,6 +52,10 @@
 /dev/bcm2079x           u:object_r:nfc_device:s0
 /data/bcmnfc(/.*)?      u:object_r:nfc_data_file:s0
 
+# Sensor
+/dev/ssp_sensorhub      u:object_r:sensors_device:s0
+/dev/batch_io           u:object_r:sensors_device:s0
+
 /sys/devices/platform/bcm4339_bluetooth/rfkill/rfkill0/state -- u:object_r:sysfs_bluetooth_writable:s0
 /sys/devices/platform/bcm4339_bluetooth/rfkill/rfkill0/type -- u:object_r:sysfs_bluetooth_writable:s0
 /sys/devices/virtual/sec/sec_touchkey/tsp_keys_enabled u:object_r:sysfs_input_file:s0
