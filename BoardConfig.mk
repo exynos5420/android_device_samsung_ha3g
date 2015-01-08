@@ -74,8 +74,8 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_BATTERY_DEVICE_NAME := battery
 
-# Build lights 
-TARGET_PROVIDES_LIBLIGHT := true
+# Build lights (need only for qcom devices)
+# TARGET_PROVIDES_LIBLIGHT := true
 
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
