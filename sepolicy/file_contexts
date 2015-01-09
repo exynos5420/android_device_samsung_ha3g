@@ -52,6 +52,9 @@
 /dev/bcm2079x           u:object_r:nfc_device:s0
 /data/bcmnfc(/.*)?      u:object_r:nfc_data_file:s0
 
+# Display
+/sys/class/lcd/panel/power_reduce    u:object_r:sysfs_display:s0
+
 # Sensor
 /dev/ssp_sensorhub      u:object_r:sensors_device:s0
 /dev/batch_io           u:object_r:sensors_device:s0
