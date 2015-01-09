@@ -60,6 +60,8 @@
 # Sensor
 /dev/ssp_sensorhub      u:object_r:sensors_device:s0
 /dev/batch_io           u:object_r:sensors_device:s0
+/dev/iio:device[0-9]*   u:object_r:sensors_device:s0
+/sys/devices/platform/s3c64xx-spi.0/spi_master/spi0/spi0.0/iio:device[0-9]* u:object_r:sensors_device:s0
 
 /sys/devices/platform/bcm4339_bluetooth/rfkill/rfkill0/state -- u:object_r:sysfs_bluetooth_writable:s0
 /sys/devices/platform/bcm4339_bluetooth/rfkill/rfkill0/type -- u:object_r:sysfs_bluetooth_writable:s0
