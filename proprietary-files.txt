@@ -40,12 +40,9 @@ vendor/firmware/BT_FW_VER_BCM4339_003.001.009.0055.0254_ORC_H-LTE.hcd
 lib/liboemcrypto.so
 
 # Camera
-#lib/hw/camera.universal5420.so:lib/hw/camera.vendor.universal5420.so
-#lib/hw/camera.universal5420.so
-#lib/libexynoscamera.so
-#lib/libvdis.so
-#lib/libliveframework.so
-#lib/libarcsoft_nighthawk.so
+lib/hw/camera.universal5420.so:lib/hw/camera.vendor.universal5420.so
+lib/libexynoscamera.so
+lib/libvdis.so
 
 # Widevine (DRM)
 bin/drmserver:bin/drmserver.samsung
