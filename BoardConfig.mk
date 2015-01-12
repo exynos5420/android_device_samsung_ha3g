@@ -145,6 +145,7 @@ BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6360
 # we need define it (because audio.primary.universal5420.so requires it)
 COMMON_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
+BOARD_RIL_CLASS := ../../../device/samsung/ha3g/ril
 
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
