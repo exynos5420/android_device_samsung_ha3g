@@ -123,16 +123,12 @@ public class ha3gRIL extends RIL implements CommandsInterface {
             dc.als = p.readInt();
             voiceSettings = p.readInt();
             dc.isVoice = (0 == voiceSettings) ? false : true;
-            p.readInt(); // is video
-            p.readInt(); // samsung call detail
-            p.readInt(); // samsung call detail (may be one less)
-            p.readString(); // samsung call detail
             dc.isVoicePrivacy = (0 != p.readInt());
             dc.number = p.readString();
             int np = p.readInt();
             dc.numberPresentation = DriverCall.presentationFromCLIP(np);
             dc.name = p.readString();
-            dc.namePresentation = p.readInt();
+            dc.namePresentation = DriverCall.presentationFromCLIP(p.readInt());
             int uusInfoPresent = p.readInt();
             if (uusInfoPresent == 1) {
                 dc.uusInfo = new UUSInfo();
@@ -201,9 +197,6 @@ public class ha3gRIL extends RIL implements CommandsInterface {
                 }
                 break;
             case 11021: // RIL_UNSOL_RESPONSE_HANDOVER:
-                ret = responseVoid(p);
-                break;
-            case 1036:
                 ret = responseVoid(p);
                 break;
             default:
