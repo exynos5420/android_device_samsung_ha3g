@@ -147,6 +147,8 @@ on boot
     setprop ro.build.product universal_5420
     setprop ro.product.device universal_5420
 
+    chmod 0644 /proc/cmdline
+
 # mobicore
     mkdir /data/app/mcRegistry 0775 system system
     chmod 0700 /dev/mobicore
