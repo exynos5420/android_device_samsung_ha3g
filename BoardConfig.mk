@@ -61,6 +61,13 @@ BOARD_NEEDS_MEMORYHEAPION := true
 # COMMON_GLOBAL_CFLAGS += -DUSE_CHAR_BUFFERS
 # COMMON_GLOBAL_CFLAGS += -DUSE_CONVERT_WITH_ROTATE
 
+# HEALTH DAEMON (CHARGER) DEFINES
+RED_LED_PATH := "/sys/devices/virtual/leds/led_r/brightness"
+GREEN_LED_PATH := "/sys/devices/virtual/leds/led_g/brightness"
+BLUE_LED_PATH := "/sys/devices/virtual/leds/led_b/brightness"
+BACKLIGHT_PATH := "/sys/devices/virtual/backlight/panel/brightness"
+CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
+
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos5420
 TARGET_KERNEL_CONFIG := cm_ha3g_defconfig
