@@ -289,6 +289,10 @@ PRODUCT_PACKAGES += \
     libnetcmdiface \
     macloader
 
+# for off charging mode
+PRODUCT_PACKAGES += \
+    charger_res_images
+
 # $(call inherit-product, build/target/product/full.mk)
 
 # call dalvik heap config
