@@ -17,7 +17,7 @@ lib/lib_Samsung_AudioZoom_v102.so
 lib/lib_SoundBooster_ver402.so
 # lib/libcontrolcsc.so
 
-csc/sales_code.dat
+# csc/sales_code.dat
 usr/share/alsa/alsa.conf
 
 vendor/firmware/srp_cga.bin
@@ -25,16 +25,17 @@ vendor/firmware/srp_data.bin
 vendor/firmware/srp_vliw.bin
 
 # Bluetooth
-vendor/firmware/bcm4335_A0.hcd
-vendor/firmware/bcm4335.hcd
-vendor/firmware/bcm4335_semco.hcd
-vendor/firmware/bcm4335_wisol.hcd
+# vendor/firmware/bcm4335_A0.hcd
+# vendor/firmware/bcm4335.hcd
+# vendor/firmware/bcm4335_semco.hcd
+# vendor/firmware/bcm4335_wisol.hcd
 vendor/firmware/bcm4335_V0091.0405_wisol.hcd
-vendor/firmware/bcm4339_A0.hcd
-vendor/firmware/bcm4339.hcd
-vendor/firmware/bcm4339_semco.hcd
-vendor/firmware/bcm4339_wisol.hcd
-vendor/firmware/BT_FW_VER_BCM4339_003.001.009.0055.0254_ORC_H-LTE.hcd
+vendor/firmware/bcm4335_V0093.0400.hcd
+# vendor/firmware/bcm4339_A0.hcd
+# vendor/firmware/bcm4339.hcd
+# vendor/firmware/bcm4339_semco.hcd
+# vendor/firmware/bcm4339_wisol.hcd
+# vendor/firmware/BT_FW_VER_BCM4339_003.001.009.0055.0254_ORC_H-LTE.hcd
 
 # OemCrypto
 lib/liboemcrypto.so
@@ -95,13 +96,17 @@ app/mcRegistry/ffffffff000000000000000000000009.tlbin
 app/mcRegistry/ffffffff00000000000000000000000a.tlbin
 app/mcRegistry/ffffffff00000000000000000000000c.tlbin
 app/mcRegistry/ffffffff00000000000000000000000d.tlbin
+app/mcRegistry/ffffffff00000000000000000000000e.tlbin
 app/mcRegistry/ffffffff00000000000000000000000f.tlbin
 app/mcRegistry/ffffffff000000000000000000000010.tlbin
 app/mcRegistry/ffffffff000000000000000000000011.tlbin
 app/mcRegistry/ffffffff000000000000000000000012.tlbin
 app/mcRegistry/ffffffff000000000000000000000013.tlbin
+app/mcRegistry/ffffffff000000000000000000000017.tlbin
+app/mcRegistry/ffffffff000000000000000000000018.tlbin
 app/mcRegistry/ffffffffd00000000000000000000004.tlbin
 app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
+app/mcRegistry/ffffffffd0000000000000000000000e.tlbin
 bin/scranton_RD
 
 # Sensors
