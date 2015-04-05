@@ -118,6 +118,10 @@ PRODUCT_PACKAGES += \
     libhwjpeg \
     camera.universal5420
 
+# Camera permissions
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/init.exynos.cam.sh:system/etc/init.exynos.cam.sh
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
