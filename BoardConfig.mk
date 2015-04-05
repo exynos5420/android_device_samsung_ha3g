@@ -67,10 +67,10 @@ BOARD_NEEDS_MEMORYHEAPION := true
 # COMMON_GLOBAL_CFLAGS += -DUSE_CONVERT_WITH_ROTATE
 
 # HEALTH DAEMON (CHARGER) DEFINES
-RED_LED_PATH := "/sys/devices/virtual/leds/led_r/brightness"
-GREEN_LED_PATH := "/sys/devices/virtual/leds/led_g/brightness"
-BLUE_LED_PATH := "/sys/devices/virtual/leds/led_b/brightness"
-BACKLIGHT_PATH := "/sys/devices/virtual/backlight/panel/brightness"
+RED_LED_PATH := "/sys/devices/virtual/sec/led/led_r"
+GREEN_LED_PATH := "/sys/devices/virtual/led/led_g"
+BLUE_LED_PATH := "/sys/devices/virtual/led/led_b"
+BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # Kernel
