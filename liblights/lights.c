@@ -155,6 +155,10 @@ static int set_light_backlight(struct light_device_t *dev,
     pthread_mutex_lock(&g_lock);
 
     err = write_int(PANEL_FILE, brightness);
+    if (err) {
+        ALOGE("set_light_backlight: cannot set %d value to %s: %d (%s)",
+              brightness, PANEL_FILE, err, strerror(err));
+    }
 
     pthread_mutex_unlock(&g_lock);
 
