@@ -27,9 +27,9 @@
 #include <hardware/power.h>
 
 #define TSP_POWER "/sys/class/input/input1/enabled"
-#define TOUCHKEY_POWER "/sys/class/input/input18/enabled"
-#define SPEN_POWER "/sys/class/input/input19/enabled"
-#define GPIO_POWER "/sys/class/input/input17/enabled"
+#define TOUCHKEY_POWER "/sys/class/input/input14/enabled"
+#define SPEN_POWER "/sys/class/input/input15/enabled"
+#define GPIO_POWER "/sys/class/input/input13/enabled"
 
 #define BOOST_PULSE_PATH "/sys/devices/system/cpu/cpufreq/interactive/boostpulse"
 #define BOOST_PATH "/sys/devices/system/cpu/cpufreq/interactive/boost"
@@ -86,7 +86,7 @@ static void power_init(__attribute__((unused)) struct power_module *module)
 
 static void power_set_interactive(__attribute__((unused)) struct power_module *module, int on)
 {
-    sysfs_write(TSP_POWER, on ? "1" : "sysfs");
+    sysfs_write(TSP_POWER, on ? "1" : "0");
     sysfs_write(SPEN_POWER, on ? "1" : "0");
     sysfs_write(GPIO_POWER, on ? "1" : "0");
     sysfs_write(TOUCHKEY_POWER, on ? "1" : "0");
