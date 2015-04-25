@@ -16,7 +16,13 @@ lib/lib_DNSe_NRSS_ver226.so
 lib/lib_Samsung_AudioZoom_v102.so
 lib/lib_SoundBooster_ver402.so
 # lib/libcontrolcsc.so
-
+lib/libmysound.so
+lib/libaudiosa.so
+lib/lib_SA_GoogleFX_ver124b.so
+lib/soundfx/libaudiosa_sec.so
+lib/lib_SoundAlive_play_ver125e.so
+vendor/lib/liblvverx_3.20.03.so
+vendor/lib/liblvvetx_3.20.03.so
 # csc/sales_code.dat
 usr/share/alsa/alsa.conf
 
