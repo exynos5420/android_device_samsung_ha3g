@@ -1139,7 +1139,7 @@
         <parameter name="VoiceCall" file="aec_config.dat" />
         <parameter name="VoiceCall" file="aec_fdsp_bypass_nb.dat" />
         <parameter name="VoiceCall" file="aec_hp_dac0.dat" />
-        <parameter name="VoiceCall" file="aec_sidetone.dat" /> 
+        <parameter name="VoiceCall" file="aec_sidetone.dat" />
         <parameter name="VoiceCall" file="aec_sidetone_vol_nb.dat" />
         <parameter name="VoiceCall" file="aec_adc.dat" />
         <mixer name="Voice Rate" value0="10" />
@@ -1155,7 +1155,7 @@
         <parameter name="VoiceCall" file="aec_config.dat" />
         <parameter name="VoiceCall" file="aec_fdsp_bypass_wb.dat" />
         <parameter name="VoiceCall" file="aec_hp_dac0.dat" />
-        <parameter name="VoiceCall" file="aec_sidetone.dat" /> 
+        <parameter name="VoiceCall" file="aec_sidetone.dat" />
         <parameter name="VoiceCall" file="aec_sidetone_vol_wb.dat" />
         <parameter name="VoiceCall" file="aec_adc.dat" />
         <mixer name="Voice Rate" value0="6" />
@@ -1416,7 +1416,7 @@
         <parameter name="VoiceCall (1MIC)" file="aec_config.dat" />
         <parameter name="VoiceCall (1MIC)" file="aec_fdsp_bypass_nb.dat" />
         <parameter name="VoiceCall (1MIC)" file="aec_hp_dac0.dat" />
-        <parameter name="VoiceCall (1MIC)" file="aec_sidetone.dat" /> 
+        <parameter name="VoiceCall (1MIC)" file="aec_sidetone.dat" />
         <parameter name="VoiceCall (1MIC)" file="aec_sidetone_vol_nb.dat" />
         <parameter name="VoiceCall (1MIC)" file="aec_adc.dat" />
         <mixer name="Voice Rate" value0="10" />
@@ -1432,7 +1432,7 @@
         <parameter name="VoiceCall (1MIC)" file="aec_config.dat" />
         <parameter name="VoiceCall (1MIC)" file="aec_fdsp_bypass_wb.dat" />
         <parameter name="VoiceCall (1MIC)" file="aec_hp_dac0.dat" />
-        <parameter name="VoiceCall (1MIC)" file="aec_sidetone.dat" /> 
+        <parameter name="VoiceCall (1MIC)" file="aec_sidetone.dat" />
         <parameter name="VoiceCall (1MIC)" file="aec_sidetone_vol_wb.dat" />
         <parameter name="VoiceCall (1MIC)" file="aec_adc.dat" />
         <mixer name="Voice Rate" value0="6" />
@@ -1841,6 +1841,61 @@
         <mixer name="Voice Rate" value0="6" />
         <mixer name="Ext Physical Port" value0="1" />
         <mixer name="Voice Physical Port" value0="2" />
+        <parameter name="VoiceCall" file="aec_control_path_resume.dat" />
+    </group>
+    <group name="ACPU_Incall">
+        <!-- transmit -->
+        <mixer name="Voice Output Volume" value0="96" value1="96" />
+        <mixer name="Voice Output Switch" value0="1" value1="1" />
+        <mixer name="Ext Input Volume" value0="96" value1="96" />
+        <mixer name="Ext Input Switch" value0="1" value1="1" />
+        <!-- Lch: transmit, Rch: receive(for incall recording) -->
+        <mixer name="Ref Input Volume" value0="96" value1="96" />
+        <mixer name="Ref Input Switch" value0="1" value1="1" />
+        <!-- receive -->
+        <mixer name="Voice Input Volume" value0="96" value1="96" />
+        <mixer name="Voice Input Switch" value0="1" value1="1" />
+        <mixer name="Ext Output Volume" value0="96" value1="96" />
+        <mixer name="Ext Output Switch" value0="1" value1="1" />
+        <mixer name="Voice In Swap" value0="2" />
+        <mixer name="Ext In Swap" value0="2" />
+        <mixer name="Ext Out Swap" value0="2" />
+        <!-- AEC reference -->
+        <mixer name="Ref Output Volume" value0="96" value1="96" />
+        <mixer name="Ref Output Switch" value0="1" value1="1" />
+    </group>
+    <group name="ACPU_Incall_NB">
+        <mixer name="Clear Dsp Parameter" value0="ON" />
+        <parameter name="VoiceCall" file="aec_control_path_off.dat" />
+        <parameter name="VoiceCall" file="aec_ae1_through.dat" />
+        <parameter name="VoiceCall" file="aec_config.dat" />
+        <parameter name="VoiceCall" file="aec_fdsp_bypass_nb_bt.dat" />
+        <mixer name="Ext MasterSlave" value0="1" />
+        <mixer name="Ext Rate" value0="0" />
+        <mixer name="Ext Bitclock Rate" value0="2" />
+        <mixer name="Ext Interface" value0="0" />
+        <mixer name="Ext Input DA Format" value0="1" />
+        <mixer name="Ext Output DA Format" value0="1" />
+        <mixer name="Voice Rate" value0="10" />
+        <mixer name="Ext Physical Port" value0="0" />
+        <mixer name="Voice Physical Port" value0="1" />
+        <parameter name="VoiceCall" file="aec_control_path_resume.dat" />
+    </group>
+    <group name="ACPU_Incall_WB">
+        <mixer name="Clear Dsp Parameter" value0="ON" />
+        <parameter name="VoiceCall" file="aec_control_path_off.dat" />
+        <parameter name="VoiceCall" file="aec_ae1_through.dat" />
+        <parameter name="VoiceCall" file="aec_config.dat" />
+        <parameter name="VoiceCall" file="aec_fdsp_bypass_wb_bt.dat" />
+        <mixer name="Ext MasterSlave" value0="1" />
+        <mixer name="Ext Rate" value0="0" />
+        <mixer name="Ext Bitclock Rate" value0="2" />
+        <mixer name="Ext Interface" value0="0" />
+        <mixer name="Ext Input DA Format" value0="1" />
+        <mixer name="Ext Output DA Format" value0="1" />
+        <mixer name="Voice Rate" value0="6" />
+        <mixer name="Ext Physical Port" value0="0" />
+        <mixer name="Voice Physical Port" value0="1" />
         <parameter name="VoiceCall" file="aec_control_path_resume.dat" />
     </group>
 <!-- Group for Incommunication -->
@@ -2984,6 +3039,18 @@
         <group name="Bluetooth_Incall_BT16_WB_Type3" />
         <mixer name="Audio Mode Playback" value0="incall2" />
     </scenario>
+    <scenario name="AndroidPlayback_ACPU_Incall_NB">
+        <mixer name="Output Path" value0="BT" />
+        <group name="ACPU_Incall" />
+        <group name="ACPU_Incall_NB" />
+        <mixer name="Audio Mode Playback" value0="incall2" />
+    </scenario>
+    <scenario name="AndroidPlayback_ACPU_Incall_WB">
+        <mixer name="Output Path" value0="BT" />
+        <group name="ACPU_Incall" />
+        <group name="ACPU_Incall_WB" />
+        <mixer name="Audio Mode Playback" value0="incall2" />
+    </scenario>
 <!-- Audio+Incall_NB (Earpiece) -->
     <scenario name="AndroidPlayback_Audio_Earpiece_Incall_NB_Type0">
         <mixer name="Output Path" value0="RC" />
@@ -3426,6 +3493,19 @@
         <group name="Bluetooth_Incall_BT16_WB_Type3" />
         <mixer name="Audio Mode Playback" value0="audio+incall2" />
     </scenario>
+<!-- Audio+Incall_ACPU -->
+    <scenario name="AndroidPlayback_Audio_ACPU_Incall_NB">
+        <mixer name="Output Path" value0="BT" />
+        <group name="ACPU_Incall" />
+        <group name="ACPU_Incall_NB" />
+        <mixer name="Audio Mode Playback" value0="incall2" />
+    </scenario>
+    <scenario name="AndroidPlayback_Audio_ACPU_Incall_WB">
+        <mixer name="Output Path" value0="BT" />
+        <group name="ACPU_Incall" />
+        <group name="ACPU_Incall_WB" />
+        <mixer name="Audio Mode Playback" value0="incall2" />
+    </scenario>
 <!-- Audio(Playback) -->
     <scenario name="AndroidPlayback_Audio_Earpiece_Normal">
         <mixer name="Output Path" value0="RC" />
@@ -3803,7 +3883,7 @@
         <parameter name="DSP (Output)" file="aec_ae0_through.dat" />
         <parameter name="DSP (Output)" file="aec_hp_dac0.dat" />
         <parameter name="DSP (Output)" file="aec_sp_dac1.dat" />
-        <parameter name="DSP (Output)" file="aec_lrmix.dat" />
+        <parameter name="DSP (Output)" file="aec_lrmix_dac1.dat" />
         <mixer name="Music Input Volume" value0="96" value1="96" />
         <mixer name="Music Input Switch" value0="1" value1="1" />
         <mixer name="Music In0 Swap" value0="0" />
@@ -3904,7 +3984,7 @@
         <parameter name="DSP (Output)" file="aec_ae0_through.dat" />
         <parameter name="DSP (Output)" file="aec_line1_dac0.dat" />
         <parameter name="DSP (Output)" file="aec_sp_dac1.dat" />
-        <parameter name="DSP (Output)" file="aec_lrmix.dat" />
+        <parameter name="DSP (Output)" file="aec_lrmix_dac1.dat" />
         <mixer name="Music Input Volume" value0="96" value1="96" />
         <mixer name="Music Input Switch" value0="1" value1="1" />
         <mixer name="Music In0 Swap" value0="0" />
@@ -3939,6 +4019,10 @@
         <mixer name="Audio Mode Capture" value0="incall" />
     </scenario>
     <scenario name="AndroidCapture_Bluetooth_Incall">
+        <mixer name="Voice Out Swap" value0="2" />
+        <mixer name="Audio Mode Capture" value0="incall" />
+    </scenario>
+    <scenario name="AndroidCapture_ACPU_Incall">
         <mixer name="Voice Out Swap" value0="2" />
         <mixer name="Audio Mode Capture" value0="incall" />
     </scenario>
@@ -4191,6 +4275,34 @@
         <mixer name="Voice Out Swap" value0="2" />
         <mixer name="Input Path" value0="Bluetooth" />
         <mixer name="Audio Mode Capture" value0="audio+incall" />
+    </scenario>
+    <scenario name="AndroidCapture_VoiceRec_ACPU_Incall">
+        <mixer name="Voice Out Swap" value0="2" />
+        <mixer name="Audio Mode Capture" value0="incall" />
+    </scenario>
+    <scenario name="AndroidCapture_VoiceUplink_ACPU_Incall">
+        <mixer name="Voice Out Swap" value0="2" />
+        <mixer name="Audio Mode Capture" value0="incall" />
+    </scenario>
+    <scenario name="AndroidCapture_VoiceDownlink_ACPU_Incall">
+        <mixer name="Voice Out Swap" value0="2" />
+        <mixer name="Audio Mode Capture" value0="incall" />
+    </scenario>
+    <scenario name="AndroidCapture_VoiceCall_ACPU_Incall">
+        <mixer name="Voice Out Swap" value0="2" />
+        <mixer name="Audio Mode Capture" value0="incall" />
+    </scenario>
+    <scenario name="AndroidCapture_CamCorder_ACPU_Incall">
+        <mixer name="Voice Out Swap" value0="2" />
+        <mixer name="Audio Mode Capture" value0="incall" />
+    </scenario>
+    <scenario name="AndroidCapture_VoiceSearch_ACPU_Incall">
+        <mixer name="Voice Out Swap" value0="2" />
+        <mixer name="Audio Mode Capture" value0="incall" />
+    </scenario>
+    <scenario name="AndroidCapture_VoiceCommunication_ACPU_Incall">
+        <mixer name="Voice Out Swap" value0="2" />
+        <mixer name="Audio Mode Capture" value0="incall" />
     </scenario>
 <!-- Audio(Record) -->
     <scenario name="AndroidCapture_VoiceRec_MainMic_Normal">

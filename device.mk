@@ -103,6 +103,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/ymc/param/aec_line1_dac0.dat:system/etc/ymc/param/aec_line1_dac0.dat \
     $(LOCAL_PATH)/configs/ymc/param/aec_line2_dac1.dat:system/etc/ymc/param/aec_line2_dac1.dat \
     $(LOCAL_PATH)/configs/ymc/param/aec_lrmix.dat:system/etc/ymc/param/aec_lrmix.dat \
+    $(LOCAL_PATH)/configs/ymc/param/aec_lrmix_dac1.dat:system/etc/ymc/param/aec_lrmix_dac1.dat \
     $(LOCAL_PATH)/configs/ymc/param/aec_rc_dac0.dat:system/etc/ymc/param/aec_rc_dac0.dat \
     $(LOCAL_PATH)/configs/ymc/param/aec_sidetone.dat:system/etc/ymc/param/aec_sidetone.dat \
     $(LOCAL_PATH)/configs/ymc/param/aec_sidetone_vol_nb.dat:system/etc/ymc/param/aec_sidetone_vol_nb.dat \
