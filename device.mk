@@ -207,6 +207,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libMcClient \
     libMcRegistry \
+    libPaApi \
     libgdmcprov \
     mcDriverDaemon
 
@@ -218,10 +219,14 @@ PRODUCT_PACKAGES += \
 
 # OMX
 PRODUCT_PACKAGES += \
-    libcsc \
     libExynosOMX_Core \
-    libOMX.Exynos.MP3.Decoder \
-    libstagefrighthw \
+    libOMX.Exynos.MPEG4.Decoder \
+    libOMX.Exynos.AVC.Decoder \
+    libOMX.Exynos.MPEG4.Encoder \
+    libOMX.Exynos.AVC.Encoder \
+    libOMX.Exynos.VP8.Decoder \
+    libOMX.Exynos.VP8.Encoder \
+    libstagefrighthw
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -280,9 +285,12 @@ PRODUCT_PACKAGES += \
     init.recovery.universal5420.rc
 
 # Sensors
-# PRODUCT_PACKAGES += \
-#    sensors.universal5420
+PRODUCT_PACKAGES += \
+    sensors.universal5420
 
+# Torch
+PRODUCT_PACKAGES += \
+    Torch
 # Wifi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \

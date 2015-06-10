@@ -20,11 +20,16 @@ lib/libmysound.so
 lib/libaudiosa.so
 lib/lib_SA_GoogleFX_ver124b.so
 lib/soundfx/libaudiosa_sec.so
+#lib/soundfx/libbundlewrapper.so
 lib/lib_SoundAlive_play_ver125e.so
 vendor/lib/liblvverx_3.20.03.so
 vendor/lib/liblvvetx_3.20.03.so
 # csc/sales_code.dat
 usr/share/alsa/alsa.conf
+#safar
+#lib/libsetproperty.so
+
+
 
 vendor/firmware/srp_cga.bin
 vendor/firmware/srp_data.bin
@@ -50,6 +55,9 @@ lib/liboemcrypto.so
 lib/hw/camera.universal5420.so:lib/hw/camera.vendor.universal5420.so
 lib/libexynoscamera.so
 lib/libvdis.so
+# Camera Other 
+lib/libliveframework.so
+lib/libarcsoft_nighthawk.so
 
 # Widevine (DRM)
 bin/drmserver:bin/drmserver.samsung
@@ -62,7 +70,13 @@ vendor/lib/libWVStreamControlAPI_L1.so
 lib/drm/libdrmwvmplugin.so
 vendor/lib/libwvm.so
 vendor/lib/mediadrm/libwvdrmengine.so
+
 lib/libExynosOMX_Core.so
+lib/libcsc.so
+lib/libexynosgscaler.so
+lib/libexynosscaler.so
+lib/libexynosutils.so
+
 lib/omx/libOMX.Exynos.AVC.Decoder.so
 lib/omx/libOMX.Exynos.AVC.Encoder.so
 lib/omx/libOMX.Exynos.MPEG4.Decoder.so
@@ -79,6 +93,29 @@ vendor/lib/libRSDriverArm.so
 bin/gpsd
 lib/hw/gps.default.so
 lib/libwrappergps.so
+
+# LPM
+bin/lpm
+lib/libQmageDecoder.so
+media/battery_cover.spi
+media/battery_error.spi
+media/battery_low.spi
+media/battery_temperature_error.spi
+media/battery_temperature_limit.spi
+media/bootsamsung.qmg
+media/bootsamsungloop.qmg
+media/bootsamsungmini.qmg
+media/bootsamsungminiloop.qmg
+media/dock_error.spi
+media/incompatible_charger.spi
+media/particle_intro.spi
+media/particle_loop.spi
+media/percentage.spi
+media/shutdown.qmg
+media/shutdown.qmg.cover
+media/wave_loop.spi
+media/wireless_left.spi
+media/wireless_right.spi
 
 # Media
 vendor/firmware/fimc_is_fw2_3L2.bin

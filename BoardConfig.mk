@@ -65,11 +65,11 @@ RED_LED_PATH := "/sys/devices/virtual/sec/led/led_r"
 GREEN_LED_PATH := "/sys/devices/virtual/led/led_g"
 BLUE_LED_PATH := "/sys/devices/virtual/led/led_b"
 BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
-CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos5420
 TARGET_KERNEL_CONFIG := cm_ha3g_defconfig
+# TARGET_KERNEL_CONFIG := SueMax_01_defconfig
 #TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 #BOARD_KERNEL_CMDLINE := console=null vmalloc=512M androidboot.console=null user_debug=31
 BOARD_KERNEL_BASE := 0x10000000
@@ -77,8 +77,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 #BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02900000 --tags_offset 0x02700000
 
 # Battery
-BOARD_CHARGER_ENABLE_SUSPEND := true
-CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
+\
 BOARD_BATTERY_DEVICE_NAME := battery
 
 # FIMG2D
@@ -86,11 +85,11 @@ BOARD_USES_SKIA_FIMGAPI := true
 BOARD_USES_NEON_BLITANTIH := true
 
 # GSC
-BOARD_USES_ONLY_GSC0_GSC1 := true
+# BOARD_USES_ONLY_GSC0_GSC1 := true
 
 # HDMI
-BOARD_USES_GSC_VIDEO := true
-BOARD_USES_CEC := true
+# BOARD_USES_GSC_VIDEO := true
+# BOARD_USES_CEC := true
 
 # Graphics
 USE_OPENGL_RENDERER := true
@@ -100,7 +99,7 @@ BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
 # 0 is by default
 # VSYNC_EVENT_PHASE_OFFSET_NS := 0
-OVERRIDE_RS_DRIVER := libRSDriverArm.so
+#OVERRIDE_RS_DRIVER := libRSDriverArm.so
 
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
@@ -113,14 +112,15 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 TARGET_NR_SVC_SUPP_GIDS := 20
 
 # SurfaceFlinger
-# BOARD_USES_SYNC_MODE_FOR_MEDIA := true
+BOARD_USES_SYNC_MODE_FOR_MEDIA := true
 
 # NFC
 BOARD_HAVE_NFC := true
 BOARD_NFC_HAL_SUFFIX := universal5420
 
 # Media
-#COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
+COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
+COMMON_GLOBAL_CFLAGS += -DWIDEVINE_PLUGIN_PRE_NOTIFY_ERROR
 
 # OpenMAX Video
 BOARD_USE_STOREMETADATA := true
@@ -138,7 +138,7 @@ BOARD_USE_ENCODER_RGBINPUT_SUPPORT := true
 BOARD_USE_DUALDPB_MODE := true
 
 # Samsung Gralloc
-TARGET_SAMSUNG_GRALLOC_EXTERNAL_USECASES := true
+# TARGET_SAMSUNG_GRALLOC_EXTERNAL_USECASES := true
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 11534336
