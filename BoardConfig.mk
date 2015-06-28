@@ -68,7 +68,7 @@ BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/samsung/exynos5420
+TARGET_KERNEL_SOURCE := kernel/samsung/ha3g
 TARGET_KERNEL_CONFIG := cm_ha3g_defconfig
 #TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 #BOARD_KERNEL_CMDLINE := console=null vmalloc=512M androidboot.console=null user_debug=31
