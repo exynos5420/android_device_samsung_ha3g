@@ -25,8 +25,8 @@
 
 #define LOG_TAG "CameraWrapper"
 #include <cutils/log.h>
-//#include <sys/types.h>
-//#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #include <utils/threads.h>
 #include <utils/String8.h>
@@ -35,7 +35,7 @@
 #include <camera/Camera.h>
 #include <camera/CameraParameters.h>
 
-//#define CAMID_PATH "/data/CameraID.txt"
+#define CAMID_PATH "/data/CameraID.txt"
 
 static android::Mutex gCameraWrapperLock;
 static camera_module_t *gVendorModule = 0;
@@ -83,36 +83,36 @@ typedef struct wrapper_camera_device {
 })
 
 #define CAMERA_ID(device) (((wrapper_camera_device_t *)(device))->id)
-//static void fix_camera_id_permissions()
-//{
-//    FILE* camidfile;
-//    int amode;
-//    int ret = -1;
-//    camidfile = fopen(CAMID_PATH, "w");
-//    if (camidfile == 0) {
-//        fprintf(stderr, "open(%s) failed\n", CAMID_PATH);
-//        ALOGE("Can't open %s\n", CAMID_PATH);
-//    } else {
-//        ALOGD("Setting permissions of %s\n", CAMID_PATH);
+static void fix_camera_id_permissions()
+{
+    FILE* camidfile;
+    int amode;
+    int ret = -1;
+    camidfile = fopen(CAMID_PATH, "w");
+    if (camidfile == 0) {
+        fprintf(stderr, "open(%s) failed\n", CAMID_PATH);
+        ALOGE("Can't open %s\n", CAMID_PATH);
+    } else {
+        ALOGD("Setting permissions of %s\n", CAMID_PATH);
 
-//        /* write permissions for the file owner */
-//        amode = S_IWUSR;
-//        ret = chmod(CAMID_PATH, amode);
+        /* write permissions for the file owner */
+        amode = S_IWUSR;
+        ret = chmod(CAMID_PATH, amode);
 
-//        /* owner: media; group: system */
-//        char* chown_cmd = (char*) malloc(strlen("chown media ") + strlen(CAMID_PATH) + 1);
-//        char* chgrp_cmd = (char*) malloc(strlen("chgrp system ") + strlen(CAMID_PATH) + 1);
-//        sprintf(chown_cmd, "chown media %s", CAMID_PATH);
-//        sprintf(chgrp_cmd, "chgrp system %s", CAMID_PATH);
-//        system(chown_cmd);
-//        system(chgrp_cmd);
+        /* owner: media; group: system */
+        char* chown_cmd = (char*) malloc(strlen("chown media ") + strlen(CAMID_PATH) + 1);
+        char* chgrp_cmd = (char*) malloc(strlen("chgrp system ") + strlen(CAMID_PATH) + 1);
+        sprintf(chown_cmd, "chown media %s", CAMID_PATH);
+        sprintf(chgrp_cmd, "chgrp system %s", CAMID_PATH);
+        system(chown_cmd);
+        system(chgrp_cmd);
 
-//        if (ret != 0) {
-//            fprintf(stderr, "chmod() on file %s failed\n", CAMID_PATH);
-//            ALOGE("Can't set permissions on %s\n", CAMID_PATH);
-//        }
-//    }
-//}
+        if (ret != 0) {
+            fprintf(stderr, "chmod() on file %s failed\n", CAMID_PATH);
+            ALOGE("Can't set permissions on %s\n", CAMID_PATH);
+        }
+    }
+}
 
 static int check_vendor_module()
 {
