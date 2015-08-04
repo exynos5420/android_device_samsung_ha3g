@@ -26,6 +26,7 @@ vendor/lib/liblvverx_3.20.03.so
 vendor/lib/liblvvetx_3.20.03.so
 # csc/sales_code.dat
 usr/share/alsa/alsa.conf
+#lib/libasound.so
 #safar
 #lib/libsetproperty.so
 

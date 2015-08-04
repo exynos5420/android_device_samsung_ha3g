@@ -79,6 +79,7 @@ on post-fs-data
 
 # YAAS(Yamaha Android Audio System) uses.
     mkdir /data/ymc 0775 system system
+    chmod 0666 /dev/snd/controlC0
 
 # Permissions for bluetooth
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
