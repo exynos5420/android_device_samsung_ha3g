@@ -45,6 +45,11 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUEDROID_VENDOR_CONF := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
+# Boot animation
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+TARGET_BOOTANIMATION_HALF_RES := true
+
 # Bootloader
 TARGET_OTA_ASSERT_DEVICE := ha3g
 TARGET_BOOTLOADER_BOARD_NAME := universal5420
@@ -59,12 +64,9 @@ COMMON_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
 # Force the screenshot path to CPU consumer (fix glitches)
 COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH
 
-# HEALTH DAEMON (CHARGER) DEFINES
-RED_LED_PATH := "/sys/devices/virtual/sec/led/led_r"
-GREEN_LED_PATH := "/sys/devices/virtual/led/led_g"
-BLUE_LED_PATH := "/sys/devices/virtual/led/led_b"
-BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
-CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
+# Fonts
+EXTENDED_FONT_FOOTPRINT := true
+
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/ha3g
@@ -76,8 +78,6 @@ BOARD_KERNEL_PAGESIZE := 2048
 #BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02900000 --tags_offset 0x02700000
 
 # Battery
-BOARD_CHARGER_ENABLE_SUSPEND := true
-CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 BOARD_BATTERY_DEVICE_NAME := battery
 
 # FIMG2D
@@ -93,17 +93,11 @@ BOARD_USES_CEC := true
 
 # Graphics
 USE_OPENGL_RENDERER := true
-# not found in any .mk
-# BOARD_USES_HGL := true
 BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
-# 0 is by default
-# VSYNC_EVENT_PHASE_OFFSET_NS := 0
-OVERRIDE_RS_DRIVER := libRSDriverArm.so
 
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
-#TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
@@ -119,7 +113,8 @@ BOARD_HAVE_NFC := true
 BOARD_NFC_HAL_SUFFIX := universal5420
 
 # Media
-#COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
+COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
+COMMON_GLOBAL_CFLAGS += -DWIDEVINE_PLUGIN_PRE_NOTIFY_ERROR
 
 # OpenMAX Video
 BOARD_USE_STOREMETADATA := true

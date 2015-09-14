@@ -1,0 +1,10 @@
+root@ha3g:/sys/devices/system/cpu/cpufreq/iks-cpufreq # ls
+freq_table
+max_freq
+min_freq
+at max_freq                                                                   <
+1900000
+at min_freq                                                                   <
+250000
+at freq_table                                                                 <
+1900000 1800000 1700000 1600000 1500000 1400000 1300000 1200000 1100000 1000000 900000 800000 650000 600000 550000 500000 450000 400000 350000 300000 250000 

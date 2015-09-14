@@ -194,7 +194,6 @@ PRODUCT_COPY_FILES += \
 
 # Media profile
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml  \
@@ -207,9 +206,6 @@ PRODUCT_PACKAGES += \
 
 # MobiCore setup
 PRODUCT_PACKAGES += \
-    libMcClient \
-    libMcRegistry \
-    libgdmcprov \
     mcDriverDaemon
 
 # Network tools
@@ -264,6 +260,7 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    lpm.rc \
     fstab.universal5420 \
     init.samsung.rc \
     init.universal5420.rc \
@@ -300,9 +297,6 @@ PRODUCT_PACKAGES += \
     libnetcmdiface \
     macloader
 
-# for off charging mode
-PRODUCT_PACKAGES += \
-    charger_res_images
 
 # $(call inherit-product, build/target/product/full.mk)
 

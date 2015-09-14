@@ -24,8 +24,9 @@ ro.telephony.ril_class=ha3gRIL
 
 persist.sys.isUsbOtgEnabled=true
 # Default USB mode
-persist.sys.usb.config=mtp
-
+persist.service.adb.enable=1                                                    
+persist.service.debuggable=1
+persist.sys.usb.config=mtp,adb
 # Wifi
 wifi.interface=wlan0
 wlan.wfd.hdcp=disable
