@@ -78,8 +78,6 @@ lib/omx/libOMX.Exynos.WMV.Decoder.so
 lib/libExynosOMX_Resourcemanager.so
 lib/libExynosOMX_Core.so
 lib/libliveframework.so
-lib/libsavsac.so
-lib/libsavscmn.so
 lib/libsomx263dsw.so
 lib/libsomx264dsw.so
 lib/libsomxaacd.so
@@ -116,9 +114,6 @@ lib/libwrappergps.so
 
 # LPM
 bin/lpm
-lib/libmaet.so
-lib/libsuspend.so
-lib/libsxqk_skia.so
 lib/libQmageDecoder.so
 media/battery_cover.spi
 media/battery_error.spi
