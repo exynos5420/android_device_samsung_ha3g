@@ -121,7 +121,12 @@ TARGET_SCREEN_WIDTH := 1080
 PRODUCT_PACKAGES += \
     libhwjpeg \
     camera.universal5420
+    
+# Charger
+PRODUCT_PACKAGES += \
+    charger_res_images
 
+    
 # Camera permissions
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/init.exynos.cam.sh:system/etc/init.exynos.cam.sh
@@ -260,7 +265,6 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    lpm.rc \
     fstab.universal5420 \
     init.samsung.rc \
     init.universal5420.rc \

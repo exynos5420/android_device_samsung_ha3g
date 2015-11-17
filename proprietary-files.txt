@@ -112,28 +112,6 @@ bin/gpsd
 lib/hw/gps.default.so
 lib/libwrappergps.so
 
-# LPM
-bin/lpm
-lib/libQmageDecoder.so
-media/battery_cover.spi
-media/battery_error.spi
-media/battery_low.spi
-media/battery_temperature_error.spi
-media/battery_temperature_limit.spi
-media/bootsamsung.qmg
-media/bootsamsungloop.qmg
-media/bootsamsungmini.qmg
-media/bootsamsungminiloop.qmg
-media/dock_error.spi
-media/incompatible_charger.spi
-media/particle_intro.spi
-media/particle_loop.spi
-media/percentage.spi
-media/shutdown.qmg
-media/shutdown.qmg.cover
-media/wave_loop.spi
-media/wireless_left.spi
-media/wireless_right.spi
 
 # Media
 vendor/firmware/fimc_is_fw2_3L2.bin

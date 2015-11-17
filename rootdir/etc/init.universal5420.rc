@@ -527,12 +527,6 @@ service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/us
 on property:ro.fuse_sdcard=true
     start sdcard
 
-
-#service battery_charger /charger
-#    class charger
-#    critical
-#    seclabel u:r:healthd:s0
-
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /sbin/watchdogd 10 20
     class core
@@ -578,13 +572,8 @@ service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF0000000000000
     user system
     group system
 
-# LPM
-on charger
-    mount ext4 /dev/block/mmcblk0p18 /system wait ro
-    class_start sec-charger
-
-service sec-playlpm /system/bin/lpm
-    class sec-charger
+service battery_charger /sbin/healthd -c
+    class charger
     critical
     
 # service for TZPR provisioning version check app
