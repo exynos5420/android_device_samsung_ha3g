@@ -37,6 +37,7 @@ PRODUCT_PACKAGES += \
     tinymix
 
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/apps/SamsungCMSettings/base.apk:system/app/SamsungCMSettings/base.apk \
     $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml \
@@ -120,20 +121,15 @@ TARGET_SCREEN_WIDTH := 1080
 # Camera
 PRODUCT_PACKAGES += \
     libhwjpeg \
-    camera.universal5420
+    camera.exynos5 \
+    libexynoscamera
+    
     
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
 
     
-# Camera permissions
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/init.exynos.cam.sh:system/etc/init.exynos.cam.sh
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    camera2.portability.force_api=1
-
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
@@ -141,9 +137,9 @@ PRODUCT_PACKAGES += \
     setup_fs
 
 # Display
-#PRODUCT_PACKAGES += \
-#    libExynosHWCService \
-#    libfimg
+PRODUCT_PACKAGES += \
+    SamsungDoze \
+    SamsungServiceMode
 
 # GPS
 PRODUCT_COPY_FILES += \
@@ -154,7 +150,6 @@ PRODUCT_COPY_FILES += \
 # HW composer
 PRODUCT_PACKAGES += \
     libion \
-    hwcomposer.exynos5 \
     gralloc.exynos5
 
 # IR
@@ -175,9 +170,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
     $(LOCAL_PATH)/keylayout/ue_rf4ce_remote.kl:system/usr/keylayout/ue_rf4ce_remote.kl
 
-# Keystore
-PRODUCT_PACKAGES += \
-    keystore.exynos5
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -209,9 +201,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
-# MobiCore setup
-PRODUCT_PACKAGES += \
-    mcDriverDaemon
 
 # Network tools
 
@@ -221,10 +210,7 @@ PRODUCT_PACKAGES += \
 
 # OMX
 PRODUCT_PACKAGES += \
-    libcsc \
-    libExynosOMX_Core \
-    libOMX.Exynos.MP3.Decoder \
-    libstagefrighthw \
+    libcsc 
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -301,8 +287,8 @@ PRODUCT_PACKAGES += \
     libnetcmdiface \
     macloader
 
-
-# $(call inherit-product, build/target/product/full.mk)
+# call common exynos5 LOCAL_MODULE
+$(call inherit-product, hardware/samsung_slsi/exynos5/exynos5.mk)
 
 # call dalvik heap config
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)

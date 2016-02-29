@@ -36,20 +36,20 @@ vendor/firmware/bcm4335_V0093.0400.hcd
 lib/liboemcrypto.so
 
 # Camera
-lib/hw/camera.universal5420.so:lib/hw/camera.vendor.universal5420.so
-lib/libarccamera.so
-lib/libarcsoft_night_shot.so
-lib/libarcsoft_nighthawk.so
-lib/libarcsoft_panorama_burstcapture.so
-lib/libarcsoft_picaction.so
-lib/libarcsoft_picaction_manual.so
-lib/libarcsoft_selfie_camera_lite.so
-lib/libarcsoft_sensorndk.so
-lib/libarcsoft_vdoinvideo.so
-lib/libexynoscamera.so
-lib/libvdis.so
+#lib/hw/camera.universal5420.so:lib/hw/camera.vendor.universal5420.so
+#lib/libarccamera.so
+#lib/libarcsoft_night_shot.so
+#lib/libarcsoft_nighthawk.so
+#lib/libarcsoft_panorama_burstcapture.so
+#lib/libarcsoft_picaction.so
+#lib/libarcsoft_picaction_manual.so
+#lib/libarcsoft_selfie_camera_lite.so
+#lib/libarcsoft_sensorndk.so
+#lib/libarcsoft_vdoinvideo.so
+#lib/libexynoscamera.so
+#lib/libvdis.so
 # Camera Other 
-lib/libliveframework.so
+#lib/libliveframework.so
 
 # Widevine (DRM)
 bin/drmserver:bin/drmserver.samsung
@@ -166,6 +166,7 @@ vendor/firmware/bcm2079xB5_pre_firmware.ncd
 
 # Power
 # lib/hw/power.exynos5.so
+
 
 # Radio
 lib/libaudio-ril.so

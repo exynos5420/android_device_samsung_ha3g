@@ -35,6 +35,9 @@ import java.util.Collections;
 import com.android.internal.telephony.uicc.IccCardApplicationStatus;
 import com.android.internal.telephony.uicc.IccCardStatus;
 
+import com.android.internal.telephony.uicc.SpnOverride;
+
+
 /**
  * RIL for the Samsung exynos5420 family.
  * {@hide}
@@ -174,7 +177,49 @@ public class ha3gRIL extends RIL implements CommandsInterface {
         return response;
 
     }
+    public static boolean checkifstatus(String s) {
+        Rlog.v(RILJ_LOG_TAG, "CheckStatus("+s+")");
+        if (s.equals("unknown")) {
+            return true;
+        } else if (s.equals("available")) {
+            return true;
+        } else if (s.equals("current")) {
+            return true;
+        } else if (s.equals("forbidden")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    @Override
+    protected Object
+    responseOperatorInfos(Parcel p) {
+        String strings[] = (String [])responseStrings(p);
+        ArrayList<OperatorInfo> ret;
 
+        ret = new ArrayList<OperatorInfo>(strings.length / mQANElements);
+        
+        Operators init = null;
+        if (strings.length != 0) {
+            init = new Operators();
+        }
+	Rlog.d(RILJ_LOG_TAG, "Test loop");
+        for (int i = 0 ; i < strings.length ; i++) {
+	    if(checkifstatus(strings[i])){
+	        String strOperatorName = init.unOptimizedOperatorReplace(strings[i-2]);
+	        Rlog.v(RILJ_LOG_TAG,
+                   "XMM6360: Add OperatorInfo: " + strOperatorName +
+                   ", " + strings[i-2] +
+                   ", " + strings[i-1] +
+                   ", " + strings[i]);
+	        ret.add (new OperatorInfo(strOperatorName, strings[i-2], strings[i-1], strings[i]));
+	    }
+
+
+        }
+
+        return ret;
+    }
     @Override
     protected void
     processUnsolicited (Parcel p) {
