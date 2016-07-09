@@ -46,7 +46,7 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.universal5420 \
+    camera.exynos5 \
     libhwjpeg
 
 PRODUCT_PROPERTY_OVERRIDES += \
