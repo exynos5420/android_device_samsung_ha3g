@@ -36,7 +36,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storag
 # Radio
 BOARD_PROVIDES_LIBRIL := true
 # hardware/samsung/ril
-BOARD_MODEM_TYPE := xmm6360
+BOARD_MODEM_TYPE := xmm7260
 # we need define it (because audio.primary.universal5420.so requires it)
 COMMON_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 # RIL.java overwrite
