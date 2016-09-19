@@ -19,25 +19,28 @@ LOCAL_PATH := device/samsung/ha3g
 # Platform
 BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos5
-TARGET_SLSI_VARIANT := insignal
+TARGET_SLSI_VARIANT := cm
 TARGET_SOC := exynos5420
 
 # Architecture
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_VARIANT := cortex-a15
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
-TARGET_CPU_VARIANT := cortex-a15
 
-# Audio
-#BOARD_HAVE_SAMSUNG_AUDIO := true
-#BOARD_USES_ALSA_AUDIO := true
-#BOARD_USES_LIBMEDIA_WITH_AUDIOPARAMETER := true
+# Vold
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
 
-
-# Bionic Tuning
-TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
+# Radio
+BOARD_PROVIDES_LIBRIL := true
+# hardware/samsung/ril
+BOARD_MODEM_TYPE := xmm6360
+# we need define it (because audio.primary.universal5420.so requires it)
+COMMON_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
+# RIL.java overwrite
+BOARD_RIL_CLASS := ../../../device/samsung/ha3g/ril
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -57,30 +60,27 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Camera
+BOARD_CAMERA_SNUMINTS := 20
 BOARD_NEEDS_MEMORYHEAPION := true
+COMMON_GLOBAL_CFLAGS += -DCAMERA_SNUMINTS=$(BOARD_CAMERA_SNUMINTS)
 # COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 # COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
+
 # Force the screenshot path to CPU consumer (fix glitches)
 COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH
 
-# Fonts
-EXTENDED_FONT_FOOTPRINT := true
-
-
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/samsung/ha3g
-TARGET_KERNEL_CONFIG := cm_ha3g_defconfig
-#TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
-#BOARD_KERNEL_CMDLINE := console=null vmalloc=512M androidboot.console=null user_debug=31
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
-#BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02900000 --tags_offset 0x02700000
+TARGET_KERNEL_CONFIG := cyanogenmod_deathly_ha3g_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/exynos5420
 
 # Battery
-BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
+BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
+BOARD_BATTERY_DEVICE_NAME := battery
 RED_LED_PATH := "/sys/class/leds/led_r/brightness"
 GREEN_LED_PATH := "/sys/class/leds/led_g/brightness"
 BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
@@ -89,10 +89,6 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
-BOARD_USES_NEON_BLITANTIH := true
-
-# GSC
-BOARD_USES_ONLY_GSC0_GSC1 := true
 
 # HDMI
 BOARD_USES_GSC_VIDEO := true
@@ -100,7 +96,6 @@ BOARD_USES_CEC := true
 
 # Graphics
 USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
 
 # HWCServices
@@ -109,11 +104,12 @@ BOARD_USES_HWC_SERVICES := true
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
-# Init
-TARGET_NR_SVC_SUPP_GIDS := 20
+# CMHW
+BOARD_HARDWARE_CLASS += device/samsung/ha3g/cmhw
+BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
 
 # SurfaceFlinger
-# BOARD_USES_SYNC_MODE_FOR_MEDIA := true
+BOARD_USES_SYNC_MODE_FOR_MEDIA := true
 
 # NFC
 BOARD_HAVE_NFC := true
@@ -153,13 +149,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 # PowerHAL
 TARGET_POWERHAL_VARIANT := samsung
 
-# Radio
-BOARD_PROVIDES_LIBRIL := true
-BOARD_MODEM_TYPE := xmm6360
-# we need define it (because audio.primary.universal5420.so requires it)
-COMMON_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
-BOARD_RIL_CLASS := ../../../device/samsung/ha3g/ril
-
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_RECOVERY_SWIPE := true
@@ -178,29 +167,10 @@ BOARD_USES_SCALER := true
 BOARD_SEPOLICY_DIRS += \
     device/samsung/ha3g/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    service_contexts \
-    device.te \
-    domain.te \
-    drmserver.te \
-    file.te \
-    gpsd.te \
-    macloader.te \
-    mediaserver.te \
-    rild.te \
-    servicemanager.te \
-    system_app.te \
-    system_server.te \
-    vold.te \
-    wpa.te
-
 # Webkit
 ENABLE_WEBGL := true
 
 # WFD
-# BOARD_USES_WFD_SERVICE did not found anywhere
-BOARD_USES_WFD_SERVICE := true
 BOARD_USES_WFD := true
 
 # Wifi
@@ -217,9 +187,6 @@ WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
 WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/wifi/bcmdhd_p2p.bin"
-
-# CMHW
-BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
 
 # inherit from the proprietary version
 -include vendor/samsung/ha3g/BoardConfigVendor.mk
