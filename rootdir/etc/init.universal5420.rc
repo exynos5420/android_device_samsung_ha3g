@@ -493,6 +493,11 @@ service watchdogd /sbin/watchdogd 10 20
     seclabel u:r:watchdogd:s0
     disabled
 
+# Parse hardware revision (needs to happen before cbd starts)
+service modemloader /system/bin/modemloader
+    class core
+    oneshot
+
 service cpboot-daemon /sbin/cbd -d -txmm626x -bh -mh -p13
     class main
     user root
