@@ -86,6 +86,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     lights.universal5420
 
+# libstlport
+# M removes libstlport, but some of our binary-only prebuilts need it, so we'll
+# add it back
+PRODUCT_PACKAGES += \
+    libstlport
+
 # NFC
 PRODUCT_PACKAGES += \
     nfc_nci.bcm2079x.universal5420 \
