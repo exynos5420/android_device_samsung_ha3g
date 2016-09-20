@@ -54,6 +54,15 @@ PRODUCT_PACKAGES += \
     SamsungServiceMode
 
 # GPS
+PRODUCT_PACKAGES += \
+    gps.universal5420 \
+    libdmitry
+
+# Shims
+PRODUCT_PACKAGES += \
+    libsamsung_symbols
+
+# GPS
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gps.cer:system/etc/gps.cer \
     $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \

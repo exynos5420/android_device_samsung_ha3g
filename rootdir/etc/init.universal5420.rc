@@ -3,6 +3,9 @@ import init.universal5420.wifi.rc
 import init.samsung.rc
 
 on init
+
+    export LD_SHIM_LIBS "/system/lib/libexynoscamera.so|libsamsung_symbols.so:/system/bin/gpsd|libdmitry.so:/system/lib/libsec-ril.so|libsamsung_symbols.so"
+
     mkdir /mnt/shell/container 0700 system system
     mkdir /storage 0550 system sdcard_r
 
