@@ -43,5 +43,5 @@ on post-fs-data
     mkdir /system/lib/drm 0775
     chown root root /system/lib/drm
     chmod 0775 /system/lib/drm
-    restorecon_recursive /efs
+    restorecon -R /efs
 #]
