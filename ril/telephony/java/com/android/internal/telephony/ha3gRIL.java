@@ -198,15 +198,11 @@ public class ha3gRIL extends RIL implements CommandsInterface {
         ArrayList<OperatorInfo> ret;
 
         ret = new ArrayList<OperatorInfo>(strings.length / mQANElements);
-        
-        Operators init = null;
-        if (strings.length != 0) {
-            init = new Operators();
-        }
+
 	Rlog.d(RILJ_LOG_TAG, "Test loop");
         for (int i = 0 ; i < strings.length ; i++) {
 	    if(checkifstatus(strings[i])){
-	        String strOperatorName = init.unOptimizedOperatorReplace(strings[i-2]);
+	        String strOperatorName = strings[i-2];
 	        Rlog.v(RILJ_LOG_TAG,
                    "XMM6360: Add OperatorInfo: " + strOperatorName +
                    ", " + strings[i-2] +
