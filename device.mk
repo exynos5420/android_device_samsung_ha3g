@@ -46,7 +46,7 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.exynos5 \
+    camera.universal5420 \
     libhwjpeg
 
 # Display
@@ -95,6 +95,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     lights.universal5420
 
+# Keystore
+PRODUCT_PACKAGES += \
+    keystore.exynos5
+
 # libstlport
 # M removes libstlport, but some of our binary-only prebuilts need it, so we'll
 # add it back
@@ -122,6 +126,13 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml  \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
+
+# MobiCore setup
+PRODUCT_PACKAGES += \
+    libMcClient \
+    libMcRegistry \
+    libPaApi \
+    libgdmcprov
 
 # Network tools
 PRODUCT_PACKAGES += \
@@ -153,13 +164,14 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
 # CPU producer to CPU consumer not supported
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -174,15 +186,19 @@ PRODUCT_PACKAGES += \
     fstab.universal5420 \
     init.samsung.rc \
     init.universal5420.rc \
+    init.universal5420.power.rc \
     init.universal5420.usb.rc \
     init.universal5420.wifi.rc \
+    init.baseband.rc \
     ueventd.universal5420.rc
 
 # Radio
 PRODUCT_PACKAGES += \
-    cbd \
     libsecril-client \
-    libsecril-client-sap
+    libsecril-client-sap \
+    libril \
+    librilutils \
+    rild 
 
 # Recovery
 PRODUCT_PACKAGES += \
@@ -203,18 +219,40 @@ PRODUCT_PACKAGES += \
     hostapd \
     hostapd_default.conf \
     libwpa_client \
-    wpa_supplicant \
+    wpa_supplicant
+
+# IO Scheduler
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.io.scheduler=bfq
+
+PRODUCT_PACKAGES += \
     libnetcmdiface \
-	modemloader \
-    macloader
+    macloader \
+    modemloader
+
+# CPU producer to CPU consumer not supported
+PRODUCT_PROPERTY_OVERRIDES += \
+ ro.bq.gpu_to_cpu_unsupported=1
+
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.sys.fw.dex2oat_thread_count=4
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-filter=speed \
+    dalvik.vm.dex2oat-swap=false
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.carrier=unknown
+
+# cpboot-daemon for modem
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
 
 # call Samsung LSI board support package
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
 
-# call dalvik heap config
+# call dalvik heap/hwui config
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
-
-# call hwui memory config
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 $(call inherit-product-if-exists, vendor/samsung/ha3g/ha3g-vendor.mk)

@@ -1,5 +1,7 @@
+import init.universal5420.power.rc
 import init.universal5420.usb.rc
 import init.universal5420.wifi.rc
+import init.baseband.rc
 import init.samsung.rc
 
 on init
@@ -15,12 +17,6 @@ on init
 
     symlink /data/app /factory
 
-    mkdir /efs 0771 radio system
-
-    symlink /dev/block/mmcblk0p13 /dev/mbin0
-    restorecon /dev/mbin0
-    symlink /sys/devices/platform/s5p-ehci/ehci_power /dev/ehci_power
-
     # Make param link
     symlink /dev/block/mmcblk0p8 /dev/block/param
 
@@ -30,20 +26,16 @@ on early-init
     write /sys/block/mmcblk0/queue/scheduler noop
 
 on property:sys.boot_completed=1
-    write /sys/block/mmcblk0/queue/scheduler cfq
+    setprop sys.io.scheduler bfq
 
     # Interactive
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
-
+    write /dev/cpuctl/apps/cpu.notify_on_migrate 1
 
 on post-fs-data
-    # we will remap this as /mnt/sdcard with the sdcard fuse tool
-    mkdir /data/media 0770 media_rw media_rw
-    chown media_rw media_rw /data/media
-
     setprop vold.post_fs_data_done 1
 
 # YAAS(Yamaha Android Audio System) uses.
@@ -96,13 +88,13 @@ on post-fs-data
 # Bluetooth dhcpcd config
 service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
     class main
-	disabled
-	oneshot
+    disabled
+    oneshot
 
 service iprenew_bt-pan /system/bin/dhcpcd -n
     class late_start
-	disabled
-	oneshot
+    disabled
+    oneshot
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
@@ -119,10 +111,12 @@ on boot
     setprop ro.build.product universal_5420
     setprop ro.product.device universal_5420
 
+    chown root radio /proc/cmdline
     chmod 0644 /proc/cmdline
 
 # mobicore
     mkdir /data/app/mcRegistry 0775 system system
+    mkdir /system/app/mcRegistry/TbStorage 0775 system system
     chmod 0700 /dev/mobicore
     chmod 0666 /dev/mobicore-user
     chmod 0660 /dev/s5p-smem
@@ -353,23 +347,23 @@ on boot
     chown radio system /sys/devices/platform/exynos5-tmu/curr_temp
 
 # Quadrant Benchmark
-#    chown radio system /sys/class/thermal/thermal_zone0/boost_mode
+    chown radio system /sys/class/thermal/thermal_zone0/boost_mode
     chown radio system /sys/class/devfreq/exynos5-busfreq-mif/min_freq
     chown radio system /sys/class/devfreq/exynos5-busfreq-int/min_freq
     chown radio system /sys/devices/system/cpu/cpufreq/iks-cpufreq/min_freq
     chown radio system /sys/devices/system/cpu/cpufreq/iks-cpufreq/max_freq
     chown radio system /sys/devices/system/cpu/cpufreq/iks-cpufreq/freq_table
-#    chown radio system /sys/devices/system/cpu/cpufreq/iks-cpufreq/max_eagle_count
+    chown radio system /sys/devices/system/cpu/cpufreq/iks-cpufreq/max_eagle_count
 #    chown radio system /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock
 #    chown radio system /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock
 #    chown radio system /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_table
-#    chmod 0664 /sys/class/thermal/thermal_zone0/boost_mode
+    chmod 0664 /sys/class/thermal/thermal_zone0/boost_mode
     chmod 0664 /sys/class/devfreq/exynos5-busfreq-mif/min_freq
     chmod 0664 /sys/class/devfreq/exynos5-busfreq-int/min_freq
     chmod 0664 /sys/devices/system/cpu/cpufreq/iks-cpufreq/min_freq
     chmod 0664 /sys/devices/system/cpu/cpufreq/iks-cpufreq/max_freq
     chmod 0664 /sys/devices/system/cpu/cpufreq/iks-cpufreq/freq_table
-#    chmod 0664 /sys/devices/system/cpu/cpufreq/iks-cpufreq/max_eagle_count
+    chmod 0664 /sys/devices/system/cpu/cpufreq/iks-cpufreq/max_eagle_count
 #    chmod 0664 /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock
 #    chmod 0664 /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock
 #    chmod 0664 /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_table
@@ -379,8 +373,8 @@ on boot
     chown system radio /sys/module/cpuidle/parameters/enable_mask
 
 # MTP permission
-    chmod 0660 /dev/usb_mtp_gadget
-    chown system mtp /dev/usb_mtp_gadget
+    chmod 0660 /dev/mtp_usb
+    chown system mtp /dev/mtp_usb
 
 # terminal mode
 #	chmod 0660 /sys/class/android_usb/android0/terminal_version
@@ -407,15 +401,21 @@ on boot
     chown system radio /sys/class/sec/sec_barcode_emul/barcode_ver_check
     chown system radio /sys/class/sec/sec_barcode_emul/barcode_led_status
 
+on charger
+    # Set cpu governor to powersave while in charging mode
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor powersave
+
+    # EHCI runtime enable for LPA
+    write /sys/devices/platform/s5p-ehci/power/control auto
+
+    # Do not set any USB mode while charging
+    setprop sys.usb.config charging
 
 on fs
     mount_all /fstab.universal5420
-
-    chown radio system /efs
-    chmod 0771 /efs
-    chown radio radio /sys/devices/virtual/misc/multipdp/waketime
-    chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
-    chown radio system /sys/devices/virtual/misc/umts_dm0/dm_state
 
 # Support Preload install apks
     mkdir /preload 0771 system system
@@ -442,6 +442,10 @@ on fs
     chown system system /sys/class/backlight/panel/brightness
     chown system system /sys/class/backlight/panel/auto_brightness
 
+# Permissions for torch
+    chown system camera /sys/class/leds/torch-sec1/brightness
+    chmod 0666 /sys/class/leds/torch-sec1/brightness
+
 # Permissions for LCD
     chown system radio /sys/class/lcd/panel/lcd_type
     chown system system /sys/class/lcd/panel/power_reduce
@@ -465,6 +469,9 @@ on fs
     chown system radio /sys/class/audio/earjack/select_jack
     chown system radio /sys/class/audio/earjack/key_state
     chown system radio /sys/class/audio/earjack/state
+
+# create camera directory
+    mkdir /data/camera 0700 media media
 
 # GPS
     chown root system /dev/ttySAC1
@@ -496,17 +503,6 @@ service watchdogd /sbin/watchdogd 10 20
     seclabel u:r:watchdogd:s0
     disabled
 
-# Parse hardware revision (needs to happen before cbd starts)
-service modemloader /system/bin/modemloader
-    class core
-    oneshot
-
-service cpboot-daemon /sbin/cbd -d -txmm626x -bh -mh -p13
-    class main
-    user root
-    group radio cache inet misc audio sdcard_rw log sdcard_r shell
-#    seclabel u:r:cbd:s0
-
 # on userdebug and eng builds, enable kgdb on the serial console
 on property:ro.debuggable=1
     write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
@@ -518,29 +514,15 @@ service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     user gps
     group system inet net_raw
     ioprio be 0
-    
-# RIL
-#service ril-daemon /system/bin/rild
-#    class main
-#    socket rild stream 660 root radio
-#    socket rild-debug stream 660 radio system
-#    user root
-#    group radio cache inet misc audio sdcard_r sdcard_rw log
-#    onrestart restart cpboot-daemon
 
-# AT Distributor for factory test
-#service at_distributor /system/bin/at_distributor
-#    class late_start
-#    user root
-#    group radio misc log
-    
 # MobiCore startup
 service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
     class core
     user system
     group system
+    oneshot
 
-service battery_charger /sbin/healthd -c
+service charger /sbin/healthd -c
     class charger
     critical
     
@@ -556,11 +538,11 @@ on property:sys.mobicoredaemon.enable=true
     start scranton_RD
 
 # Secure Storage startup
-#service secure_storage /system/bin/secure_storage_daemon
-#    class core
-#    user system
-#    group system
-#    disabled
+service secure_storage /system/bin/secure_storage_daemon
+    class core
+    user system
+    group system
+    disabled
 
 on property:ro.securestorage.support=true
     mkdir /dev/.secure_storage
@@ -569,17 +551,6 @@ on property:ro.securestorage.support=true
     restorecon_recursive /dev/.secure_storage
     start secure_storage
 
-# Kick watchdogd if debug_level is low
-on property:ro.debug_level=0x4f4c
-	start watchdogd
-
-# bootchecker
-#service bootchecker /system/bin/bootchecker
-#    class late_start
-#    user system
-#    group system log
-#    oneshot
-
 # CS service
 service cs_service /system/bin/cs
     class main
@@ -587,26 +558,12 @@ service cs_service /system/bin/cs
     group system
     disabled
 
-#service TvoutService_C /system/bin/bintvoutservice
-#     class main
-#     user system
-#     group graphics
-#on property:ro.SecEDS.enable=false
-#    stop TvoutService_C
-
 on property:sys.mobicoredaemon.enable=true
     start cs_service
 
-# Reactivation lock
-#	service reactived /system/bin/reactived
-#	class late_start
-
-# Create camera ID file for Exynos camera HAL
-service camera_id /system/bin/sh /system/etc/init.exynos.cam.sh
-    class main
+service sswap /sbin/sswap -s
+    class core
     user root
-    disabled
+    group root
     oneshot
-
-on property:init.svc.bootanim=stopped
-    start camera_id
+    seclabel u:r:sswap:s0

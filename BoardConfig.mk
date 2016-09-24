@@ -159,8 +159,8 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.universal5420
 BOARD_USES_SCALER := true
 
 # SELinux
-#BOARD_SEPOLICY_DIRS += \
-#    device/samsung/ha3g/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/ha3g/sepolicy
 
 # Webkit
 ENABLE_WEBGL := true
