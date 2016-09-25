@@ -85,6 +85,12 @@ on post-fs-data
 # Create directory for hostapd
     mkdir /data/hostapd 0770 system wifi
 
+# Sensorhub service
+service sensorhubservice /system/bin/sensorhubservice
+    class main
+    user system
+    group input
+
 # Bluetooth dhcpcd config
 service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
     class main
@@ -144,7 +150,6 @@ on boot
     mkdir /dev/socket/cs_socket 0770 system system
 
 # Permissions for TouchScreen
-    chown system radio /sys/class/sec/tsp/cmd
     chown system system /sys/class/input/input1/enabled
     chmod 0660 /sys/class/input/input1/enabled
 
