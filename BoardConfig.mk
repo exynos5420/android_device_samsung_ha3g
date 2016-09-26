@@ -93,7 +93,9 @@ BOARD_USES_SKIA_FIMGAPI := true
 
 # HDMI
 BOARD_USES_GSC_VIDEO := true
-BOARD_USES_CEC := true
+
+# Exynos display
+BOARD_USES_VIRTUAL_DISPLAY := true
 
 # Graphics
 USE_OPENGL_RENDERER := true
