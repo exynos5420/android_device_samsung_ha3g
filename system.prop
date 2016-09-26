@@ -23,6 +23,18 @@ rild.libpath=/system/lib/libsec-ril.so
 ro.telephony.ril_class=ha3gRIL
 ro.ril.telephony.mqanelements=5
 
+# Max Supported GPRS/EDGE Category
+ro.ril.gprsclass=12
+
+# Max Supported HSDPA Category
+ro.ril.hsdpa.category=24
+
+# Max Supported HSUPA Category
+ro.ril.hsupa.category=6
+
+# Enable HSPA+ 42 Mbps
+ro.ril.hsxpa=3
+
 # Wifi
 wifi.interface=wlan0
 wlan.wfd.hdcp=disable
