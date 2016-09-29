@@ -514,57 +514,57 @@ on property:ro.debuggable=1
     write /sys/module/fiq_debugger/parameters/kgdb_enable 1
 
 # GPS
-#service gpsd /system/bin/gpsd -c /system/etc/gps.xml
-#    class main
-#    user gps
-#    group system inet net_raw
-#    ioprio be 0
+service gpsd /system/bin/gpsd -c /system/etc/gps.xml
+    class main
+    user gps
+    group system inet net_raw
+    ioprio be 0
 
 # MobiCore startup
-#service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
-#    class core
-#    user system
-#    group system
-#    oneshot
+service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
+    class core
+    user system
+    group system
+    oneshot
 
 service charger /sbin/healthd -c
     class charger
     critical
     
 # service for TZPR provisioning version check app
-#service scranton_RD /system/bin/scranton_RD
-#     class main
-#     user root
-#     disabled
-#     oneshot
+service scranton_RD /system/bin/scranton_RD
+     class main
+     user root
+     disabled
+     oneshot
 
 # start for TZPR provisioning version check app
-#on property:sys.mobicoredaemon.enable=true
-#    start scranton_RD
+on property:sys.mobicoredaemon.enable=true
+    start scranton_RD
 
 # Secure Storage startup
-#service secure_storage /system/bin/secure_storage_daemon
-#    class core
-#    user system
-#    group system
-#    disabled
+service secure_storage /system/bin/secure_storage_daemon
+    class core
+    user system
+    group system
+    disabled
 
-#on property:ro.securestorage.support=true
-#    mkdir /dev/.secure_storage
-#    chmod 0711 /dev/.secure_storage
-#    chown system system /dev/.secure_storage
-#    restorecon_recursive /dev/.secure_storage
-#    start secure_storage
+on property:ro.securestorage.support=true
+    mkdir /dev/.secure_storage
+    chmod 0711 /dev/.secure_storage
+    chown system system /dev/.secure_storage
+    restorecon_recursive /dev/.secure_storage
+    start secure_storage
 
 # CS service
-#service cs_service /system/bin/cs
-#    class main
-#    user system
-#    group system
-#    disabled
+service cs_service /system/bin/cs
+    class main
+    user system
+    group system
+    disabled
 
-#on property:sys.mobicoredaemon.enable=true
-#    start cs_service
+on property:sys.mobicoredaemon.enable=true
+    start cs_service
 
 service sswap /sbin/sswap -s
     class core
