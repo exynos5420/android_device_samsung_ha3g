@@ -77,6 +77,9 @@ BOARD_KERNEL_PAGESIZE := 2048
 TARGET_KERNEL_CONFIG := cyanogenmod_deathly_ha3g_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos5420
 
+# IR Blaster
+IR_HAS_ONE_FREQ_RANGE := true
+
 # Battery
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
