@@ -51,6 +51,7 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
+    SamsungDoze \
     SamsungServiceMode
 
 # GPS
