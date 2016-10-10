@@ -335,4 +335,17 @@
     -->
     <string translatable="false" name="config_radio_access_family">GSM | WCDMA | GPRS | EDGE</string>
 
+    <!-- Screen brightness when dozing. -->
+    <integer name="config_screenBrightnessDoze">17</integer>
+
+    <!-- Doze (Ambient display) -->
+    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
+
+    <!-- Permit doze mode to operate -->
+    <bool name="config_enableAutoPowerModes">true</bool>
+
+    <!-- Power Management: Specifies whether to decouple the interactive state of the
+         device from the display on/off state. -->
+    <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
+
 </resources>
