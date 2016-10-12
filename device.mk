@@ -49,6 +49,10 @@ PRODUCT_PACKAGES += \
     camera.universal5420 \
     libhwjpeg
 
+# Remove packages that do not work well
+PRODUCT_PACKAGES += \
+    RemovePackages
+
 # Display
 PRODUCT_PACKAGES += \
     SamsungDoze \
