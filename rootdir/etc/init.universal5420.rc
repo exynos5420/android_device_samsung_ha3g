@@ -204,6 +204,10 @@ on boot
     chown system radio /sys/class/sensors/proximity_sensor/thresh_high
     chown system radio /sys/class/sensors/proximity_sensor/thresh_low
     chown system radio /sys/class/sensors/proximity_sensor/barcode_emul_en
+    write /sys/devices/virtual/sensors/proximity_sensor/prox_cal 0
+    write /sys/devices/virtual/sensors/proximity_sensor/prox_cal 1
+    chown system system /efs/prox_cal
+    chmod 644 /efs/prox_cal
 # Light_sensor
     chown system radio /sys/class/sensors/light_sensor/lux
     chown system radio /sys/class/sensors/light_sensor/raw_data
