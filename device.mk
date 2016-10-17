@@ -235,7 +235,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     libnetcmdiface \
     macloader \
-    modemloader
+    modemloader \
+    wifiloader
 
 # CPU producer to CPU consumer not supported
 PRODUCT_PROPERTY_OVERRIDES += \
