@@ -13,6 +13,9 @@ on post-fs-data
     chmod 0775 /data/anr
     restorecon /data/log
     restorecon /data/anr
+    
+# mobicore
+    mkdir /efs/TEE  0770 radio system
 
 #drm permission
     mkdir /efs/drm 0774 drm system
