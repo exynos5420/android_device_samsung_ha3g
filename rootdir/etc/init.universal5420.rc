@@ -21,19 +21,48 @@ on init
     symlink /dev/block/mmcblk0p8 /dev/block/param
 
 on early-init
-    write /sys/block/mmcblk0/queue/read_ahead_kb 3072
-    write /sys/block/mmcblk1/queue/read_ahead_kb 3072
+    write /sys/block/mmcblk0/queue/read_ahead_kb 512
+    write /sys/block/mmcblk1/queue/read_ahead_kb 512
     write /sys/block/mmcblk0/queue/scheduler noop
 
 on property:sys.boot_completed=1
     setprop sys.io.scheduler bfq
 
-    # Interactive
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
-    write /dev/cpuctl/apps/cpu.notify_on_migrate 1
+    # Ondemand
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor ondemand
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor ondemand
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor ondemand
+
+    #Interactive tunables
+    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "20000 1000000:80000 1200000:100000 1700000:20000"
+    write /sys/devices/system/cpu/cpufreq/interactive/boost 0
+    write /sys/devices/system/cpu/cpufreq/interactive/boostpulse_duration 40000
+    write /sys/devices/system/cpu/cpufreq/interactive/enforced_mode 0
+    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 99
+    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 600000
+    write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 0
+    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
+    write /sys/devices/system/cpu/cpufreq/interactive/mode 0
+    write /sys/devices/system/cpu/cpufreq/interactive/multi_enter_load 360
+    write /sys/devices/system/cpu/cpufreq/interactive/multi_enter_time 80000
+    write /sys/devices/system/cpu/cpufreq/interactive/multi_exit_load 360
+    write /sys/devices/system/cpu/cpufreq/interactive/multi_exit_time 320000
+    write /sys/devices/system/cpu/cpufreq/interactive/param_index 0
+    write /sys/devices/system/cpu/cpufreq/interactive/single_enter_load 90
+    write /sys/devices/system/cpu/cpufreq/interactive/single_enter_time 160000
+    write /sys/devices/system/cpu/cpufreq/interactive/single_exit_load 90
+    write /sys/devices/system/cpu/cpufreq/interactive/single_exit_time 80000
+    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "70 600000:70 800000:75 1500000:80 1700000:90"
+    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpufreq/interactive/timer_slack 20000
+
+    #Ondemand Tunables
+    write /sys/devices/system/cpu/cpufreq/ondemand/max_freq_blank 1400000
+    write /sys/devices/system/cpu/cpufreq/ondemand/high_freq_zone 1200000
+    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 93
+    write /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_b 650000
+    write /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_l 500000
 
 on post-fs-data
     setprop vold.post_fs_data_done 1
