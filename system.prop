@@ -38,3 +38,6 @@ ro.ril.hsxpa=3
 # Wifi
 wifi.interface=wlan0
 wlan.wfd.hdcp=disable
+
+ # Default USB mode
+-persist.sys.usb.config=mtp
