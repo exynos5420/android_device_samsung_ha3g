@@ -2,42 +2,35 @@
 # system.prop for ha3g
 #
 
+# Device Specific
 ro.chipname=universal5420
 ro.sf.lcd_density=480
 ro.opengles.version=196609
+
+# System props for time-services
 persist.timed.enable=true
+
+# Dont require a Sim Card
 keyguard.no_require_sim=true
 
+# Media
 persist.hdmi.hdcp_enabled=1
-ro.telephony.default_network=0
-telephony.lteOnCdmaDevice=0
-
 drm.service.enabled=true
-
 ro.hdcp2.rx=tz
+
+# Randomly from stock
 ro.secwvk=220
 
 # Radio
-rild.libargs=-d /dev/ttyS0
 rild.libpath=/system/lib/libsec-ril.so
+rild.libargs=-d /dev/ttyS0
 ro.telephony.ril_class=ha3gRIL
 ro.ril.telephony.mqanelements=5
-
-# Max Supported GPRS/EDGE Category
-ro.ril.gprsclass=12
-
-# Max Supported HSDPA Category
-ro.ril.hsdpa.category=24
-
-# Max Supported HSUPA Category
-ro.ril.hsupa.category=6
-
-# Enable HSPA+ 42 Mbps
-ro.ril.hsxpa=3
+ro.telephony.default_network=0
+ro.ril.gprsclass=10
+ro.ril.hsxpa=1
+telephony.lteOnCdmaDevice=0
 
 # Wifi
 wifi.interface=wlan0
 wlan.wfd.hdcp=disable
-
- # Default USB mode
--persist.sys.usb.config=mtp
