@@ -67,8 +67,8 @@ PRODUCT_PACKAGES += \
     libdmitry
 
 # Shims
-#PRODUCT_PACKAGES += \
-#    libsamsung_symbols
+PRODUCT_PACKAGES += \
+    libsamsung_symbols
 
 # GPS
 PRODUCT_COPY_FILES += \
