@@ -115,9 +115,6 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 BOARD_HARDWARE_CLASS += device/samsung/ha3g/cmhw
 BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
 
-# SurfaceFlinger
-BOARD_USES_SYNC_MODE_FOR_MEDIA := true
-
 # NFC
 BOARD_HAVE_NFC := true
 BOARD_NFC_HAL_SUFFIX := universal5420
