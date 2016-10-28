@@ -251,6 +251,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.carrier=unknown
 
+# Enable multi-window by default
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.debug.multi_window=true
+
 # call Samsung LSI board support package
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
 
