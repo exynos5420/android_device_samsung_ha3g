@@ -17,8 +17,6 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
-    Fence.cpp \
-    GraphicBufferMapper.cpp \
     rsCpuCore.cpp \
     rsScriptC_Lib.cpp
 

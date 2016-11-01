@@ -3813,7 +3813,7 @@
         <mixer name="Dac0 Output Switch" value0="1" value1="1" />
         <mixer name="Dac1 Output Volume" value0="96" value1="96" />
         <mixer name="Dac1 Output Switch" value0="1" value1="1" />
-        <mixer name="Speaker Volume" value0="83" value1="83" />
+        <mixer name="Speaker Volume" value0="111" value1="111" />
         <mixer name="Speaker Switch" value0="1" value1="1" />
         <mixer name="SP Gain" value0="0" />
         <mixer name="Headphone Volume" value0="48" value1="48" />
