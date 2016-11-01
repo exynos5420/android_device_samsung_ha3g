@@ -4,10 +4,6 @@ on init
     restorecon /dev/mbin0
     symlink /sys/devices/platform/s5p-ehci/ehci_power /dev/ehci_power
 
-    write /sys/module/modem_link_pm_xmm626x/parameters/l2_delay 500
-    write /sys/module/modem_link_pm_xmm626x/parameters/hub_delay 500
-    write /sys/module/modem_link_device_hsic_4ncm/parameters/tx_qlen 50
-
 on fs
     chown radio system /efs
     chmod 0771 /efs
@@ -34,3 +30,9 @@ service_redefine ril-daemon /system/bin/rild
     user root
     group radio cache inet misc audio sdcard_r sdcard_rw diag log
     onrestart restart cpboot-daemon
+
+# Modem Logging daemon
+#service ML-daemon /system/bin/mlexe
+#    class main
+#    user root
+# group system radio inet net_raw

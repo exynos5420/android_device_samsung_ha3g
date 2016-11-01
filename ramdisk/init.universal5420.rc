@@ -6,10 +6,10 @@ import init.samsung.rc
 
 on init
 
-    export LD_SHIM_LIBS "libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.WMV.Decoder.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.MPEG4.Decoder.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.MPEG4.Encoder.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.VP8.Encoder.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.AVC.Encoder.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.AVC.Decoder.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.VP8.Decoder.so|/system/bin/gpsd|libdmitry.so"
+    export LD_SHIM_LIBS "libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.WMV.Decoder.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.MPEG4.Decoder.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.MPEG4.Encoder.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.VP8.Encoder.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.AVC.Encoder.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.AVC.Decoder.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.VP8.Decoder.so|libsamsung_symbols.so:/system/bin/gpsd|libdmitry.so"
 
-    mkdir /mnt/shell/container 0700 system system
-    mkdir /storage 0550 system sdcard_r
+#    mkdir /mnt/shell/container 0700 system system
+#    mkdir /storage 0550 system sdcard_r
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
@@ -76,6 +76,8 @@ on post-fs-data
 # Permissions for bluetooth
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
     chown bluetooth net_bt_stack ro.bt.bdaddr_path
+    chown radio net_bt_stack /efs/bluetooth/bt_addr
+    chmod 0640 /efs/bluetooth/bt_addr
     chown bluetooth net_bt_stack /dev/ttySAC0
     chmod 0660 /dev/ttySAC0
     chmod 0660 /sys/class/rfkill/rfkill0/state
@@ -110,11 +112,13 @@ on post-fs-data
     chown system system /sys/class/sec/led/led_lowpower
 
 # Added for TZ Playready DRM Support
-    mkdir /efs/drm 0774 drm system
-    mkdir /efs/drm/playready 0775 drm system
+#    mkdir /efs/drm 0774 drm system
+#    mkdir /efs/drm/playready 0775 drm system
 
-# Create directory for hostapd
-    mkdir /data/hostapd 0770 system wifi
+#Private Mode
+#    mkdir /data/privatemode 0770 system system
+#    chown system system /data/privatemode
+#    restorecon /data/privatemode
 
 # Sensorhub service
 service sensorhubservice /system/bin/sensorhubservice
@@ -134,6 +138,7 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
     oneshot
 
 on boot
+
     mount debugfs /sys/kernel/debug /sys/kernel/debug
     setprop ro.radio.noril no
     start ril-daemon
@@ -151,73 +156,64 @@ on boot
     chown root radio /proc/cmdline
     chmod 0644 /proc/cmdline
 
-# mobicore
-    mkdir /data/app/mcRegistry 0775 system system
-    mkdir /system/app/mcRegistry/TbStorage 0775 system system
-    chmod 0700 /dev/mobicore
-    chmod 0666 /dev/mobicore-user
-    chmod 0660 /dev/s5p-smem
-    chown system system /dev/mobicore
-    chown radio system /dev/mobicore-user
-    chown drm drmrpc /dev/s5p-smem
-
-# DRK permission
-    mkdir /efs/prov 0770 radio system
-    chown radio system /efs/prov_data
-    chmod 0770 /efs/prov_data
-    chown radio system /efs/prov_data/dev_root
-    chmod 0770 /efs/prov_data/dev_root
-    chown radio system /efs/prov_data/knox
-    chmod 0770 /efs/prov_data/knox
-    chown radio system /efs/prov_data/dev_root/dev_root.dat
-    chmod 0640 /efs/prov_data/dev_root/dev_root.dat
-    chown radio system /efs/prov/libdevkm.lock
-    chmod 0660 /efs/prov/libdevkm.lock
-    write /efs/prov/ffffffff00000000000000000000000c.tlbin 0
-    chown radio system /efs/prov/ffffffff00000000000000000000000c.tlbin
-    chmod 0660 /efs/prov/ffffffff00000000000000000000000c.tlbin
-
-# CS socket
-    mkdir /dev/socket/cs_socket 0770 system system
+# Permissions for gpio_keys
+    chown radio system /sys/class/sec/sec_key/wakeup_keys
+    write /sys/class/sec/sec_key/wakeup_keys 116,172
+    chown system system /sys/class/input/input13/enabled
+    chmod 0660 /sys/class/input/input13/enabled
 
 # Permissions for TouchScreen
+    chown system radio /sys/class/sec/tsp/cmd
     chown system system /sys/class/input/input1/enabled
     chmod 0660 /sys/class/input/input1/enabled
+    chown system radio /sys/class/sec/sec_touchscreen/set_tsp_for_inputmethod
+
+# Permissions for HeadSet
+    chown system system /sys/class/input/input11/enabled
+    chmod 0660 /sys/class/input/input11/enabled
+    chown system system /sys/class/input/input12/enabled
+    chmod 0660 /sys/class/input/input12/enabled
 
 # Permissions for Touchkey
     chown system radio /sys/class/sec/sec_touchkey/enable_disable
-    chown system radio /sys/class/sec/sec_touchkey/touchkey_brightness
+    chown system radio /sys/class/sec/sec_touchkey/brightness
     chown system radio /sys/class/sec/sec_touchkey/touchkey_menu
     chown system radio /sys/class/sec/sec_touchkey/touchkey_back
-    chown system radio /sys/class/sec/sec_touchkey/touch_update
-    chown system radio /sys/class/sec/sec_touchkey/touch_version
     chown system radio /sys/class/sec/sec_touchkey/touchkey_firm_version_panel
     chown system radio /sys/class/sec/sec_touchkey/touchkey_firm_version_phone
     chown system radio /sys/class/sec/sec_touchkey/touchkey_firm_update_status
     chown system radio /sys/class/sec/sec_touchkey/touchkey_firm_update
-    chown system radio /sys/class/sec/sec_touchkey/touch_sensitivity
     chown system radio /sys/class/sec/sec_touchkey/touchkey_threshold
+    chown system radio /sys/class/sec/sec_touchkey/touchkey_factory_mode
+    chown system radio /sys/class/sec/sec_touchkey/touch_sensitivity
     chown system radio /sys/class/sec/sec_touchkey/glove_mode
     chown system radio /sys/class/sec/sec_touchkey/flip_mode
     chown system radio /sys/class/sec/sec_touchkey/boost_level
-    chown system system /sys/devices/virtual/sec/sec_touchkey/brightness
-
-    chown system system /sys/class/input/input13/enabled
-    chmod 0660 /sys/class/input/input13/enabled
     chown system system /sys/class/input/input14/enabled
     chmod 0660 /sys/class/input/input14/enabled
-    chown system system /sys/class/input/input15/enabled
-    chmod 0660 /sys/class/input/input15/enabled
-    chown system system /sys/class/input/input18/enabled
-    chmod 0660 /sys/class/input/input18/enabled
-    chown system system /sys/class/input/input20/enabled
-    chmod 0660 /sys/class/input/input20/enabled
-
-# Permissions for gpio_keys
-    chown radio system /sys/class/sec/sec_key/wakeup_keys
-    write /sys/class/sec/sec_key/wakeup_keys 116,172
+    chown system radio /sys/class/sec/sec_touchkey/extra_button_event
+    chown root system /sys/class/sec/sec_touchkey/tsp_keys_enabled
 
 # SENSORS
+# Permissions for sensors
+    chown system system /sys/class/input/input2/enabled
+    chmod 0660 /sys/class/input/input2/enabled
+    chown system system /sys/class/input/input3/enabled
+    chmod 0660 /sys/class/input/input3/enabled
+    chown system system /sys/class/input/input4/enabled
+    chmod 0660 /sys/class/input/input4/enabled
+    chown system system /sys/class/input/input5/enabled
+    chmod 0660 /sys/class/input/input5/enabled
+    chown system system /sys/class/input/input6/enabled
+    chmod 0660 /sys/class/input/input6/enabled
+    chown system system /sys/class/input/input7/enabled
+    chmod 0660 /sys/class/input/input7/enabled
+    chown system system /sys/class/input/input8/enabled
+    chmod 0660 /sys/class/input/input8/enabled
+    chown system system /sys/class/input/input9/enabled
+    chmod 0660 /sys/class/input/input9/enabled
+    chown system system /sys/class/input/input10/enabled
+    chmod 0660 /sys/class/input/input10/enabled
 # Accelerometer_sensor
     chown system radio /sys/class/sensors/accelerometer_sensor/raw_data
     chown system radio /sys/class/sensors/accelerometer_sensor/calibration
@@ -307,32 +303,52 @@ on boot
     chown system radio /sys/class/sec/sec_epen/epen_checksum_result
     chown system radio /sys/class/sec/sec_epen/epen_saving_mode
     chown system radio /sys/class/sec/sec_epen/boost_level
+    chown system system /sys/class/input/input14/enabled
+    chmod 0660 /sys/class/input/input14/enabled
 
 # Permissions Camera
     chown system radio /sys/class/camera/rear/rear_camfw
+    chown system radio /sys/class/camera/rear/rear_camfw_full
     chown system radio /sys/class/camera/rear/rear_camtype
+    chown system radio /sys/class/camera/rear/rear_calcheck
+    chown system radio /sys/class/camera/rear/isp_core
     chown system radio /sys/class/camera/flash/rear_flash
-#    chown system radio /sys/class/camera/rear/isp_core
     chown system radio /sys/class/camera/front/front_camfw
     chown system radio /sys/class/camera/front/front_camtype
-
-    chown system system /sys/class/input/input16/enabled
-    chmod 0660 /sys/class/input/input16/enabled
-    chown system system /sys/class/input/input19/enabled
-    chmod 0660 /sys/class/input/input19/enabled
-    chown system system /sys/class/input/input21/enabled
-    chmod 0660 /sys/class/input/input21/enabled
-
-# Switch Device
-    chown system radio /sys/class/sec/switch/otg_test
-    chown system radio /sys/class/sec/switch/adc
-    chown system radio /sys/class/sec/switch/apo_factory
 
 # OTG_TEST
     chown system radio /sys/class/host_notify/usb_otg/booster
     chmod 0660 /sys/class/host_notify/usb_otg/booster
 
+# SSWAP
     write /proc/sys/vm/swappiness 130
+
+# mobicore
+    mkdir /data/app/mcRegistry 0775 system system
+    mkdir /system/app/mcRegistry/TbStorage 0775 system system
+    chmod 0700 /dev/mobicore
+    chmod 0666 /dev/mobicore-user
+    chmod 0660 /dev/s5p-smem
+    chown system system /dev/mobicore
+    chown radio system /dev/mobicore-user
+    chown drm drmrpc /dev/s5p-smem
+# DRK permission
+    mkdir /efs/prov 0770 radio system
+    chown radio system /efs/prov_data
+    chmod 0770 /efs/prov_data
+    chown radio system /efs/prov_data/dev_root
+    chmod 0770 /efs/prov_data/dev_root
+    chown radio system /efs/prov_data/knox
+    chmod 0770 /efs/prov_data/knox
+    chown radio system /efs/prov_data/dev_root/dev_root.dat
+    chmod 0640 /efs/prov_data/dev_root/dev_root.dat
+    chown radio system /efs/prov/libdevkm.lock
+    chmod 0660 /efs/prov/libdevkm.lock
+    write /efs/prov/ffffffff00000000000000000000000c.tlbin 0
+    chown radio system /efs/prov/ffffffff00000000000000000000000c.tlbin
+    chmod 0660 /efs/prov/ffffffff00000000000000000000000c.tlbin
+# CS socket
+    mkdir /dev/socket/cs_socket 0770 system system
 
 # PMS DVFS
     chown radio system /sys/power/cpufreq_table
@@ -409,12 +425,12 @@ on boot
     chown system radio /sys/module/cpuidle/parameters/enable_mask
 
 # MTP permission
-    chmod 0660 /dev/mtp_usb
-    chown system mtp /dev/mtp_usb
+    chmod 0660 /dev/mtp_usb_gadget
+    chown system mtp /dev/mtp_usb_gadget
 
 # terminal mode
-#	chmod 0660 /sys/class/android_usb/android0/terminal_version
-#	chown system system /sys/class/android_usb/android0/terminal_version
+    chmod 0660 /sys/class/android_usb/android0/terminal_version
+    chown system system /sys/class/android_usb/android0/terminal_version
 
 # for datarouter
     chown system system /dev/dun
@@ -428,59 +444,29 @@ on boot
     chown radio system /sys/class/secgpio_check/secgpio_check_all/gpiosleep_check
     chown radio system /sys/class/secgpio_check/secgpio_check_all/checked_sleepGPIO
 
-# IR_LED
-    chown system radio /sys/class/sec/sec_ir/ir_send
-    chown system radio /sys/class/sec/sec_ir/ir_send_result
-
-# Permissions for Barcode Emul
-    chown system radio /sys/class/sec/sec_barcode_emul/barcode_send
-    chown system radio /sys/class/sec/sec_barcode_emul/barcode_ver_check
-    chown system radio /sys/class/sec/sec_barcode_emul/barcode_led_status
-
-on charger
-    # Set cpu governor to powersave while in charging mode
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor powersave
-
-    # EHCI runtime enable for LPA
-    write /sys/devices/platform/s5p-ehci/power/control auto
-
-    # Do not set any USB mode while charging
-    setprop sys.usb.config charging
-
 on fs
+
     mount_all /fstab.universal5420
 
 # Support Preload install apks
-    mkdir /preload 0771 system system
-    wait /dev/block/platform/dw_mmc.0/by-name/HIDDEN
-    mount ext4 /dev/block/platform/dw_mmc.0/by-name/HIDDEN /preload nosuid nodev ro barrier=1
-    setprop storage.preload.complete 1
+#    mkdir /preload 0771 system system
 
 #For Absolute Persistence Partition 
-    mkdir /persdata 0755 system system 
-    mkdir /persdata/absolute 0750 system system 
+#    mkdir /persdata 0755 system system 
+#    mkdir /persdata/absolute 0750 system system 
 
-    wait /dev/block/platform/dw_mmc.0/by-name/PERSDATA
+#   wait /dev/block/platform/dw_mmc.0/by-name/PERSDATA
 #   check_fs /dev/block/platform/dw_mmc.0/by-name/PERSDATA ext4
-    mount ext4 /dev/block/platform/dw_mmc.0/by-name/PERSDATA /persdata/absolute nosuid nodev barrier=1
+#    mount ext4 /dev/block/platform/dw_mmc.0/by-name/PERSDATA /persdata/absolute nosuid nodev barrier=1
 
-    chown system system /persdata
-    chmod 0755 /persdata
-    chown system system /persdata/absolute
-    chmod 0750 /persdata/absolute
-
-    chown system system /sys/class/timed_output/vibrator/enable
+#    chown system system /persdata
+#    chmod 0755 /persdata
+#    chown system system /persdata/absolute
+#    chmod 0750 /persdata/absolute
 
 # Permissions for backlight
     chown system system /sys/class/backlight/panel/brightness
     chown system system /sys/class/backlight/panel/auto_brightness
-
-# Permissions for torch
-    chown system camera /sys/class/leds/torch-sec1/brightness
-    chmod 0666 /sys/class/leds/torch-sec1/brightness
 
 # Permissions for LCD
     chown system radio /sys/class/lcd/panel/lcd_type
@@ -494,10 +480,10 @@ on fs
     chown system system /sys/class/mdnie/mdnie/accessibility
     chown system system  /sys/class/mdnie/mdnie/cabc
     chown system system  /sys/class/mdnie/mdnie/bypass
+    chown system system /sys/class/mdnie/mdnie/auto_brightness
+    chown system system /sys/class/mdnie/mdnie/sensorRGB
 
 # Switch Device
-    chown system radio /sys/class/sec/switch/uart_sel
-    chown system radio /sys/class/sec/switch/usb_sel
     chown system radio /sys/class/sec/switch/usb_state
     chown system radio /sys/class/sec/switch/chg_type
 
@@ -520,6 +506,7 @@ on fs
     chown system system /data/system/gps
     rm /data/gps_started
     rm /data/glonass_started
+    rm /data/beidou_started
     rm /data/smd_started
     rm /data/sv_cno.info
 
@@ -539,10 +526,25 @@ service watchdogd /sbin/watchdogd 10 20
     seclabel u:r:watchdogd:s0
     disabled
 
+# for ethernet
+service dhcpcd_eth0 /system/bin/dhcpcd -aABDKL
+    class late_start
+    disabled
+    oneshot
+
+service iprenew_eth0 /system/bin/dhcpcd -n
+    class late_start
+    disabled
+    oneshot
+
+# Kick watchdogd if debug_level is low
+on property:ro.debug_level=0x4f4c
+start watchdogd
+
 # on userdebug and eng builds, enable kgdb on the serial console
-on property:ro.debuggable=1
-    write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
-    write /sys/module/fiq_debugger/parameters/kgdb_enable 1
+#on property:ro.debuggable=1
+#    write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
+#    write /sys/module/fiq_debugger/parameters/kgdb_enable 1
 
 # GPS
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
@@ -558,9 +560,28 @@ service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF0000000000000
     group system
     oneshot
 
+#Private Mode
+#service privatemode /system/bin/sdcard /data/privatemode /mnt/shell/privatemode 1000 1000
+#    class late_start
+
+on charger
+# EHCI runtime enable for LPA
+    write /sys/devices/platform/s5p-ehci/power/control auto
+
+    mkdir /data/log 0777
+    chmod 0666 /dev/log/radio
+    chmod 0666 /dev/log/main
+    chmod 0666 /dev/log/event
+
+    ifup lo
+    hostname localhost
+    domainname localdomain
+
+# LPM
 service charger /sbin/healthd -c
     class charger
     critical
+    seclabel u:r:healthd:s0
     
 # service for TZPR provisioning version check app
 service scranton_RD /system/bin/scranton_RD
@@ -574,18 +595,18 @@ on property:sys.mobicoredaemon.enable=true
     start scranton_RD
 
 # Secure Storage startup
-service secure_storage /system/bin/secure_storage_daemon
-    class core
-    user system
-    group system
-    disabled
+#service secure_storage /system/bin/secure_storage_daemon
+#    class core
+#    user system
+#    group system
+#    disabled
 
-on property:ro.securestorage.support=true
-    mkdir /dev/.secure_storage
-    chmod 0711 /dev/.secure_storage
-    chown system system /dev/.secure_storage
-    restorecon_recursive /dev/.secure_storage
-    start secure_storage
+#on property:ro.securestorage.support=true
+#    mkdir /dev/.secure_storage
+#    chmod 0711 /dev/.secure_storage
+#    chown system system /dev/.secure_storage
+#    restorecon_recursive /dev/.secure_storage
+#    start secure_storage
 
 # CS service
 service cs_service /system/bin/cs
@@ -597,9 +618,15 @@ service cs_service /system/bin/cs
 on property:sys.mobicoredaemon.enable=true
     start cs_service
 
+# SSWAP
 service sswap /sbin/sswap -s
     class core
     user root
     group root
     oneshot
     seclabel u:r:sswap:s0
+
+# IR_LED
+    chown system radio /sys/class/sec/sec_ir/ir_send
+    chown system radio /sys/class/sec/sec_ir/ir_send_result
+

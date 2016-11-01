@@ -3,10 +3,6 @@ on init
     write /sys/class/android_usb/android0/f_rndis/manufacturer Samsung
     write /sys/class/android_usb/android0/f_rndis/vendorID 04e8
     write /sys/class/android_usb/android0/f_rndis/wceis 1
-#    chown system system /sys/class/android_usb/android0/usb30en
-#    chmod 0660 /sys/class/android_usb/android0/usb30en
-    chown system system /sys/class/android_usb/android0/terminal_version
-    chmod 0660 /sys/class/android_usb/android0/terminal_version
 
 on boot
     write /sys/class/android_usb/android0/iManufacturer ${ro.product.manufacturer}
@@ -20,9 +16,7 @@ on property:sys.usb.config=mtp
     write /sys/class/android_usb/android0/idProduct 6860
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
-    start adbd
     setprop sys.usb.state ${sys.usb.config}
-
 
 on property:sys.usb.config=mtp,adb
     write /sys/class/android_usb/android0/enable 0
@@ -94,7 +88,6 @@ on property:sys.usb.config=mass_storage
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=mass_storage,adb
-
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 04e8
     write /sys/class/android_usb/android0/idProduct 685e
@@ -152,7 +145,6 @@ on property:sys.usb.config=diag,acm
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
-
 
 on property:sys.usb.config=rndis,acm,diag
     write /sys/class/android_usb/android0/enable 0
