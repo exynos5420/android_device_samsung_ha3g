@@ -444,6 +444,10 @@ on boot
     chown radio system /sys/class/secgpio_check/secgpio_check_all/gpiosleep_check
     chown radio system /sys/class/secgpio_check/secgpio_check_all/checked_sleepGPIO
 
+# IR_LED
+    chown system radio /sys/class/sec/sec_ir/ir_send
+    chown system radio /sys/class/sec/sec_ir/ir_send_result
+
 on fs
 
     mount_all /fstab.universal5420
@@ -637,8 +641,3 @@ service sswap /sbin/sswap -s
     group root
     oneshot
     seclabel u:r:sswap:s0
-
-# IR_LED
-    chown system radio /sys/class/sec/sec_ir/ir_send
-    chown system radio /sys/class/sec/sec_ir/ir_send_result
-
