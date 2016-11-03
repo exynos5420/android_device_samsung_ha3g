@@ -2,22 +2,8 @@
 # system.prop for ha3g
 #
 
-# Device Specific
-ro.chipname=universal5420
+# UI
 ro.sf.lcd_density=480
-ro.opengles.version=196609
-
-# System props for time-services
-persist.timed.enable=true
-
-
-# Media
-persist.hdmi.hdcp_enabled=1
-drm.service.enabled=true
-ro.hdcp2.rx=tz
-
-# Randomly from stock
-ro.secwvk=220
 
 # Radio
 rild.libpath=/system/lib/libsec-ril.so
@@ -28,5 +14,4 @@ ro.telephony.default_network=0
 telephony.lteOnCdmaDevice=0
 
 # Wifi
-wifi.interface=wlan0
 wlan.wfd.hdcp=disable
