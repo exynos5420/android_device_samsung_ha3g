@@ -18,6 +18,9 @@ LOCAL_PATH := device/samsung/ha3g
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# Device uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal
+
 # Audio
 PRODUCT_PACKAGES += \
     libtinyxml \
