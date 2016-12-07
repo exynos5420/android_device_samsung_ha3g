@@ -1,0 +1,25 @@
+From c6d27263d4a80e4b9f7b76fe60eb52d489967feb Mon Sep 17 00:00:00 2001
+From: tincho5588 <tincho5588@gmail.com>
+Date: Wed, 7 Dec 2016 15:58:00 -0300
+Subject: [PATCH] Remove AdAway
+
+Change-Id: I6a9bb21d82f9b0d200f4123f59bba7e842c234b7
+---
+ configs/common.mk | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/vendor/aicp/configs/common.mk b/vendor/aicp/configs/common.mk
+index 651e307..532f064 100644
+--- a/vendor/aicp/configs/common.mk
++++ b/vendor/aicp/configs/common.mk
+@@ -241,8 +241,8 @@ PRODUCT_COPY_FILES += \
+ #    vendor/aicp/prebuilt/common/app/KernelAdiutor.apk:system/priv-app/KernelAdiutor/KernelAdiutor.apk
+ 
+ # AdAway App
+-PRODUCT_COPY_FILES += \
+-    vendor/aicp/prebuilt/common/app/AdAway.apk:system/priv-app/AdAway/AdAway.apk
++#PRODUCT_COPY_FILES += \
++#    vendor/aicp/prebuilt/common/app/AdAway.apk:system/priv-app/AdAway/AdAway.apk
+ 
+ # AICP memo App
+ PRODUCT_COPY_FILES += \
