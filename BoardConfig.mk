@@ -21,6 +21,7 @@ BOARD_VENDOR := samsung
 TARGET_SOC := exynos5420
 
 # Radio
+BOARD_PROVIDES_RILD := true
 BOARD_PROVIDES_LIBRIL := true
 # hardware/samsung/ril
 BOARD_MODEM_TYPE := xmm7260
