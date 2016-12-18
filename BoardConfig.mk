@@ -1,4 +1,4 @@
-#
+!#
 # Copyright (C) 2013 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -52,9 +52,6 @@ BOARD_USES_GSC_VIDEO := true
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
-
-# CMHW
-BOARD_HARDWARE_CLASS += $(LOCAL_PATH)/cmhw
 
 # NFC
 BOARD_HAVE_NFC := true
