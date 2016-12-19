@@ -26,7 +26,7 @@ BOARD_PROVIDES_LIBRIL := true
 # hardware/samsung/ril
 BOARD_MODEM_TYPE := xmm7260
 # we need define it (because audio.primary.universal5420.so requires it)
-COMMON_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
+BOARD_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 # RIL.java overwrite
 BOARD_RIL_CLASS := ../../../device/samsung/ha3g/ril
 
