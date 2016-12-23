@@ -45,7 +45,8 @@ PRODUCT_PACKAGES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-    libsamsung_symbols
+    libsamsung_symbols \
+    libril_shim
 
 # GPS
 PRODUCT_COPY_FILES += \
