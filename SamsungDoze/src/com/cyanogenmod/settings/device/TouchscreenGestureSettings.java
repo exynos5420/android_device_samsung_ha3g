@@ -16,96 +16,43 @@
 
 package com.cyanogenmod.settings.device;
 
-import android.app.ActionBar;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.SwitchPreference;
+import android.support.v14.preference.PreferenceFragment;
+import android.support.v14.preference.SwitchPreference;
+import android.support.v7.preference.Preference;
 import android.provider.Settings;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import org.cyanogenmod.internal.util.ScreenType;
 
-public class TouchscreenGestureSettings extends PreferenceActivity {
+public class TouchscreenGestureSettings extends PreferenceFragment {
 
-    private static final String KEY_AMBIENT_DISPLAY_ENABLE = "ambient_display_enable";
     private static final String KEY_HAND_WAVE = "gesture_hand_wave";
-    private static final String KEY_GESTURE_POCKET = "gesture_pocket";
     private static final String KEY_PROXIMITY_WAKE = "proximity_wake_enable";
 
-    private SwitchPreference mAmbientDisplayPreference;
     private SwitchPreference mHandwavePreference;
-    private SwitchPreference mPocketPreference;
     private SwitchPreference mProximityWakePreference;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.gesture_panel);
-        boolean dozeEnabled = isDozeEnabled();
-        mAmbientDisplayPreference =
-            (SwitchPreference) findPreference(KEY_AMBIENT_DISPLAY_ENABLE);
-        // Read from DOZE_ENABLED secure setting
-        mAmbientDisplayPreference.setChecked(dozeEnabled);
-        mAmbientDisplayPreference.setOnPreferenceChangeListener(mAmbientDisplayPrefListener);
+
         mHandwavePreference =
             (SwitchPreference) findPreference(KEY_HAND_WAVE);
-        mHandwavePreference.setEnabled(dozeEnabled);
         mHandwavePreference.setOnPreferenceChangeListener(mProximityListener);
-        mPocketPreference =
-            (SwitchPreference) findPreference(KEY_GESTURE_POCKET);
-        mPocketPreference.setEnabled(dozeEnabled);
         mProximityWakePreference =
             (SwitchPreference) findPreference(KEY_PROXIMITY_WAKE);
         mProximityWakePreference.setOnPreferenceChangeListener(mProximityListener);
-
-        final ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
 
         // If running on a phone, remove padding around the listview
-        if (!ScreenType.isTablet(this)) {
+        if (!ScreenType.isTablet(getContext())) {
             getListView().setPadding(0, 0, 0, 0);
         }
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return false;
-    }
-
-    private boolean enableDoze(boolean enable) {
-        return Settings.Secure.putInt(getContentResolver(),
-                Settings.Secure.DOZE_ENABLED, enable ? 1 : 0);
-    }
-
-    private boolean isDozeEnabled() {
-        return Settings.Secure.getInt(getContentResolver(),
-                Settings.Secure.DOZE_ENABLED, 1) != 0;
-    }
-
-    private Preference.OnPreferenceChangeListener mAmbientDisplayPrefListener =
-        new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
-            boolean enable = (boolean) newValue;
-            boolean ret = enableDoze(enable);
-            if (ret) {
-                mHandwavePreference.setEnabled(enable);
-                mPocketPreference.setEnabled(enable);
-            }
-            return ret;
-        }
-    };
 
     private Preference.OnPreferenceChangeListener mProximityListener =
         new Preference.OnPreferenceChangeListener() {
