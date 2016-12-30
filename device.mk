@@ -41,7 +41,8 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    libdmitry
+    libdmitry \
+	libshims_wvm
 
 # Shims
 PRODUCT_PACKAGES += \
