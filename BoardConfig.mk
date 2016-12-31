@@ -33,6 +33,9 @@ BOARD_RIL_CLASS := ../../../device/samsung/ha3g/ril
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
+# DT2W
+TARGET_DT2W_PATH := /sys/class/sec/tsp/input/rmii2c/wake_gesture
+
 # Bootloader
 TARGET_OTA_ASSERT_DEVICE := ha3g
 
