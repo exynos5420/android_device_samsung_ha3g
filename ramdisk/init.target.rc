@@ -130,6 +130,9 @@ on boot
 # Epen power saving mode
     write /sys/devices/virtual/sec/sec_epen/epen_saving_mode 1
 
+# DT2W
+    chown system system /sys/class/input/input1/wake_gesture
+
 on fs
 
 # Broadcom NFC

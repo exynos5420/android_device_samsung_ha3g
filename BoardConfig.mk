@@ -16,6 +16,9 @@
 
 LOCAL_PATH := device/samsung/ha3g
 
+# DT2W
+TARGET_DT2W_PATH := /sys/class/input/input1/wake_gesture
+
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
