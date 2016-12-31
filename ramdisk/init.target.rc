@@ -122,6 +122,9 @@ on boot
     chown system system /sys/class/input/input14/enabled
     chmod 0660 /sys/class/input/input14/enabled
 
+# DT2W
+    chown system system /sys/class/input/input1/wake_gesture
+
 on fs
 
 # Broadcom NFC
