@@ -1,0 +1,112 @@
+commit 003c6175f5e0cb1b0917b8680dac1b66585eec7c
+Author: safarend <s.a.f.a.r.end@live.com.au>
+Date:   Tue Aug 4 21:42:46 2015 +1200
+
+    Incall volume control for ha_3g
+    
+    Edited by deadman96385 for code cleanup
+    
+    Change-Id: I37d84911e0abb5b9251b74bde49c220e207c855d
+
+diff --git a/packages/apps/Dialer/InCallUI/src/com/android/incallui/InCallActivity.java b/packages/apps/Dialer/InCallUI/src/com/android/incallui/InCallActivity.java
+index ad0cae4..1f84cb1 100644
+--- a/packages/apps/Dialer/InCallUI/src/com/android/incallui/InCallActivity.java
++++ b/packages/apps/Dialer/InCallUI/src/com/android/incallui/InCallActivity.java
+@@ -68,6 +68,11 @@ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Locale;
+ 
++// SafarSound
++import java.io.DataOutputStream;
++import java.io.IOException;
++import java.io.InputStream;
++
+ /**
+  * Main activity that the user interacts with while in a live call.
+  */
+@@ -159,11 +164,73 @@ public class InCallActivity extends Activity implements FragmentDisplayManager {
+         }
+     };
+ 
++    private SafarSound safarsound;
++    /**
++    * Created by Safarend on 30/07/15.
++    */
++    class SafarSound {
++    private int sound_level;
++    private final int chang_value_by = 4;
++    private final int max_volume = 76;
++    private final int min_volume = 50;
++
++    SafarSound() {
++        try {
++        Process p = Runtime.getRuntime().exec("tinymix 53");
++        InputStream stdout = p.getInputStream();
++        byte[] buffer = new byte[25];
++
++        String volume_line = "";
++        int read;
++        while (true) {
++            read = stdout.read(buffer);
++            volume_line += new String(buffer, 0, read);
++            if (read < 80) {
++            break;
++            }
++        }
++        sound_level = Integer.parseInt(volume_line.length() > 2 ? volume_line.substring(volume_line.length() - 2) : volume_line);
++        p.waitFor();
++
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
++
++    }
++
++    public int currentVolume() {
++        return sound_level;
++    }
++
++    public void Increase() {
++        if (sound_level + chang_value_by < max_volume) {
++        try {
++            sound_level = sound_level + chang_value_by;
++            Process p = Runtime.getRuntime().exec("tinymix 53 "+ String.valueOf(sound_level));
++            } catch (IOException e) {
++                e.printStackTrace();
++            }
++        }
++    }
++
++    public void Decrease() {
++        if (sound_level - chang_value_by > min_volume) {
++        try {
++            sound_level = sound_level - chang_value_by;
++            Process p = Runtime.getRuntime().exec("tinymix 53 "+ String.valueOf(sound_level));
++
++            } catch (IOException e) {
++                e.printStackTrace();
++            }
++        }
++    }
++}
+     @Override
+     protected void onCreate(Bundle icicle) {
+         Log.d(this, "onCreate()...  this = " + this);
+ 
+         super.onCreate(icicle);
++        safarsound = new SafarSound();
+ 
+         if (InCallServiceImpl.mTelephonyManager == null) {
+             // Service is not bound. We shouldn't be here. Exit.
+@@ -514,7 +581,11 @@ public class InCallActivity extends Activity implements FragmentDisplayManager {
+                 return true;
+ 
+             case KeyEvent.KEYCODE_VOLUME_UP:
++                safarsound.Increase();
++                return true;
+             case KeyEvent.KEYCODE_VOLUME_DOWN:
++                safarsound.Decrease();
++                return true;            
+             case KeyEvent.KEYCODE_VOLUME_MUTE:
+                 // Ringer silencing handled by PhoneWindowManager.
+                 break;
