@@ -29,6 +29,7 @@ index ad0cae4..1f84cb1 100644
      };
  
 +    private SafarSound safarsound;
++    private boolean mUsesSafarSound = getResources().getBoolean(R.bool.volume_fix_ha3g);
 +    /**
 +    * Created by Safarend on 30/07/15.
 +    */
@@ -94,7 +95,9 @@ index ad0cae4..1f84cb1 100644
          Log.d(this, "onCreate()...  this = " + this);
  
          super.onCreate(icicle);
-+        safarsound = new SafarSound();
++        if (mUsesSafarSound){
++                safarsound = new SafarSound();
++        }
  
          if (InCallServiceImpl.mTelephonyManager == null) {
              // Service is not bound. We shouldn't be here. Exit.
@@ -102,12 +105,28 @@ index ad0cae4..1f84cb1 100644
                  return true;
  
              case KeyEvent.KEYCODE_VOLUME_UP:
-+                safarsound.Increase();
-+                return true;
++                if (mUsesSafarSound){
++                        safarsound.Increase();
++                        return true;
++                }
              case KeyEvent.KEYCODE_VOLUME_DOWN:
-+                safarsound.Decrease();
-+                return true;
++                if (mUsesSafarSound){
++                        safarsound.Decrease();
++                        return true;
++                }
              case KeyEvent.KEYCODE_VOLUME_MUTE:
                  // Ringer silencing handled by PhoneWindowManager.
                  break;
 
+diff --git a/packages/apps/Dialer/InCallUI/res/values/config.xml b/packages/apps/Dialer/InCallUI/res/values/config.xml
+index 763b0e2..dec582f
+--- a/packages/apps/Dialer/InCallUI/res/values/config.xml
++++ b/packages/apps/Dialer/InCallUI/res/values/config.xml
+@@ -30,4 +30,7 @@
+     <bool name="config_regional_number_patterns_video_call">false</bool>
+      <!-- When set to true, this config enables enhance videocall ui -->
+     <bool name="config_enable_enhance_video_call_ui">false</bool>
++
++    <!-- In Call volume fix for ha3g -->
++    <bool name="volume_fix_ha3g">false</bool>
+ </resources>
