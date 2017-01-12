@@ -36,7 +36,6 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Display
 PRODUCT_PACKAGES += \
-#    SamsungDoze \
     SamsungServiceMode
 
 # GPS
