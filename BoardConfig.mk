@@ -76,5 +76,8 @@ BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
 # Microphone recording fix.- REQUIRES PATCH
 BOARD_USES_LEGACY_AUDIO_BLOB := true
 
+# Enable SU. LineageOS does not ship with root access by default
+WITH_SU := true
+
 # Inherit from exynos5420-common
 include device/samsung/exynos5420-common/BoardConfigCommon.mk
