@@ -42,10 +42,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libdmitry
 
-# Shims
-PRODUCT_PACKAGES += \
-    libsamsung_symbols
-
 # GPS
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gps.cer:system/etc/gps.cer \
