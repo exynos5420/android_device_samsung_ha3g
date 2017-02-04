@@ -36,7 +36,7 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 TARGET_OTA_ASSERT_DEVICE := ha3g
 
 # Kernel
-TARGET_KERNEL_CONFIG := cyanogenmod_deathly_ha3g_defconfig
+TARGET_KERNEL_CONFIG := exynos5420_ha3g_defconfig
 
 # IR Blaster
 IR_HAS_ONE_FREQ_RANGE := true
