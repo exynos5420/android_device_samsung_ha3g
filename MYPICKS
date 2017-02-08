@@ -1,0 +1,6 @@
+I will list here the open commits I pick to build
+From the LineageOS gerrit:
+repopick 158180 159136 160656 160725 61162 61181
+
+From the exynos5420 gerrit:
+repopick 2388 2398 2407 -g https://review.exynos5420.com
