@@ -4,6 +4,10 @@ on init
 
 export LD_SHIM_LIBS "/system/bin/gpsd|libdmitry.so"
 
+on property:sys.boot_completed=1
+    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 101
+    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "70 350000:70 500000:75 600000:85 800000:90 1200000:95 1700000:97 1900000:100"
+
 on post-fs-data
 
 # YAAS(Yamaha Android Audio System) uses.
