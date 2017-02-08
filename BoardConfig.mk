@@ -23,7 +23,7 @@ TARGET_SOC := exynos5420
 # Radio
 BOARD_PROVIDES_LIBRIL := true
 # hardware/samsung/ril
-BOARD_MODEM_TYPE := xmm6260
+BOARD_MODEM_TYPE := xmm6360
 # we need define it (because audio.primary.universal5420.so requires it)
 COMMON_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 # RIL.java overwrite
