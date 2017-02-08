@@ -1,0 +1,9 @@
+I will list here the open commits I pick to build
+From the LineageOS gerrit:
+repopick 158180 61181 61162 164243 -g https://review.lineageos.org
+
+From the exynos5420 gerrit
+repopick 2360 2361 2398 2643 2644 2648 2667 2668 2669 2670 -g https://review.exynos5420.com
+
+For Substratum Support
+repopick -t OMS7 -g https://review.lineageos.org
