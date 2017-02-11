@@ -1,3 +1,0 @@
-/data/misc/radio(/.*)?       u:object_r:radio_data_file:s0
-
-/sbin/cbd                       u:object_r:cpboot-daemon_exec:s0
