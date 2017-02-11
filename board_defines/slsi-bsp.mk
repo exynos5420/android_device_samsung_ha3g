@@ -1,0 +1,2 @@
+# HDMI
+BOARD_USES_GSC_VIDEO := true
