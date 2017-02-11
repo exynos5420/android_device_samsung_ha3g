@@ -1,0 +1,3 @@
+# NFC
+BOARD_HAVE_NFC := true
+BOARD_NFC_HAL_SUFFIX := universal5420
