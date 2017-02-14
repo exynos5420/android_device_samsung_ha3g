@@ -1,5 +1,5 @@
 # modem daemon sec label
-type cpboot-daemon, domain;
+type cpboot-daemon, domain, domain_deprecated;
 type cpboot-daemon_exec, exec_type, file_type;
 
 tmpfs_domain(cpboot-daemon)
@@ -23,6 +23,8 @@ allow cpboot-daemon kmsg_device:chr_file rw_file_perms;
 allow cpboot-daemon mif_device:chr_file rw_file_perms;
 # /dev/mbin0
 allow cpboot-daemon emmcblk_device:blk_file r_file_perms;
+# /dev/spi_boot_link
+allow cpboot-daemon radio_device:chr_file rw_file_perms;
 # /dev/block/mmcblk0p13
 allow cpboot-daemon block_device:dir r_dir_perms;
 
@@ -37,5 +39,13 @@ allow cpboot-daemon efs_file:dir r_dir_perms;
 # /efs/nv_data.bin
 allow cpboot-daemon bin_nv_data_efs_file:file rw_file_perms;
 
-# ???
-allow cpboot-daemon sysfs:file rw_file_perms;
+# /sys/bus/usb/devices/1-2/idVendor
+allow cpboot-daemon sysfs:file r_file_perms;
+
+# /proc/cmdline
+allow cpboot-daemon proc:file r_file_perms;
+
+# set properties on boot
+set_prop(cpboot-daemon, cpboot-daemon_prop)
+set_prop(cpboot-daemon, radio_prop)
+set_prop(cpboot-daemon, system_prop)
