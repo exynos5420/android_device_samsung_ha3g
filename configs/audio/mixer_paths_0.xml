@@ -1,0 +1,853 @@
+<mixer>
+    <!-- ########## Initial mixer settings ########## -->
+
+    <ctl name="Music Input Volume" value="0 0" />
+    <ctl name="Music Input Switch" value="0 0" />
+    <ctl name="Ext Input Volume" value="0 0" />
+    <ctl name="Ext Input Switch" value="0 0" />
+    <ctl name="Voice Input Volume" value="0 0" />
+    <ctl name="Voice Input Switch" value="0 0" />
+    <ctl name="Ref Input Volume" value="0 0" />
+    <ctl name="Ref Input Switch" value="0 0" />
+    <ctl name="Adif0 Input Volume" value="0 0" />
+    <ctl name="Adif0 Input Switch" value="0 0" />
+    <ctl name="Adif1 Input Volume" value="0 0" />
+    <ctl name="Adif1 Input Switch" value="0 0" />
+    <ctl name="Adif2 Input Volume" value="0 0" />
+    <ctl name="Adif2 Input Switch" value="0 0" />
+    <ctl name="Music Output Volume" value="0 0" />
+    <ctl name="Music Output Switch" value="0 0" />
+    <ctl name="Ext Output Volume" value="0 0" />
+    <ctl name="Ext Output Switch" value="0 0" />
+    <ctl name="Voice Output Volume" value="0 0" />
+    <ctl name="Voice Output Switch" value="0 0" />
+    <ctl name="Ref Output Volume" value="0 0" />
+    <ctl name="Ref Output Switch" value="0 0" />
+    <ctl name="Dac0 Output Volume" value="0 0" />
+    <ctl name="Dac0 Output Switch" value="0 0" />
+    <ctl name="Dac1 Output Volume" value="0 0" />
+    <ctl name="Dac1 Output Switch" value="0 0" />
+    <ctl name="Dpath Da Volume" value="0 0" />
+    <ctl name="Dpath Da Switch" value="0 0" />
+    <ctl name="Dpath Ad Volume" value="0 0" />
+    <ctl name="Dpath Ad Switch" value="0 0" />
+    <ctl name="LineIn1 Volume" value="0 0" />
+    <ctl name="LineIn1 Switch" value="0 0" />
+    <ctl name="Mic1 Volume" value="0" />
+    <ctl name="Mic1 Switch" value="0" />
+    <ctl name="Mic2 Volume" value="0" />
+    <ctl name="Mic2 Switch" value="0" />
+    <ctl name="Mic3 Volume" value="0" />
+    <ctl name="Mic3 Switch" value="0" />
+    <ctl name="Mic4 Volume" value="0" />
+    <ctl name="Mic4 Switch" value="0" />
+    <ctl name="Headphone Volume" value="0 0" />
+    <ctl name="Headphone Switch" value="0 0" />
+    <ctl name="Speaker Volume" value="0 0" />
+    <ctl name="Speaker Switch" value="0 0" />
+    <ctl name="Receiver Volume" value="0" />
+    <ctl name="Receiver Switch" value="0" />
+    <ctl name="LineOut1 Volume" value="0 0" />
+    <ctl name="LineOut1 Switch" value="0 0" />
+    <ctl name="LineOut2 Volume" value="0 0" />
+    <ctl name="LineOut2 Switch" value="0 0" />
+    <ctl name="SP Gain" value="0" />
+    <ctl name="Master Playback Volume" value="75 75" />
+    <ctl name="Master Playback Switch" value="1 1" />
+    <ctl name="Voice Playback Volume" value="75 75" />
+    <ctl name="Voice Playback Switch" value="1 1" />
+    <ctl name="AnalogIn Playback Analog Volume" value="0 0" />
+    <ctl name="AnalogIn Playback Analog Switch" value="0 0" />
+    <ctl name="AnalogIn Playback Digital Volume" value="0 0" />
+    <ctl name="AnalogIn Playback Digital Switch" value="0 0" />
+    <ctl name="Voice Recording Switch" value="1" />
+    <ctl name="Audio Mode Playback" value="off" />
+    <ctl name="Audio Mode Playback" value="off" />
+    <ctl name="Output Path" value="SP" />
+    <ctl name="Input Path" value="MainMIC" />
+    <ctl name="Incall Mic Speaker" value="MainMIC" />
+    <ctl name="Incall Mic Receiver" value="MainMIC" />
+    <ctl name="Incall Mic Headphone" value="MainMIC" />
+    <ctl name="Incall Mic LineOut1" value="MainMIC" />
+    <ctl name="Incall Mic LineOut2" value="MainMIC" />
+    <ctl name="MainMIC Playback Path" value="OFF" />
+    <ctl name="SubMIC Playback Path" value="OFF" />
+    <param name="2MIC Playback Path" value="0 0" />
+    <ctl name="HeadsetMIC Playback Path" value="OFF" />
+    <ctl name="BluetoothMIC Playback Path" value="OFF" />
+    <ctl name="BluetoothMIC Playback Path" value="OFF" />
+    <ctl name="DTMF Control" value="OFF" />
+    <ctl name="DTMF Output" value="SP" />
+    <ctl name="Switch Clock" value="CLKA" />
+    <ctl name="Ext MasterSlave" value="Master" />
+    <ctl name="Ext Rate" value="8kHz" />
+    <ctl name="Ext Bitclock Rate" value="32fs" />
+    <ctl name="Ext Interface" value="DA" />
+    <ctl name="Ext Bitclock Invert" value="Normal" />
+    <ctl name="Ext Input DA Bit Width" value="16bit" />
+    <ctl name="Ext Output DA Bit Width" value="16bit" />
+    <ctl name="Ext Input DA Format" value="I2S" />
+    <ctl name="Ext Output DA Format" value="I2S" />
+    <ctl name="Ext Input Pcm MonoStereo" value="Mono" />
+    <ctl name="Ext Output Pcm MonoStereo" value="Mono" />
+    <ctl name="Ext Input Pcm Bit Order" value="LSB" />
+    <ctl name="Ext Output Pcm Bit Order" value="LSB" />
+    <ctl name="Ext Input Pcm Format" value="Linear" />
+    <ctl name="Ext Output Pcm Format" value="Linear" />
+    <ctl name="Ext Input PCM Bit Width" value="16bit" />
+    <ctl name="Ext Output PCM Bit Width" value="16bit" />
+    <ctl name="Voice MasterSlave" value="Slave" />
+    <ctl name="Voice Rate" value="8kHz" />
+    <ctl name="Voice Bitclock Rate" value="32fs" />
+    <ctl name="Voice Interface" value="DA" />
+    <ctl name="Voice Bitclock Invert" value="Normal" />
+    <ctl name="Voice Input DA Bit Width" value="16bit" />
+    <ctl name="Voice Output DA Bit Width" value="16bit" />
+    <ctl name="Voice Input DA Format" value="I2S" />
+    <ctl name="Voice Output DA Format" value="I2S" />
+    <ctl name="Voice Input Pcm MonoStereo" value="Mono" />
+    <ctl name="Voice Output Pcm MonoStereo" value="Mono" />
+    <ctl name="Voice Input Pcm Bit Order" value="LSB" />
+    <ctl name="Voice Output Pcm Bit Order" value="LSB" />
+    <ctl name="Voice Input Pcm Format" value="Linear" />
+    <ctl name="Voice Output Pcm Format" value="Linear" />
+    <ctl name="Voice Input PCM Bit Width" value="16bit" />
+    <ctl name="Voice Output PCM Bit Width" value="16bit" />
+    <ctl name="Music Physical Port" value="DIO0" />
+    <ctl name="Ext Physical Port" value="DIO2" />
+    <ctl name="Voice Physical Port" value="DIO1" />
+    <ctl name="Hifi Physical Port" value="DIO0" />
+    <ctl name="Adif0 Swap" value="Normal" />
+    <ctl name="Adif1 Swap" value="Normal" />
+    <ctl name="Adif2 Swap" value="Normal" />
+    <ctl name="Dac0 Swap" value="Normal" />
+    <ctl name="Dac1 Swap" value="Normal" />
+    <ctl name="Music Out0 Swap" value="Normal" />
+    <ctl name="Music In0 Swap" value="Normal" />
+    <ctl name="Music In1 Swap" value="Normal" />
+    <ctl name="Music In2 Swap" value="Normal" />
+    <ctl name="Ext In Swap" value="Normal" />
+    <ctl name="Voice In Swap" value="Normal" />
+    <ctl name="Music Out1 Swap" value="Normal" />
+    <ctl name="Music Out2 Swap" value="Normal" />
+    <ctl name="Ext Out Swap" value="Normal" />
+    <ctl name="Voice Out Swap" value="Normal" />
+    <param name="ADIF0 Source" value="ymu831_path_cfg.h ymu831_path_cfg.h" />
+    <param name="ADIF1 Source" value="ymu831_path_cfg.h ymu831_path_cfg.h" />
+    <param name="ADIF2 Source" value="ymu831_path_cfg.h ymu831_path_cfg.h" />
+    <ctl name="Dsp Parameter" value="0" />
+    <ctl name="Dsp Parameter Option" value="0" />
+    <ctl name="Clear Dsp Parameter" value="OFF" />
+    <ctl name="Playback Scenario" value="0" />
+    <ctl name="Capture Scenario" value="0" />
+    <ctl name="Parameter Setting" value="DUMMY" />
+    <ctl name="Main Mic" value="MIC1" />
+    <ctl name="Sub Mic" value="MIC2" />
+    <ctl name="Headset Mic" value="MIC4" />
+
+    <!--
+    #######################################################
+    ### AUDIO ROUTING
+    #######################################################
+    -->
+	
+    <!-- ########## InCall Earpiece ########## -->
+
+    <path name="Earpiece_Incall_NB">
+        <!-- receive -->
+        <ctl name="Voice Input Volume" value="96 96" />
+        <ctl name="Voice Input Switch" value="1 1" />
+        <ctl name="Ext Input Volume" value="96 96" />
+        <ctl name="Ext Input Switch" value="1 1" />
+        <ctl name="Dac0 Output Volume" value="96 96" />
+        <ctl name="Dac0 Output Switch" value="1 1" />
+        <ctl name="Receiver Volume" value="111" />
+        <ctl name="Receiver Switch" value="1" />
+        <ctl name="Voice In Swap" value="Both0" />
+        <ctl name="Ext In Swap" value="Both0" />
+        <ctl name="Dac0 Swap" value="MonoMix" />
+        <!-- Lch: AEC reference  Rch: receive -->
+        <ctl name="Ref Output Volume" value="96 96" />
+        <ctl name="Ref Output Switch" value="1 1" />
+        <!-- AEC reference -->
+        <ctl name="Adif2 Input Volume" value="96 96" />
+        <ctl name="Adif2 Input Switch" value="1 1" />
+    </path>
+
+    <path name="Earpiece_Incall_NB_Type3">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Ext MasterSlave" value="Slave" />
+        <ctl name="Voice Rate" value="96kHz" />
+        <ctl name="Ext Physical Port" value="DIO1" />
+        <ctl name="Voice Physical Port" value="DIO2" />
+    </path>
+
+    <path name="Earpiece_Incall_WB">
+        <!-- receive -->
+        <ctl name="Voice Input Volume" value="96 96" />
+        <ctl name="Voice Input Switch" value="1 1" />
+        <ctl name="Ext Input Volume" value="96 96" />
+        <ctl name="Ext Input Switch" value="1 1" />
+        <ctl name="Dac0 Output Volume" value="96 96" />
+        <ctl name="Dac0 Output Switch" value="1 1" />
+        <ctl name="Receiver Volume" value="99" />
+        <ctl name="Receiver Switch" value="1" />
+        <ctl name="Voice In Swap" value="Both0" />
+        <ctl name="Ext In Swap" value="Both0" />
+        <ctl name="Dac0 Swap" value="MonoMix" />
+        <!-- Lch: AEC reference  Rch: receive -->
+        <ctl name="Ref Output Volume" value="96 96" />
+        <ctl name="Ref Output Switch" value="1 1" />
+        <!-- AEC reference -->
+        <ctl name="Adif2 Input Volume" value="96 96" />
+        <ctl name="Adif2 Input Switch" value="1 1" />
+    </path>
+
+    <path name="Earpiece_Incall_WB_Type3">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Ext MasterSlave" value="Slave" />
+        <ctl name="Voice Rate" value="12kHz" />
+        <ctl name="Ext Physical Port" value="DIO1" />
+        <ctl name="Voice Physical Port" value="DIO2" />
+    </path>
+
+    <path name="Earpiece_Incall_Audio">
+        <ctl name="Music Input Volume" value="96 96" />
+        <ctl name="Music Input Switch" value="1 1" />
+        <ctl name="Music In0 Swap" value="Normal" />
+    </path>
+
+    <!-- ########## InCall Speaker ########## -->
+
+    <path name="Speaker_Incall_NB">
+        <!-- receive -->
+        <ctl name="Voice Input Volume" value="96 96" />
+        <ctl name="Voice Input Switch" value="1 1" />
+        <ctl name="Ext Input Volume" value="96 96" />
+        <ctl name="Ext Input Switch" value="1 1" />
+        <ctl name="Dac1 Output Volume" value="96 96" />
+        <ctl name="Dac1 Output Switch" value="1 1" />
+        <ctl name="Speaker Volume" value="111 111" />
+        <ctl name="Speaker Switch" value="1 1" />
+        <ctl name="SP Gain" value="4" />
+        <ctl name="Voice In Swap" value="Both0" />
+        <ctl name="Ext In Swap" value="Both0" />
+        <ctl name="Dac1 Swap" value="MonoMix" />
+        <!-- Lch: AEC reference  Rch: receive -->
+        <ctl name="Ref Output Volume" value="96 96" />
+        <ctl name="Ref Output Switch" value="1 1" />
+        <!-- AEC reference -->
+        <ctl name="Adif2 Input Volume" value="96 96" />
+        <ctl name="Adif2 Input Switch" value="1 1" />
+    </path>
+
+    <path name="Speaker_Incall_NB_Type3">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Ext MasterSlave" value="Slave" />
+        <ctl name="Voice Rate" value="96kHz" />
+        <ctl name="Ext Physical Port" value="DIO1" />
+        <ctl name="Voice Physical Port" value="DIO2" />
+    </path>
+
+    <path name="Speaker_Incall_WB">
+        <!-- receive -->
+        <ctl name="Voice Input Volume" value="96 96" />
+        <ctl name="Voice Input Switch" value="1 1" />
+        <ctl name="Ext Input Volume" value="96 96" />
+        <ctl name="Ext Input Switch" value="1 1" />
+        <ctl name="Dac1 Output Volume" value="96 96" />
+        <ctl name="Dac1 Output Switch" value="1 1" />
+        <ctl name="Speaker Volume" value="79 79" />
+        <ctl name="Speaker Switch" value="1 1" />
+        <ctl name="SP Gain" value="4" />
+        <ctl name="Voice In Swap" value="Both0" />
+        <ctl name="Ext In Swap" value="Both0" />
+        <ctl name="Dac1 Swap" value="MonoMix" />
+        <!-- Lch: AEC reference  Rch: receive -->
+        <ctl name="Ref Output Volume" value="96 96" />
+        <ctl name="Ref Output Switch" value="1 1" />
+        <!-- AEC reference -->
+        <ctl name="Adif2 Input Volume" value="96 96" />
+        <ctl name="Adif2 Input Switch" value="1 1" />
+    </path>
+
+    <path name="Speaker_Incall_WB_Type3">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Ext MasterSlave" value="Slave" />
+        <ctl name="Voice Rate" value="12kHz" />
+        <ctl name="Ext Physical Port" value="DIO1" />
+        <ctl name="Voice Physical Port" value="DIO2" />
+    </path>
+
+    <path name="Speaker_Incall_Audio">
+        <ctl name="Music Input Volume" value="96 96" />
+        <ctl name="Music Input Switch" value="1 1" />
+        <ctl name="Music In0 Swap" value="Normal" />
+    </path>
+
+    <!-- ########## InCall Headphones ########## -->
+
+    <path name="Headphone_Incall_NB">
+        <!-- receive -->
+        <ctl name="Voice Input Volume" value="96 96" />
+        <ctl name="Voice Input Switch" value="1 1" />
+        <ctl name="Ext Input Volume" value="96 96" />
+        <ctl name="Ext Input Switch" value="1 1" />
+        <ctl name="Dac0 Output Volume" value="96 96" />
+        <ctl name="Dac0 Output Switch" value="1 1" />
+        <ctl name="Headphone Volume" value="81 81" />
+        <ctl name="Headphone Switch" value="1 1" />
+        <ctl name="Voice In Swap" value="Both0" />
+        <ctl name="Ext In Swap" value="Both0" />
+        <ctl name="Dac0 Swap" value="Normal" />
+        <!-- Lch: AEC reference  Rch: receive -->
+        <ctl name="Ref Output Volume" value="96 96" />
+        <ctl name="Ref Output Switch" value="1 1" />
+        <!-- AEC reference -->
+        <ctl name="Adif2 Input Volume" value="96 96" />
+        <ctl name="Adif2 Input Switch" value="1 1" />
+    </path>
+
+    <path name="Headphone_Incall_NB_Type3">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Ext MasterSlave" value="Slave" />
+        <ctl name="Voice Rate" value="96kHz" />
+        <ctl name="Ext Physical Port" value="DIO1" />
+        <ctl name="Voice Physical Port" value="DIO2" />
+        <parameter name="VoiceCall" file="aec_control_path_resume.dat" />
+    </path>
+
+    <path name="Headphone_Incall_WB">
+        <!-- receive -->
+        <ctl name="Voice Input Volume" value="96 96" />
+        <ctl name="Voice Input Switch" value="1 1" />
+        <ctl name="Ext Input Volume" value="96 96" />
+        <ctl name="Ext Input Switch" value="1 1" />
+        <ctl name="Dac0 Output Volume" value="96 96" />
+        <ctl name="Dac0 Output Switch" value="1 1" />
+        <ctl name="Headphone Volume" value="81 81" />
+        <ctl name="Headphone Switch" value="1 1" />
+        <ctl name="Voice In Swap" value="Both0" />
+        <ctl name="Ext In Swap" value="Both0" />
+        <ctl name="Dac0 Swap" value="Normal" />
+        <!-- Lch: AEC reference  Rch: receive -->
+        <ctl name="Ref Output Volume" value="96 96" />
+        <ctl name="Ref Output Switch" value="1 1" />
+        <!-- AEC reference -->
+        <ctl name="Adif2 Input Volume" value="96 96" />
+        <ctl name="Adif2 Input Switch" value="1 1" />
+    </path>
+
+    <path name="Headphone_Incall_WB_Type3">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Ext MasterSlave" value="Slave" />
+        <ctl name="Voice Rate" value="12kHz" />
+        <ctl name="Ext Physical Port" value="DIO1" />
+        <ctl name="Voice Physical Port" value="DIO2" />
+    </path>
+
+    <path name="Headphone_Incall_Audio">
+        <ctl name="Music Input Volume" value="96 96" />
+        <ctl name="Music Input Switch" value="1 1" />
+        <ctl name="Music In0 Swap" value="Normal" />
+    </path>
+
+    <!-- ########## InCall Headset ########## -->
+
+    <path name="Headset_Incall_NB">
+        <!-- receive -->
+        <ctl name="Voice Input Volume" value="96 96" />
+        <ctl name="Voice Input Switch" value="1 1" />
+        <ctl name="Ext Input Volume" value="96 96" />
+        <ctl name="Ext Input Switch" value="1 1" />
+        <ctl name="Dac0 Output Volume" value="96 96" />
+        <ctl name="Dac0 Output Switch" value="1 1" />
+        <ctl name="Headphone Volume" value="79 79" />
+        <ctl name="Headphone Switch" value="1 1" />
+        <ctl name="Voice In Swap" value="Both0" />
+        <ctl name="Ext In Swap" value="Both0" />
+        <ctl name="Dac0 Swap" value="Normal" />
+        <!-- Lch: AEC reference  Rch: receive -->
+        <ctl name="Ref Output Volume" value="96 96" />
+        <ctl name="Ref Output Switch" value="1 1" />
+        <!-- AEC reference -->
+        <ctl name="Adif2 Input Volume" value="96 96" />
+        <ctl name="Adif2 Input Switch" value="1 1" />
+    </path>
+    <path name="Headset_Incall_NB_Type3">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Ext MasterSlave" value="Slave" />
+        <ctl name="Voice Rate" value="96kHz" />
+        <ctl name="Ext Physical Port" value="DIO1" />
+        <ctl name="Voice Physical Port" value="DIO2" />
+    </path>
+
+    <path name="Headset_Incall_WB">
+        <!-- receive -->
+        <ctl name="Voice Input Volume" value="96 96" />
+        <ctl name="Voice Input Switch" value="1 1" />
+        <ctl name="Ext Input Volume" value="96 96" />
+        <ctl name="Ext Input Switch" value="1 1" />
+        <ctl name="Dac0 Output Volume" value="96 96" />
+        <ctl name="Dac0 Output Switch" value="1 1" />
+        <ctl name="Headphone Volume" value="83 83" />
+        <ctl name="Headphone Switch" value="1 1" />
+        <ctl name="Voice In Swap" value="Both0" />
+        <ctl name="Ext In Swap" value="Both0" />
+        <ctl name="Dac0 Swap" value="Normal" />
+        <!-- Lch: AEC reference  Rch: receive -->
+        <ctl name="Ref Output Volume" value="96 96" />
+        <ctl name="Ref Output Switch" value="1 1" />
+        <!-- AEC reference -->
+        <ctl name="Adif2 Input Volume" value="96 96" />
+        <ctl name="Adif2 Input Switch" value="1 1" />
+    </path>
+
+    <path name="Headset_Incall_WB_Type3">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Ext MasterSlave" value="Slave" />
+        <ctl name="Voice Rate" value="12kHz" />
+        <ctl name="Ext Physical Port" value="DIO1" />
+        <ctl name="Voice Physical Port" value="DIO2" />
+    </path>
+
+    <path name="Headset_Incall_Audio">
+        <ctl name="Music Input Volume" value="96 96" />
+        <ctl name="Music Input Switch" value="1 1" />
+        <ctl name="Music In0 Swap" value="Normal" />
+    </path>
+
+    <path name="Incall_Capture_1mic">
+        <!-- transmit -->
+        <ctl name="Voice Output Volume" value="96 96" />
+        <ctl name="Voice Output Switch" value="1 1" />
+        <ctl name="Ext Output Volume" value="100 100" />
+        <ctl name="Ext Output Switch" value="1 1" />
+        <ctl name="Adif1 Input Volume" value="94 94" />
+        <ctl name="Adif1 Input Switch" value="1 1" />
+        <param name="ADIF1 Source" value="ADC0L ADC0R" />
+        <ctl name="Sub Mic" value="MIC2" />
+        <ctl name="Mic1 Volume" value="53" />
+        <ctl name="Mic1 Switch" value="1" />
+        <ctl name="Ext Out Swap" value="Both0" />
+        <!-- Lch: transmit  Rch: receive(for incall recording) -->
+        <ctl name="Ref Input Volume" value="96 96" />
+        <ctl name="Ref Input Switch" value="1 1" />
+    </path>
+
+    <path name="Earpiece_Incall_Capture">
+        <!-- transmit -->
+        <ctl name="Voice Output Volume" value="96 96" />
+        <ctl name="Voice Output Switch" value="1 1" />
+        <ctl name="Ext Output Volume" value="100 100" />
+        <ctl name="Ext Output Switch" value="1 1" />
+        <ctl name="Adif1 Input Volume" value="94 94" />
+        <ctl name="Adif1 Input Switch" value="1 1" />
+        <param name="ADIF1 Source" value="ADC0L ADC0R" />
+        <ctl name="Sub Mic" value="MIC2" />
+        <ctl name="Mic1 Volume" value="53" />
+        <ctl name="Mic1 Switch" value="1" />
+        <ctl name="Mic2 Volume" value="49" />
+        <ctl name="Mic2 Switch" value="1" />
+        <ctl name="Ext Out Swap" value="Both0" />
+        <!-- Lch: transmit  Rch: receive(for incall recording) -->
+        <ctl name="Ref Input Volume" value="96 96" />
+        <ctl name="Ref Input Switch" value="1 1" />
+    </path>
+	
+    <path name="Speaker_Incall_Capture">
+        <!-- transmit -->
+        <ctl name="Voice Output Volume" value="96 96" />
+        <ctl name="Voice Output Switch" value="1 1" />
+        <ctl name="Ext Output Volume" value="96 96" />
+        <ctl name="Ext Output Switch" value="1 1" />
+        <ctl name="Adif1 Input Volume" value="94 94" />
+        <ctl name="Adif1 Input Switch" value="1 1" />
+        <param name="ADIF1 Source" value="ADC0R ADC0L" />
+        <ctl name="Sub Mic" value="MIC2" />
+        <ctl name="Mic1 Volume" value="54" />
+        <ctl name="Mic1 Switch" value="1" />
+        <ctl name="Mic2 Volume" value="61" />
+        <ctl name="Mic2 Switch" value="1" />
+        <ctl name="Ext Out Swap" value="Both0" />
+        <!-- Lch: transmit  Rch: receive(for incall recording) -->
+        <ctl name="Ref Input Volume" value="96 96" />
+        <ctl name="Ref Input Switch" value="1 1" />
+    </path>
+
+    <path name="Headset_Incall_Capture">
+        <!-- transmit -->
+        <ctl name="Voice Output Volume" value="96 96" />
+        <ctl name="Voice Output Switch" value="1 1" />
+        <ctl name="Ext Output Volume" value="96 96" />
+        <ctl name="Ext Output Switch" value="1 1" />
+        <ctl name="Adif1 Input Volume" value="94 94" />
+        <ctl name="Adif1 Input Switch" value="1 1" />
+        <param name="ADIF1 Source" value="ADC0L ADC0R" />
+        <ctl name="Mic4 Volume" value="58" />
+        <ctl name="Mic4 Switch" value="1" />
+        <ctl name="Ext Out Swap" value="Both0" />
+        <!-- Lch: transmit  Rch: receive(for incall recording) -->
+        <ctl name="Ref Input Volume" value="96 96" />
+        <ctl name="Ref Input Switch" value="1 1" />
+    </path>
+
+    <path name="none">
+        <!-- Empty path -->
+    </path>
+
+    <!-- ########## Playback ########## -->
+
+    <path name="earpiece">
+        <ctl name="Output Path" value="RC" />
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Music Input Volume" value="96 96" />
+        <ctl name="Music Input Switch" value="1 1" />
+        <ctl name="Music In0 Swap" value="Normal" />
+        <ctl name="Dpath Da Volume" value="96 96" />
+        <ctl name="Dpath Da Switch" value="1 1" />
+        <ctl name="Dac0 Output Volume" value="96 96" />
+        <ctl name="Dac0 Output Switch" value="1 1" />
+        <ctl name="Receiver Volume" value="99" />
+        <ctl name="Receiver Switch" value="1" />
+        <ctl name="Dac0 Swap" value="MonoMix" />
+        <ctl name="Audio Mode Playback" value="audio" />
+    </path>
+
+    <path name="speaker">
+        <ctl name="Output Path" value="SP" />
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Music Input Volume" value="96 96" />
+        <ctl name="Music Input Switch" value="1 1" />
+        <ctl name="Music In0 Swap" value="Normal" />
+        <ctl name="Dpath Da Volume" value="96 96" />
+        <ctl name="Dpath Da Switch" value="1 1" />
+        <ctl name="Dac1 Output Volume" value="96 96" />
+        <ctl name="Dac1 Output Switch" value="1 1" />
+        <ctl name="Speaker Volume" value="83 83" />
+        <ctl name="Speaker Switch" value="1 1" />
+        <ctl name="SP Gain" value="0" />
+        <ctl name="Dac1 Swap" value="MonoMix" />
+        <ctl name="Audio Mode Playback" value="audio" />
+    </path>
+
+    <path name="headphones">
+        <ctl name="Output Path" value="HP" />
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Music Input Volume" value="96 96" />
+        <ctl name="Music Input Switch" value="1 1" />
+        <ctl name="Music In0 Swap" value="Normal" />
+        <ctl name="Dpath Da Volume" value="96 96" />
+        <ctl name="Dpath Da Switch" value="1 1" />
+        <ctl name="Dac0 Output Volume" value="96 96" />
+        <ctl name="Dac0 Output Switch" value="1 1" />
+        <ctl name="Headphone Volume" value="127 127" />
+        <ctl name="Headphone Switch" value="1 1" />
+        <ctl name="Dac0 Swap" value="Normal" />
+        <ctl name="Audio Mode Playback" value="audio" />
+    </path>
+
+    <path name="speaker-and-headphones">
+        <ctl name="Output Path" value="SP+HP" />
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Music Input Volume" value="96 96" />
+        <ctl name="Music Input Switch" value="1 1" />
+        <ctl name="Music In0 Swap" value="Normal" />
+        <ctl name="Dpath Da Volume" value="96 96" />
+        <ctl name="Dpath Da Switch" value="1 1" />
+        <ctl name="Dac0 Output Volume" value="92 92" />
+        <ctl name="Dac0 Output Switch" value="1 1" />
+        <ctl name="Dac1 Output Volume" value="96 96" />
+        <ctl name="Dac1 Output Switch" value="1 1" />
+        <ctl name="Speaker Volume" value="83 83" />
+        <ctl name="Speaker Switch" value="1 1" />
+        <ctl name="SP Gain" value="0" />
+        <ctl name="Headphone Volume" value="48 48" />
+        <ctl name="Headphone Switch" value="1 1" />
+        <ctl name="Dac0 Swap" value="Normal" />
+        <ctl name="Dac1 Swap" value="MonoMix" />
+        <ctl name="Audio Mode Playback" value="audio" />
+    </path>
+	
+    <path name="headset">
+        <ctl name="Output Path" value="HS" />
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Music Input Volume" value="96 96" />
+        <ctl name="Music Input Switch" value="1 1" />
+        <ctl name="Music In0 Swap" value="Normal" />
+        <ctl name="Dpath Da Volume" value="96 96" />
+        <ctl name="Dpath Da Switch" value="1 1" />
+        <ctl name="Dac0 Output Volume" value="96 96" />
+        <ctl name="Dac0 Output Switch" value="1 1" />
+        <ctl name="Headphone Volume" value="127 127" />
+        <ctl name="Headphone Switch" value="1 1" />
+        <ctl name="Dac0 Swap" value="Normal" />
+        <ctl name="Audio Mode Playback" value="audio" />
+    </path>
+
+    <path name="speaker-and-headset">
+        <path name="speaker-and-headphones" />
+    </path>
+
+    <path name="voice-earpiece">
+        <ctl name="Output Path" value="RC" />
+        <path name="Earpiece_Incall_WB" />
+        <path name="Earpiece_Incall_Audio">
+        <path name="Earpiece_Incall_WB_Type3" />
+        <ctl name="Audio Mode Playback" value="audio+incall2" />
+    </path>
+
+    <path name="voice-earpiece-wb">
+        <ctl name="Output Path" value="RC" />
+        <path name="Earpiece_Incall_WB" />
+        <path name="Earpiece_Incall_Audio">
+        <path name="Earpiece_Incall_WB_Type3" />
+        <ctl name="Audio Mode Playback" value="audio+incall2" />
+    </path>
+
+    <path name="voice-speaker">
+        <ctl name="Output Path" value="SP" />
+        <path name="Speaker_Incall_NB" />
+        <path name="Speaker_Incall_Audio">
+        <path name="Speaker_Incall_NB_Type3" />
+        <ctl name="Audio Mode Playback" value="audio+incall2" />
+    </path>
+
+    <path name="voice-speaker-wb">
+        <ctl name="Output Path" value="SP" />
+        <path name="Speaker_Incall_NB" />
+        <path name="Speaker_Incall_Audio">
+        <path name="Speaker_Incall_NB_Type3" />
+        <ctl name="Audio Mode Playback" value="audio+incall2" />
+    </path>
+
+    <path name="voice-headphones">
+        <ctl name="Output Path" value="HP" />
+        <path name="Headphone_Incall_NB" />
+        <path name="Headphones_Incall_Audio">
+        <path name="Headphone_Incall_NB_Type3" />
+        <ctl name="Audio Mode Playback" value="audio+incall2" />
+    </path>
+
+    <path name="voice-headphones-wb">
+        <ctl name="Output Path" value="HP" />
+        <path name="Headphone_Incall_NB" />
+        <path name="Headphones_Incall_Audio">
+        <path name="Headphone_Incall_NB_Type3" />
+        <ctl name="Audio Mode Playback" value="audio+incall2" />
+    </path>
+	
+    <path name="voice-headset">
+        <ctl name="Output Path" value="HS" />
+        <path name="Headset_Incall_WB" />
+        <path name="Headset_Incall_Audio">
+        <path name="Headset_Incall_WB_Type3" />
+        <ctl name="Audio Mode Playback" value="audio+incall2" />
+    </path>
+
+    <path name="voice-headset-wb">
+        <ctl name="Output Path" value="HS" />
+        <path name="Headset_Incall_WB" />
+        <path name="Headset_Incall_Audio">
+        <path name="Headset_Incall_WB_Type3" />
+        <ctl name="Audio Mode Playback" value="audio+incall2" />
+    </path>
+
+    <path name="hdmi">
+        <ctl name="Output Path" value="SP" />
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Music Input Volume" value="96 96" />
+        <ctl name="Music Input Switch" value="1 1" />
+        <ctl name="Music In0 Swap" value="Normal" />
+        <ctl name="Dpath Da Volume" value="96 96" />
+        <ctl name="Dpath Da Switch" value="1 1" />
+        <ctl name="Dac1 Output Volume" value="96 96" />
+        <ctl name="Dac1 Output Switch" value="1 1" />
+        <ctl name="Speaker Volume" value="0 0" />
+        <ctl name="Speaker Switch" value="1 1" />
+        <ctl name="SP Gain" value="0" />
+        <ctl name="Dac1 Swap" value="MonoMix" />
+        <ctl name="Audio Mode Playback" value="audio" />
+    </path>
+
+    <path name="speaker-and-hdmi">
+        <ctl name="Output Path" value="SP" />
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Music Input Volume" value="96 96" />
+        <ctl name="Music Input Switch" value="1 1" />
+        <ctl name="Music In0 Swap" value="Normal" />
+        <ctl name="Dpath Da Volume" value="96 96" />
+        <ctl name="Dpath Da Switch" value="1 1" />
+        <ctl name="Dac1 Output Volume" value="96 96" />
+        <ctl name="Dac1 Output Switch" value="1 1" />
+        <ctl name="Speaker Volume" value="83 83" />
+        <ctl name="Speaker Switch" value="1 1" />
+        <ctl name="SP Gain" value="0" />
+        <ctl name="Dac1 Swap" value="MonoMix" />
+        <ctl name="Audio Mode Playback" value="audio" />
+    </path>
+
+    <path name="bt-sco-headset">
+        <!-- Empty path -->
+    </path>
+
+    <!-- ########## Capture ########## -->
+
+    <path name="earpiece-mic">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Music Output Volume" value="96 96" />
+        <ctl name="Music Output Switch" value="1 1" />
+        <ctl name="Dpath Ad Volume" value="96 96" />
+        <ctl name="Dpath Ad Switch" value="1 1" />
+        <ctl name="Voice Input Volume" value="96 96" />
+        <ctl name="Voice Input Switch" value="1 1" />
+        <ctl name="Voice Output Volume" value="96 96" />
+        <ctl name="Voice Output Switch" value="1 1" />
+        <ctl name="Adif1 Input Volume" value="96 96" />
+        <ctl name="Adif1 Input Switch" value="1 1" />
+        <param name="ADIF1 Source" value="ADC0L ADC0R" />
+        <ctl name="Sub Mic" value="MIC2" />
+        <ctl name="Mic1 Volume" value="52" />
+        <ctl name="Mic1 Switch" value="1" />
+        <ctl name="Mic2 Volume" value="52" />
+        <ctl name="Mic2 Switch" value="1" />
+        <ctl name="Music Out0 Swap" value="Normal" />
+        <ctl name="Input Path" value="2MIC" />
+        <ctl name="Audio Mode Capture" value="audio" />
+    </path>
+
+    <path name="speaker-mic">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Music Output Volume" value="96 96" />
+        <ctl name="Music Output Switch" value="1 1" />
+        <ctl name="Dpath Ad Volume" value="96 96" />
+        <ctl name="Dpath Ad Switch" value="1 1" />
+        <ctl name="Voice Input Volume" value="96 96" />
+        <ctl name="Voice Input Switch" value="1 1" />
+        <ctl name="Voice Output Volume" value="96 96" />
+        <ctl name="Voice Output Switch" value="1 1" />
+        <ctl name="Adif1 Input Volume" value="96 96" />
+        <ctl name="Adif1 Input Switch" value="1 1" />
+        <param name="ADIF1 Source" value="ADC0L ADC0R" />
+        <ctl name="Sub Mic" value="MIC2" />
+        <ctl name="Mic1 Volume" value="52" />
+        <ctl name="Mic1 Switch" value="1" />
+        <ctl name="Mic2 Volume" value="52" />
+        <ctl name="Mic2 Switch" value="1" />
+        <ctl name="Music Out0 Swap" value="Normal" />
+        <ctl name="Input Path" value="2MIC" />
+        <ctl name="Audio Mode Capture" value="audio" />
+    </path>
+
+    <path name="headset-mic">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Music Output Volume" value="96 96" />
+        <ctl name="Music Output Switch" value="1 1" />
+        <ctl name="Dpath Ad Volume" value="96 96" />
+        <ctl name="Dpath Ad Switch" value="1 1" />
+        <ctl name="Voice Input Volume" value="96 96" />
+        <ctl name="Voice Input Switch" value="1 1" />
+        <ctl name="Voice Output Volume" value="96 96" />
+        <ctl name="Voice Output Switch" value="1 1" />
+        <ctl name="Adif1 Input Volume" value="96 96" />
+        <ctl name="Adif1 Input Switch" value="1 1" />
+        <param name="ADIF1 Source" value="ADC0L ADC0R" />
+        <ctl name="Mic4 Volume" value="33" />
+        <ctl name="Mic4 Switch" value="1" />
+        <ctl name="Music Out0 Swap" value="Normal" />
+        <ctl name="Input Path" value="Headset" />
+        <ctl name="Audio Mode Capture" value="audio" />
+    </path>
+
+    <path name="voice-mic">
+        <ctl name="Input Path" value="MainMIC" />
+        <path name="Incall_Capture_1mic" />
+        <ctl name="Voice Out Swap" value="Both0" />
+        <ctl name="Audio Mode Capture" value="incall" />
+    </path>
+
+    <!-- Two mic -->
+    <path name="voice-earpiece-mic">
+        <ctl name="Incall Mic Receiver" value="MainMIC" />
+        <path name="Earpiece_Incall_Capture" />
+        <ctl name="Voice Out Swap" value="Both0" />
+        <ctl name="Audio Mode Capture" value="incall" />
+    </path>
+
+    <path name="voice-earpiece-mic-wb">
+        <ctl name="Incall Mic Receiver" value="MainMIC" />
+        <path name="Earpiece_Incall_Capture" />
+        <ctl name="Voice Out Swap" value="Both0" />
+        <ctl name="Audio Mode Capture" value="incall" />
+    </path>
+
+    <path name="voice-speaker-mic">
+        <ctl name="Incall Mic Speaker" value="SubMIC" />
+        <path name="Speaker_Incall_Capture" />
+        <ctl name="Voice Out Swap" value="Both0" />
+        <ctl name="Audio Mode Capture" value="incall" />
+    </path>
+
+    <path name="voice-speaker-mic-wb">
+        <ctl name="Incall Mic Speaker" value="SubMIC" />
+        <path name="Speaker_Incall_Capture" />
+        <ctl name="Voice Out Swap" value="Both0" />
+        <ctl name="Audio Mode Capture" value="incall" />
+    </path>
+
+    <path name="voice-headset-mic">
+        <path name="Headset_Incall_Capture" />
+        <ctl name="Voice Out Swap" value="Both0" />
+        <ctl name="Audio Mode Capture" value="incall" />
+    </path>
+
+    <path name="voice-headset-mic-wb">
+        <path name="Headset_Incall_Capture" />
+        <ctl name="Voice Out Swap" value="Both0" />
+        <ctl name="Audio Mode Capture" value="incall" />
+    </path>
+
+    <path name="hdmi-mic">
+        <!-- Empty path -->
+    </path>
+
+    <path name="bt-sco-mic">
+        <!-- Empty path -->
+    </path>
+
+    <path name="voice-rec-headset-mic">
+
+    </path>
+
+    <path name="voice-rec-mic">
+
+    </path>
+
+    <path name="camcorder-mic">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <ctl name="Music Output Volume" value="96 96" />
+        <ctl name="Music Output Switch" value="1 1" />
+        <ctl name="Dpath Ad Volume" value="96 96" />
+        <ctl name="Dpath Ad Switch" value="1 1" />
+        <ctl name="Voice Input Volume" value="96 96" />
+        <ctl name="Voice Input Switch" value="1 1" />
+        <ctl name="Voice Output Volume" value="96 96" />
+        <ctl name="Voice Output Switch" value="1 1" />
+        <ctl name="Adif1 Input Volume" value="96 96" />
+        <ctl name="Adif1 Input Switch" value="1 1" />
+        <param name="ADIF1 Source" value="ADC0L ADC0R" />
+        <ctl name="Sub Mic" value="MIC2" />
+        <ctl name="Mic1 Volume" value="52" />
+        <ctl name="Mic1 Switch" value="1" />
+        <ctl name="Mic2 Volume" value="52" />
+        <ctl name="Mic2 Switch" value="1" />
+        <ctl name="Music Out0 Swap" value="Normal" />
+        <ctl name="Input Path" value="2MIC" />
+        <ctl name="Audio Mode Capture" value="audio" />
+    </path>
+
+    <path name="loopback-aec">
+        <!-- Empty path -->
+    </path>
+
+</mixer>
