@@ -1,0 +1,472 @@
+<mixer>
+
+    <pcmdai playback_link="0" />
+    <pcmdai playback_deep_link="0" />
+    <pcmdai capture_link="0" />
+    <pcmdai baseband_link="1" />
+    <pcmdai bluetooth_link="2" />
+
+	<!-- ########## Initial mixer settings ########## -->
+
+    <param name="Music Input Volume" value="0 0" />
+    <param name="Music Input Switch" value="0 0" />
+    <param name="Ext Input Volume" value="0 0" />
+    <param name="Ext Input Switch" value="0 0" />
+    <param name="Voice Input Volume" value="0 0" />
+    <param name="Voice Input Switch" value="0 0" />
+    <param name="Ref Input Volume" value="0 0" />
+    <param name="Ref Input Switch" value="0 0" />
+    <param name="Adif0 Input Volume" value="0 0" />
+    <param name="Adif0 Input Switch" value="0 0" />
+    <param name="Adif1 Input Volume" value="0 0" />
+    <param name="Adif1 Input Switch" value="0 0" />
+    <param name="Adif2 Input Volume" value="0 0" />
+    <param name="Adif2 Input Switch" value="0 0" />
+    <param name="Music Output Volume" value="0 0" />
+    <param name="Music Output Switch" value="0 0" />
+    <param name="Ext Output Volume" value="0 0" />
+    <param name="Ext Output Switch" value="0 0" />
+    <param name="Voice Output Volume" value="0 0" />
+    <param name="Voice Output Switch" value="0 0" />
+    <param name="Ref Output Volume" value="0 0" />
+    <param name="Ref Output Switch" value="0 0" />
+    <param name="Dac0 Output Volume" value="0 0" />
+    <param name="Dac0 Output Switch" value="0 0" />
+    <param name="Dac1 Output Volume" value="0 0" />
+    <param name="Dac1 Output Switch" value="0 0" />
+    <param name="Dpath Da Volume" value="0 0" />
+    <param name="Dpath Da Switch" value="0 0" />
+    <param name="Dpath Ad Volume" value="0 0" />
+    <param name="Dpath Ad Switch" value="0 0" />
+    <param name="LineIn1 Volume" value="0 0" />
+    <param name="LineIn1 Switch" value="0 0" />
+    <ctl name="Mic1 Volume" value="0" />
+    <ctl name="Mic1 Switch" value="0" />
+    <ctl name="Mic2 Volume" value="0" />
+    <ctl name="Mic2 Switch" value="0" />
+    <ctl name="Mic3 Volume" value="0" />
+    <ctl name="Mic3 Switch" value="0" />
+    <ctl name="Mic4 Volume" value="0" />
+    <ctl name="Mic4 Switch" value="0" />
+    <param name="Headph1e Volume" value="0 0" />
+    <param name="Headph1e Switch" value="0 0" />
+    <param name="Speaker Volume" value="0 0" />
+    <param name="Speaker Switch" value="0 0" />
+    <ctl name="Receiver Volume" value="0" />
+    <ctl name="Receiver Switch" value="0" />
+    <param name="LineOut1 Volume" value="0 0" />
+    <param name="LineOut1 Switch" value="0 0" />
+    <param name="LineOut2 Volume" value="0 0" />
+    <param name="LineOut2 Switch" value="0 0" />
+    <ctl name="SP Gain" value="0" />
+    <param name="Master Playback Volume" value="75 75" />
+    <param name="Master Playback Switch" value="1 1" />
+    <param name="Voice Playback Volume" value="75 75" />
+    <param name="Voice Playback Switch" value="1 1" />
+    <param name="AnalogIn Playback Analog Volume" value="0 0" />
+    <param name="AnalogIn Playback Analog Switch" value="0 0" />
+    <param name="AnalogIn Playback Digital Volume" value="0 0" />
+    <param name="AnalogIn Playback Digital Switch" value="0 0" />
+    <ctl name="Voice Recording Switch" value="1" />
+    <param name="Audio Mode Playback" value="0" />
+    <param name="Audio Mode Capture" value="0" />
+    <param name="Output Path" value="SP" />
+    <param name="Input Path" value="MainMIC" />
+    <param name="Incall Mic Speaker" value="MainMIC" />
+    <param name="Incall Mic Receiver" value="MainMIC" />
+    <param name="Incall Mic Headph1e" value="MainMIC" />
+    <param name="Incall Mic LineOut1" value="MainMIC" />
+    <param name="Incall Mic LineOut2" value="MainMIC" />
+    <param name="MainMIC Playback Path" value="0" />
+    <param name="SubMIC Playback Path" value="0" />
+    <param name="2MIC Playback Path" value="0 0" />
+    <param name="HeadsetMIC Playback Path" value="0" />
+    <param name="BluetoothMIC Playback Path" value="0" />
+    <param name="LIN 1 Playback Path" value="0" />
+    <param name="DTMF C1trol" value="0" />
+    <param name="DTMF Output" value="SP" />
+    <param name="Switch Clock" value="CLKA" />
+    <param name="Ext MasterSlave" value="Master" />
+    <param name="Ext Rate" value="8Khz" />
+    <param name="Ext Bitclock Rate" value="32fs" />
+    <param name="Ext Interface" value="DA" />
+    <param name="Ext Bitclock Invert" value="Normal" />
+    <param name="Ext Input DA Bit Width" value="16bit" />
+    <param name="Ext Output DA Bit Width" value="16bit" />
+    <param name="Ext Input DA Format" value="I2S" />
+    <param name="Ext Output DA Format" value="I2S" />
+    <param name="Ext Input Pcm M1oStereo" value="M1o" />
+    <param name="Ext Output Pcm M1oStereo" value="M1o" />
+    <param name="Ext Input Pcm Bit Order" value="LSB" />
+    <param name="Ext Output Pcm Bit Order" value="LSB" />
+    <param name="Ext Input Pcm Format" value="Linear" />
+    <param name="Ext Output Pcm Format" value="Linear" />
+    <param name="Ext Input PCM Bit Width" value="16bit" />
+    <param name="Ext Output PCM Bit Width" value="16bit" />
+    <param name="Voice MasterSlave" value="Slave" />
+    <param name="Voice Rate" value="8Khz" />
+    <param name="Voice Bitclock Rate" value="32fs" />
+    <param name="Voice Interface" value="DA" />
+    <param name="Voice Bitclock Invert" value="Normal" />
+    <param name="Voice Input DA Bit Width" value="16bit" />
+    <param name="Voice Output DA Bit Width" value="16bit" />
+    <param name="Voice Input DA Format" value="I2S" />
+    <param name="Voice Output DA Format" value="I2S" />
+    <param name="Voice Input Pcm M1oStereo" value="M1o" />
+    <param name="Voice Output Pcm M1oStereo" value="M1o" />
+    <param name="Voice Input Pcm Bit Order" value="LSB" />
+    <param name="Voice Output Pcm Bit Order" value="LSB" />
+    <param name="Voice Input Pcm Format" value="Linear" />
+    <param name="Voice Output Pcm Format" value="Linear" />
+    <param name="Voice Input PCM Bit Width" value="16bit" />
+    <param name="Voice Output PCM Bit Width" value="16bit" />
+    <param name="Music Physical Port" value="DIO0" />
+    <param name="Ext Physical Port" value="DIO2" />
+    <param name="Voice Physical Port" value="DIO1" />
+    <param name="Hifi Physical Port" value="DIO0" />
+    <param name="Adif0 Swap" value="Normal" />
+    <param name="Adif1 Swap" value="Normal" />
+    <param name="Adif2 Swap" value="Normal" />
+    <param name="Dac0 Swap" value="Normal" />
+    <param name="Dac1 Swap" value="Normal" />
+    <param name="Music Out0 Swap" value="Normal" />
+    <param name="Music In0 Swap" value="Normal" />
+    <param name="Music In1 Swap" value="Normal" />
+    <param name="Music In2 Swap" value="Normal" />
+    <param name="Ext In Swap" value="Normal" />
+    <param name="Voice In Swap" value="Normal" />
+    <param name="Music Out1 Swap" value="Normal" />
+    <param name="Music Out2 Swap" value="Normal" />
+    <param name="Ext Out Swap" value="Normal" />
+    <param name="Voice Out Swap" value="Normal" />
+    <param name="ADIF0 Source" value="ymu831_path_cfg.h ymu831_path_cfg.h" />
+    <param name="ADIF1 Source" value="ymu831_path_cfg.h ymu831_path_cfg.h" />
+    <param name="ADIF2 Source" value="ymu831_path_cfg.h ymu831_path_cfg.h" />
+    <ctl name="Dsp Parameter" value="0" />
+    <ctl name="Dsp Parameter Opti1" value="0" />
+    <param name="Clear Dsp Parameter" value="0" />
+    <ctl name="Playback Scenario" value="0" />
+    <ctl name="Capture Scenario" value="0" />
+    <param name="Parameter Setting" value="DUMMY" />
+    <param name="Main Mic" value="MIC1" />
+    <param name="Sub Mic" value="MIC2" />
+    <param name="Headset Mic" value="MIC4" />
+
+    <!--
+    #######################################################
+    ### AUDIO ROUTING
+    #######################################################
+    -->
+    <!-- ########## From ysound.xml ########## -->
+
+    <path name="Earpiece_Incall_NB">
+        <!-- transmit -->
+        <param name="Voice Output Volume" value="96 96" />
+        <param name="Voice Output Switch" value="1 1" />
+        <param name="Ext Output Volume" value="100 100" />
+        <param name="Ext Output Switch" value="1 1" />
+        <param name="Adif1 Input Volume" value="94 94" />
+        <param name="Adif1 Input Switch" value="1 1" />
+        <param name="ADIF1 Source" value="1 2" />
+        <param name="Ext Out Swap" value="2" />
+        <!-- Lch: transmit  Rch: receive(for incall recording) -->
+        <param name="Ref Input Volume" value="96 96" />
+        <param name="Ref Input Switch" value="1 1" />
+        <!-- receive -->
+        <param name="Voice Input Volume" value="96 96" />
+        <param name="Voice Input Switch" value="1 1" />
+        <param name="Ext Input Volume" value="96 96" />
+        <param name="Ext Input Switch" value="1 1" />
+        <param name="Dac0 Output Volume" value="96 96" />
+        <param name="Dac0 Output Switch" value="1 1" />
+        <ctl name="Receiver Volume" value="111" />
+        <ctl name="Receiver Switch" value="1" />
+        <param name="Voice In Swap" value="2" />
+        <param name="Ext In Swap" value="2" />
+        <param name="Dac0 Swap" value="5" />
+        <!-- Lch: AEC reference  Rch: receive -->
+        <param name="Ref Output Volume" value="96 96" />
+        <param name="Ref Output Switch" value="1 1" />
+        <!-- AEC reference -->
+        <param name="Adif2 Input Volume" value="96 96" />
+        <param name="Adif2 Input Switch" value="1 1" />
+    </path>
+
+    <path name="Earpiece_Incall_NB_Type3">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <!-- DyVE solution -->
+        <param name="Ext MasterSlave" value="0" />
+        <param name="Voice Rate" value="10" />
+        <param name="Ext Physical Port" value="1" />
+        <param name="Voice Physical Port" value="2" />
+    </path>
+
+    <path name="none">
+        <!-- Empty path -->
+    </path>
+
+    <!-- ########## Playback ########## -->
+
+    <path name="earpiece">
+        <ctl name="Output Path" value="RC" />
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <param name="Music Input Volume" value="96 96" />
+        <param name="Music Input Switch" value="1 1" />
+        <param name="Music In0 Swap" value="0" />
+        <param name="Dpath Da Volume" value="96 96" />
+        <param name="Dpath Da Switch" value="1 1" />
+        <param name="Dac0 Output Volume" value="96 96" />
+        <param name="Dac0 Output Switch" value="1 1" />
+        <ctl name="Receiver Volume" value="99" />
+        <ctl name="Receiver Switch" value="1" />
+        <param name="Dac0 Swap" value="5" />
+        <ctl name="Audio Mode Playback" value="audio" />
+    </path>
+
+    <path name="speaker">
+        <ctl name="Output Path" value="SP" />
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <param name="Music Input Volume" value="96 96" />
+        <param name="Music Input Switch" value="1 1" />
+        <param name="Music In0 Swap" value="0" />
+        <param name="Dpath Da Volume" value="96 96" />
+        <param name="Dpath Da Switch" value="1 1" />
+        <param name="Dac1 Output Volume" value="96 96" />
+        <param name="Dac1 Output Switch" value="1 1" />
+        <param name="Speaker Volume" value="83 83" />
+        <param name="Speaker Switch" value="1 1" />
+        <ctl name="SP Gain" value="0" />
+        <param name="Dac1 Swap" value="5" />
+        <ctl name="Audio Mode Playback" value="audio" />
+    </path>
+
+    <path name="headphones">
+        <ctl name="Output Path" value="HP" />
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <param name="Music Input Volume" value="96 96" />
+        <param name="Music Input Switch" value="1 1" />
+        <param name="Music In0 Swap" value="0" />
+        <param name="Dpath Da Volume" value="96 96" />
+        <param name="Dpath Da Switch" value="1 1" />
+        <param name="Dac0 Output Volume" value="96 96" />
+        <param name="Dac0 Output Switch" value="1 1" />
+        <param name="Headphone Volume" value="127 127" />
+        <param name="Headphone Switch" value="1 1" />
+        <param name="Dac0 Swap" value="0" />
+        <ctl name="Audio Mode Playback" value="audio" />
+    </path>
+
+    <path name="speaker-and-headphones">
+        <ctl name="Output Path" value="SP+HP" />
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <param name="Music Input Volume" value="96 96" />
+        <param name="Music Input Switch" value="1 1" />
+        <param name="Music In0 Swap" value="0" />
+        <param name="Dpath Da Volume" value="96 96" />
+        <param name="Dpath Da Switch" value="1 1" />
+        <param name="Dac0 Output Volume" value="92 92" />
+        <param name="Dac0 Output Switch" value="1 1" />
+        <param name="Dac1 Output Volume" value="96 96" />
+        <param name="Dac1 Output Switch" value="1 1" />
+        <param name="Speaker Volume" value="83 83" />
+        <param name="Speaker Switch" value="1 1" />
+        <ctl name="SP Gain" value="0" />
+        <param name="Headphone Volume" value="48 48" />
+        <param name="Headphone Switch" value="1 1" />
+        <param name="Dac0 Swap" value="0" />
+        <param name="Dac1 Swap" value="5" />
+        <ctl name="Audio Mode Playback" value="audio" />
+    </path>
+
+    <path name="voice-earpiece">
+        <ctl name="Output Path" value="RC" />
+        <path name="Earpiece_Incall_NB" />
+        <path name="Earpiece_Incall_NB_Type3" />
+        <ctl name="Audio Mode Playback" value="incall" />
+    </path>
+
+    <path name="voice-earpiece-wb">
+        <!-- Empty path -->
+    </path>
+
+    <path name="voice-speaker">
+        <!-- Empty path -->
+    </path>
+
+    <path name="voice-speaker-wb">
+        <!-- Empty path -->
+    </path>
+
+    <path name="voice-headphones">
+        <!-- Empty path -->
+    </path>
+
+    <path name="voice-headphones-wb">
+        <!-- Empty path -->
+    </path>
+
+    <path name="hdmi">
+        <ctl name="Output Path" value="SP" />
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <param name="Music Input Volume" value="96 96" />
+        <param name="Music Input Switch" value="1 1" />
+        <param name="Music In0 Swap" value="0" />
+        <param name="Dpath Da Volume" value="96 96" />
+        <param name="Dpath Da Switch" value="1 1" />
+        <param name="Dac1 Output Volume" value="96 96" />
+        <param name="Dac1 Output Switch" value="1 1" />
+        <param name="Speaker Volume" value="0 0" />
+        <param name="Speaker Switch" value="1 1" />
+        <ctl name="SP Gain" value="0" />
+        <param name="Dac1 Swap" value="5" />
+        <ctl name="Audio Mode Playback" value="audio" />
+    </path>
+
+    <path name="speaker-and-hdmi">
+        <ctl name="Output Path" value="SP" />
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <param name="Music Input Volume" value="96 96" />
+        <param name="Music Input Switch" value="1 1" />
+        <param name="Music In0 Swap" value="0" />
+        <param name="Dpath Da Volume" value="96 96" />
+        <param name="Dpath Da Switch" value="1 1" />
+        <param name="Dac1 Output Volume" value="96 96" />
+        <param name="Dac1 Output Switch" value="1 1" />
+        <param name="Speaker Volume" value="83 83" />
+        <param name="Speaker Switch" value="1 1" />
+        <ctl name="SP Gain" value="0" />
+        <param name="Dac1 Swap" value="5" />
+        <ctl name="Audio Mode Playback" value="audio" />
+    </path>
+
+    <path name="bt-sco-headset">
+        <!-- Empty path -->
+    </path>
+
+    <!-- ########## Capture ########## -->
+
+    <path name="earpiece-mic">
+        <!-- Empty path -->
+    </path>
+
+    <path name="speaker-mic">
+        <!-- Empty path -->
+    </path>
+
+    <path name="voice-mic">
+        <!-- Configure builtin mic only -->
+        <!-- Empty path -->
+    </path>
+
+    <!-- Two mic -->
+    <path name="voice-earpiece-mic">
+        <!-- Should be main mic and back mic -->
+        <!-- Capture channel set to main mic -->
+        <!-- Empty path -->
+    </path>
+
+    <path name="voice-earpiece-mic-wb">
+        <!-- Should be main mic and back mic -->
+        <!-- Capture channel set to main mic -->
+        <!-- Empty path -->
+    </path>
+
+    <path name="voice-speaker-mic">
+        <!-- Should be main mic and back mic -->
+        <!-- Capture channel set to back mic -->
+        <!-- Empty path -->
+    </path>
+
+    <path name="voice-speaker-mic-wb">
+        <!-- Should be main mic and back mic -->
+        <!-- Capture channel set to back mic -->
+        <!-- Empty path -->
+    </path>
+
+    <path name="voice-headset-mic">
+        <!-- Empty path -->
+    </path>
+
+    <path name="voice-headset-mic-wb">
+        <!-- Empty path -->
+    </path>
+
+    <path name="hdmi-mic">
+        <!-- Empty path -->
+    </path>
+
+    <path name="bt-sco-mic">
+        <!-- Empty path -->
+    </path>
+
+    <path name="voice-rec-headset-mic">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <param name="Music Output Volume" value="96 96" />
+        <param name="Music Output Switch" value="1 1" />
+        <param name="Dpath Ad Volume" value="96 96" />
+        <param name="Dpath Ad Switch" value="1 1" />
+        <param name="Voice Input Volume" value="96 96" />
+        <param name="Voice Input Switch" value="1 1" />
+        <param name="Voice Output Volume" value="96 96" />
+        <param name="Voice Output Switch" value="1 1" />
+        <param name="Adif1 Input Volume" value="96 96" />
+        <param name="Adif1 Input Switch" value="1 1" />
+        <param name="ADIF1 Source" value="1 2" />
+        <ctl name="Mic4 Volume" value="33" />
+        <ctl name="Mic4 Switch" value="1" />
+        <param name="Music Out0 Swap" value="0" />
+        <ctl name="Input Path" value="Headset" />
+        <ctl name="Audio Mode Capture" value="audio" />
+    </path>
+
+    <path name="voice-rec-mic">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <param name="Music Output Volume" value="96 96" />
+        <param name="Music Output Switch" value="1 1" />
+        <param name="Dpath Ad Volume" value="96 96" />
+        <param name="Dpath Ad Switch" value="1 1" />
+        <param name="Voice Input Volume" value="96 96" />
+        <param name="Voice Input Switch" value="1 1" />
+        <param name="Voice Output Volume" value="96 96" />
+        <param name="Voice Output Switch" value="1 1" />
+        <param name="Adif1 Input Volume" value="96 96" />
+        <param name="Adif1 Input Switch" value="1 1" />
+        <param name="ADIF1 Source" value="1 2" />
+        <ctl name="Sub Mic" value="MIC2" />
+        <ctl name="Mic1 Volume" value="51" />
+        <ctl name="Mic1 Switch" value="1" />
+        <ctl name="Mic2 Volume" value="50" />
+        <ctl name="Mic2 Switch" value="1" />
+        <param name="Music Out0 Swap" value="0" />
+        <ctl name="Input Path" value="2MIC" />
+        <ctl name="Audio Mode Capture" value="audio" />
+    </path>
+
+    <path name="camcorder-mic">
+        <ctl name="Clear Dsp Parameter" value="ON" />
+        <param name="Music Output Volume" value="96 96" />
+        <param name="Music Output Switch" value="1 1" />
+        <param name="Dpath Ad Volume" value="96 96" />
+        <param name="Dpath Ad Switch" value="1 1" />
+        <param name="Voice Input Volume" value="96 96" />
+        <param name="Voice Input Switch" value="1 1" />
+        <param name="Voice Output Volume" value="96 96" />
+        <param name="Voice Output Switch" value="1 1" />
+        <param name="Adif1 Input Volume" value="96 96" />
+        <param name="Adif1 Input Switch" value="1 1" />
+        <param name="ADIF1 Source" value="1 2" />
+        <ctl name="Sub Mic" value="MIC2" />
+        <ctl name="Mic1 Volume" value="52" />
+        <ctl name="Mic1 Switch" value="1" />
+        <ctl name="Mic2 Volume" value="52" />
+        <ctl name="Mic2 Switch" value="1" />
+        <param name="Music Out0 Swap" value="0" />
+        <ctl name="Input Path" value="2MIC" />
+        <ctl name="Audio Mode Capture" value="audio" />
+    </path>
+
+    <path name="loopback-aec">
+        <!-- Empty path -->
+    </path>
+
+</mixer>
