@@ -25,8 +25,6 @@ TARGET_SOC := exynos5420
 BOARD_PROVIDES_LIBRIL := true
 # hardware/samsung/ril
 BOARD_MODEM_TYPE := xmm6360
-# we need define it (because audio.primary.universal5420.so requires it)
-BOARD_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 # RIL.java overwrite
 BOARD_RIL_CLASS := ../../../device/samsung/ha3g/ril
 
@@ -76,12 +74,8 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_SEPOLICY_DIRS += device/samsung/exynos5420-common/sepolicy
 BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
 
-# Microphone recording fix.- REQUIRES PATCH
-BOARD_USES_LEGACY_AUDIO_BLOB := true
-
 # Camera: portrait orientation
 BOARD_CAMERA_FRONT_ROTATION := 270
 BOARD_CAMERA_BACK_ROTATION := 90
 
-# Inherit from exynos5420-common
 include device/samsung/exynos5420-common/BoardConfigCommon.mk

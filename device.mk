@@ -21,14 +21,9 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
 
-# Audio
-PRODUCT_PACKAGES += \
-    libtinyxml \
-    libtinyalsa
-
+# Audio paths
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
-    $(LOCAL_PATH)/configs/audio/ysound.xml:system/etc/ysound.xml
+    $(LOCAL_PATH)/configs/audio/mixer_paths_0.xml:system/etc/mixer_paths_0.xml
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
