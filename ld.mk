@@ -8,11 +8,18 @@ $(call inherit-product, device/samsung/ha3g/device.mk)
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/ld/config/common_full_phone.mk)
 
+## Device identifier. This must come after all inclusions
 PRODUCT_NAME := ld_ha3g
 PRODUCT_DEVICE := ha3g
+PRODUCT_BRAND := samsung
+PRODUCT_MANUFACTURER := samsung
+PRODUCT_MODEL := SM-N900
+PRODUCT_GMS_CLIENTID_BASE := android-samsung
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_MODEL=SM-T705 \
+    PRODUCT_MODEL=SM-N900 \
     PRODUCT_NAME=ha3g \
     PRODUCT_DEVICE=ha3g \
-    TARGET_DEVICE=ha3g
+    TARGET_DEVICE=ha3g \
+    BUILD_FINGERPRINT="samsung/ha3gub/ha3g:5.0/LRX21V/N900UBUEBOK1:user/release-keys" \
+    PRIVATE_BUILD_DESC="ha3gub-user 5.0 LRX21V N900UBUEBOK1 release-keys"
