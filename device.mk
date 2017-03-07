@@ -26,6 +26,10 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     libtinyalsa
 
+# Substratum prebuilt app
+PRODUCT_PACKAGES += \
+    Substratum
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
     $(LOCAL_PATH)/configs/audio/ysound.xml:system/etc/ysound.xml
