@@ -15,6 +15,7 @@
 #
 
 LOCAL_PATH := device/samsung/ha3g
+COMMON_PATH := device/samsung/exynos5420-common
 
 # Platform
 BOARD_VENDOR := samsung
@@ -55,6 +56,7 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
 # CMHW
 BOARD_HARDWARE_CLASS += $(LOCAL_PATH)/cmhw
+BOARD_HARDWARE_CLASS += $(COMMON_PATH)/cmhw
 
 # NFC
 BOARD_HAVE_NFC := true
