@@ -38,6 +38,10 @@ TARGET_SCREEN_WIDTH := 1080
 PRODUCT_PACKAGES += \
     SamsungServiceMode
 
+# Macloader
+PRODUCT_PACKAGES += \
+    macloader
+
 # GPS
 PRODUCT_PACKAGES += \
     libdmitry
