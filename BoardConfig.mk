@@ -79,5 +79,9 @@ BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
 # Microphone recording fix.- REQUIRES PATCH
 BOARD_USES_LEGACY_AUDIO_BLOB := true
 
+# Camera: portrait orientation
+BOARD_CAMERA_FRONT_ROTATION := 270
+BOARD_CAMERA_BACK_ROTATION := 90
+
 # Inherit from exynos5420-common
 include device/samsung/exynos5420-common/BoardConfigCommon.mk
