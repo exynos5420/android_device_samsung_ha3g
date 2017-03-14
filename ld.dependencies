@@ -19,44 +19,38 @@
   },
   {
     "remote":      "github",
-    "repository":  "exynos5420/android_hardware_samsung",
+    "repository":  "lineageos/android_hardware_samsung",
     "target_path": "hardware/samsung",
-    "branch":      "LD_N7.1"
+    "branch":      "cm-14.1"
   },
   {
     "remote":      "github",
-    "repository":  "CyanogenMod/android_hardware_samsung_slsi-cm_exynos",
+    "repository":  "lineageos/android_hardware_samsung_slsi-cm_exynos",
     "target_path": "hardware/samsung_slsi-cm/exynos",
     "branch":      "cm-14.1"
   },
   {
     "remote":      "github",
-    "repository":  "exynos5420/android_hardware_samsung_slsi-cm_exynos5",
+    "repository":  "lineageos/android_hardware_samsung_slsi-cm_exynos5",
     "target_path": "hardware/samsung_slsi-cm/exynos5",
     "branch":      "cm-14.1"
   },
   {
     "remote":      "github",
-    "repository":  "exynos5420/android_hardware_samsung_slsi-cm_exynos5420",
+    "repository":  "lineageos/android_hardware_samsung_slsi-cm_exynos5420",
     "target_path": "hardware/samsung_slsi-cm/exynos5420",
     "branch":      "cm-14.1"
   },
   {
     "remote":      "github",
-    "repository":  "CyanogenMod/android_hardware_samsung_slsi-cm_openmax",
+    "repository":  "lineageos/android_hardware_samsung_slsi-cm_openmax",
     "target_path": "hardware/samsung_slsi-cm/openmax",
     "branch":      "cm-14.1"
   },
   {
     "remote":      "github",
-    "repository":  "Cyanogenmod/android_external_stlport",
+    "repository":  "lineageos/android_external_stlport",
     "target_path": "external/stlport",
-    "branch":      "cm-14.1"
-  },
-  {
-    "remote":      "github",
-    "repository":  "CyanogenMod/android_external_sony_boringssl-compat",
-    "target_path": "external/sony/boringssl-compat",
     "branch":      "cm-14.1"
   }
 ]
