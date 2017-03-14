@@ -1,0 +1,52 @@
+From 327e41792c48c19021bd7069247b86393fcada7e Mon Sep 17 00:00:00 2001
+From: ShevT <shev_t@mail.ru>
+Date: Tue, 14 Mar 2017 12:01:21 +0300
+Subject: [PATCH] fwb: Fix Sending non-protected broadcast
+ PHONE_EXSTATE_CHANGED, WB_AMR, pcmclkctrl
+
+This patch fixes errors:
+E ActivityManager: Sending non-protected broadcast android.intent.action.PHONE_EXSTATE_CHANGED from system uid 1001 pkg null
+E ActivityManager: Sending non-protected broadcast android.intent.action.pcmclkctrl from system uid 1001 pkg null
+E ActivityManager: Sending non-protected broadcast android.intent.action.WB_AMR from system uid 1001 pkg null
+
+project frameworks/base/
+diff --git a/frameworks/base/core/java/android/content/Intent.java b/frameworks/base/core/java/android/content/Intent.java
+index d96766e8faa..4cd46ef824b 100644
+--- a/frameworks/base/core/java/android/content/Intent.java
++++ b/frameworks/base/core/java/android/content/Intent.java
+@@ -3302,6 +3302,18 @@ public class Intent implements Parcelable, Cloneable {
+     @SdkConstant(SdkConstantType.ACTIVITY_INTENT_ACTION)
+     public static final String GRIPSENSOR_CP = "android.intent.action.GRIPSENSOR_CP";
+ 
++    /** {@hide} */
++    @SdkConstant(SdkConstantType.ACTIVITY_INTENT_ACTION)
++    public static final String PHONE_EXSTATE_CHANGED = "android.intent.action.PHONE_EXSTATE_CHANGED";
++
++    /** {@hide} */
++    @SdkConstant(SdkConstantType.ACTIVITY_INTENT_ACTION)
++    public static final String WB_AMR = "android.intent.action.WB_AMR";
++
++    /** {@hide} */
++    @SdkConstant(SdkConstantType.ACTIVITY_INTENT_ACTION)
++    public static final String pcmclkctrl = "android.intent.action.pcmclkctrl";
++
+     // ---------------------------------------------------------------------
+     // ---------------------------------------------------------------------
+     // Standard intent categories (see addCategory()).
+diff --git a/frameworks/base/core/res/AndroidManifest.xml b/frameworks/base/core/res/AndroidManifest.xml
+index 44603b30efc..4be0ab8a05e 100644
+--- a/frameworks/base/core/res/AndroidManifest.xml
++++ b/frameworks/base/core/res/AndroidManifest.xml
+@@ -511,6 +511,10 @@
+     <protected-broadcast android:name="android.intent.action.GRIPSENSOR_CP" />
+     <protected-broadcast android:name="android.intent.action.PROXIMITY_CP" />
+ 
++    <protected-broadcast android:name="android.intent.action.PHONE_EXSTATE_CHANGED" />
++    <protected-broadcast android:name="android.intent.action.WB_AMR" />
++    <protected-broadcast android:name="android.intent.action.pcmclkctrl" />
++
+     <protected-broadcast android:name="android.telecom.action.TTY_PREFERRED_MODE_CHANGED" />
+     <protected-broadcast android:name="android.telecom.action.CURRENT_TTY_MODE_CHANGED" />
+     <protected-broadcast android:name="com.android.server.retaildemo.ACTION_RESET_DEMO" />
+-- 
+2.11.0
