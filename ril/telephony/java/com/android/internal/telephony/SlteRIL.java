@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2014, The CyanogenMod Project. All rights reserved.
+ * Copyright (c) 2017, The LineageOS Project. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +24,7 @@ import android.telephony.Rlog;
 import android.os.AsyncResult;
 import android.os.Message;
 import android.os.Parcel;
+import android.os.SystemProperties;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SignalStrength;
 import android.telephony.SmsManager;
@@ -59,6 +61,11 @@ public class SlteRIL extends RIL {
     private static final int RIL_REQUEST_SIM_TRANSMIT_CHANNEL = 10029;
 
     private Message mPendingGetSimStatus;
+
+    // Number of per-network elements expected in QUERY_AVAILABLE_NETWORKS's response.
+    // 4 elements is default, but many RILs actually return 5, making it impossible to
+    // divide the response array without prior knowledge of the number of elements.
+    protected int mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 4);
 
     public SlteRIL(Context context, int preferredNetworkType, int cdmaSubscription) {
         super(context, preferredNetworkType, cdmaSubscription, null);
@@ -402,13 +409,13 @@ public class SlteRIL extends RIL {
         String strings[] = (String[])responseStrings(p);
         ArrayList<OperatorInfo> ret;
 
-        if (strings.length % 5 != 0) {
+        if (strings.length % mQANElements != 0) {
             throw new RuntimeException("RIL_REQUEST_QUERY_AVAILABLE_NETWORKS: invalid response. Got "
-                                       + strings.length + " strings, expected multiple of " + 5);
+                                       + strings.length + " strings, expected multiple of " + mQANElements);
         }
 
-        ret = new ArrayList<OperatorInfo>(strings.length / 5);
-        for (int i = 0 ; i < strings.length ; i += 5) {
+        ret = new ArrayList<OperatorInfo>(strings.length / mQANElements);
+        for (int i = 0 ; i < strings.length ; i += mQANElements) {
             String strOperatorLong = strings[i+0];
             String strOperatorNumeric = strings[i+2];
             String strState = strings[i+3].toLowerCase();
@@ -509,4 +516,3 @@ public class SlteRIL extends RIL {
         return ret;
     }
 }
-
