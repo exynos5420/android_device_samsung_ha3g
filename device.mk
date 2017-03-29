@@ -24,6 +24,7 @@ PRODUCT_AAPT_CONFIG := normal
 # Audio
 PRODUCT_PACKAGES += \
     libtinyxml \
+    audio.primary.universal5420 \
     libtinyalsa
 
 PRODUCT_COPY_FILES += \
