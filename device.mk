@@ -24,6 +24,7 @@ PRODUCT_AAPT_CONFIG := normal
 # Audio
 PRODUCT_PACKAGES += \
     libtinyxml \
+    audio.primary.ha3g \
     libtinyalsa
 
 PRODUCT_COPY_FILES += \
