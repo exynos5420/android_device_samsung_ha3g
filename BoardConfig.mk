@@ -76,9 +76,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_SEPOLICY_DIRS += device/samsung/exynos5420-common/sepolicy
 BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
 
-# Microphone recording fix.- REQUIRES PATCH
-BOARD_USES_LEGACY_AUDIO_BLOB := true
-
 # Camera: portrait orientation
 BOARD_CAMERA_FRONT_ROTATION := 270
 BOARD_CAMERA_BACK_ROTATION := 90
