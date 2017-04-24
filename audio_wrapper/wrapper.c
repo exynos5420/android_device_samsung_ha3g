@@ -71,6 +71,9 @@ static pthread_cond_t in_use_cond = PTHREAD_COND_INITIALIZER;
 static bool audio_mode_incall = 0;
 static int incall_mic_muted = 0;
 static int alsa_set_mic_mute(bool state);
+static int initial_receiver_volume = 0;
+static int initial_speaker_volume = 0;
+static int initial_headphone_volume = 0;
 
 #define WAIT_FOR_FREE(in_use) do { pthread_mutex_lock(&(in_use ## _mutex)); \
                              while (in_use) { \
@@ -563,6 +566,60 @@ static int alsa_set_mic_mute(bool state)
     return ret;
 }
 
+static int alsa_set_voice_volume(float volume)
+{
+    struct mixer *mixer;
+    struct mixer_ctl *receiver_volume_ctl;
+    struct mixer_ctl *speaker_volume_ctl;
+    struct mixer_ctl *headphone_volume_ctl;
+    int ret = 1;
+    volume = (0.625*volume) + 0.375;
+    mixer = mixer_open(0);
+    if (!mixer) {
+        ALOGW("Can't open alsa mixer!");
+        return 0;
+    }
+
+    receiver_volume_ctl = mixer_get_ctl_by_name(mixer, "Receiver Volume");
+    if (!receiver_volume_ctl) {
+        ALOGW("Can't find mixer control ");
+        mixer_close(mixer);
+        return 0;
+    }
+    speaker_volume_ctl = mixer_get_ctl_by_name(mixer, "Speaker Volume");
+    if (!speaker_volume_ctl) {
+        ALOGW("Can't find mixer control ");
+        mixer_close(mixer);
+        return 0;
+    }
+    headphone_volume_ctl = mixer_get_ctl_by_name(mixer, "Headphone Volume");
+    if (!headphone_volume_ctl) {
+        ALOGW("Can't find mixer control ");
+        mixer_close(mixer);
+        return 0;
+    }
+
+    if (initial_receiver_volume == 0 && mixer_ctl_get_value(receiver_volume_ctl, 0) != 0){
+        initial_receiver_volume = mixer_ctl_get_value(receiver_volume_ctl, 0);
+    }
+
+    if (initial_speaker_volume == 0 && mixer_ctl_get_value(speaker_volume_ctl, 0) != 0){
+        initial_speaker_volume = mixer_ctl_get_value(speaker_volume_ctl, 0);
+    }
+
+    if (initial_headphone_volume == 0 && mixer_ctl_get_value(headphone_volume_ctl, 0) != 0){
+        initial_headphone_volume = mixer_ctl_get_value(headphone_volume_ctl, 0);
+    }
+
+    mixer_ctl_set_value(receiver_volume_ctl, 0, initial_receiver_volume*volume);
+    mixer_ctl_set_value(speaker_volume_ctl, 0, initial_speaker_volume*volume);
+    mixer_ctl_set_value(speaker_volume_ctl, 1, initial_speaker_volume*volume);
+    mixer_ctl_set_value(headphone_volume_ctl, 0, initial_headphone_volume*volume);
+    mixer_ctl_set_value(headphone_volume_ctl, 1, initial_headphone_volume*volume);
+
+    return ret;
+}
+
 static int wrapper_set_mic_mute(unused_audio_hw_device *dev, bool state){
     int ret;
 
@@ -574,6 +631,25 @@ static int wrapper_set_mic_mute(unused_audio_hw_device *dev, bool state){
     WAIT_FOR_FREE(in_use);
     ret = lp_hw_dev->set_mic_mute(lp_hw_dev, state);
     if (audio_mode_incall) alsa_set_mic_mute(state);
+    UNLOCK_FREE(in_use);
+
+    pthread_mutex_unlock(&in_streams_mutex);
+    pthread_mutex_unlock(&out_streams_mutex);
+
+    return ret;
+}
+
+static int wrapper_set_voice_volume(unused_audio_hw_device *dev, float volume){
+    int ret;
+
+    if (logwrapped == 1) ALOGI("set_voice_volume: %f", volume);
+
+    pthread_mutex_lock(&out_streams_mutex);
+    pthread_mutex_lock(&in_streams_mutex);
+
+    WAIT_FOR_FREE(in_use);
+    ret = lp_hw_dev->set_voice_volume(lp_hw_dev, volume);
+    if (audio_mode_incall) alsa_set_voice_volume(volume);
     UNLOCK_FREE(in_use);
 
     pthread_mutex_unlock(&in_streams_mutex);
@@ -595,8 +671,12 @@ static int wrapper_set_mode(unused_audio_hw_device *dev, audio_mode_t mode)
     if (mode == AUDIO_MODE_IN_CALL){
         incall_mic_muted = 0;
         audio_mode_incall = 1;
-    } else audio_mode_incall = 0;
-
+    } else {
+        audio_mode_incall = 0;
+        initial_receiver_volume = 0;
+        initial_speaker_volume = 0;
+        initial_headphone_volume = 0;
+    }
     UNLOCK_FREE(in_use);
     pthread_mutex_unlock(&in_streams_mutex);
     pthread_mutex_unlock(&out_streams_mutex);
@@ -606,9 +686,6 @@ static int wrapper_set_mode(unused_audio_hw_device *dev, audio_mode_t mode)
 
 WRAP_HAL_LOCKED(set_master_volume, (unused_audio_hw_device *dev, float volume),
                 (lp_hw_dev, volume), ("set_master_volume: %f", volume))
-
-WRAP_HAL_LOCKED(set_voice_volume, (unused_audio_hw_device *dev, float volume),
-                (lp_hw_dev, volume), ("set_voice_volume: %f", volume))
 
 WRAP_HAL_LOCKED(set_parameters, (unused_audio_hw_device *dev, const char *kv_pairs),
                 (lp_hw_dev, kv_pairs), ("set_parameters: %s", kv_pairs))
