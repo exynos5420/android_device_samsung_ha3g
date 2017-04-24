@@ -149,7 +149,7 @@ _WRAP_STREAM_LOCKED(name, common.name, direction, rettype, err, prototype, param
         _WRAP_HAL(name, name, rettype, prototype, parameters, log)
 
 /* Unused parameters */
-#define unused_audio_hw_device	__attribute__((unused)) struct audio_hw_device
+#define unused_audio_hw_device  __attribute__((unused)) struct audio_hw_device
 
 /* Input stream */
 
@@ -313,9 +313,9 @@ static int wrapper_open_input_stream(unused_audio_hw_device *dev,
         pthread_cond_init(&(in_streams[n_in_streams].in_use_cond), NULL);
 
         if (logwrapped == 1){
-			ALOGI("Wrapped an input stream: rate %d, channel_mask: %x, format: %d, addr: %p/%p",
+            ALOGI("Wrapped an input stream: rate %d, channel_mask: %x, format: %d, addr: %p/%p",
                   config->sample_rate, config->channel_mask, config->format, *stream_in, lp_stream_in);
-		}
+        }
         n_in_streams++;
     }
     pthread_mutex_unlock(&in_streams_mutex);
@@ -331,7 +331,7 @@ static int wrapper_out_set_parameters(struct audio_stream *stream, const char *k
     struct lp_audio_stream_out *lpstream_out;
     int i;
 
-	if (logwrapped == 1) ALOGI("out_set_parameters: %s", kv_pairs);
+    if (logwrapped == 1) ALOGI("out_set_parameters: %s", kv_pairs);
     pthread_mutex_lock(&out_streams_mutex);
     for (i = 0; i < n_out_streams; i++) {
         if (out_streams[i].stream_out == (struct audio_stream_out*)stream) {
@@ -339,9 +339,9 @@ static int wrapper_out_set_parameters(struct audio_stream *stream, const char *k
             lpstream = (struct lp_audio_stream *)out_streams[i].lp_stream_out;
             lpstream_out = out_streams[i].lp_stream_out;
             ret = lpstream_out->common.set_parameters(lpstream, kv_pairs);
-			if (strstr(kv_pairs, "routing=") != NULL &&  incall_mic_muted == 1 && audio_mode_incall){
-		        alsa_set_mic_mute(1);
-	        }
+            if (strstr(kv_pairs, "routing=") != NULL &&  incall_mic_muted == 1 && audio_mode_incall){
+                alsa_set_mic_mute(1);
+            }
             UNLOCK_FREE(out_streams[i].in_use);
             break;
         }
@@ -519,9 +519,9 @@ static int wrapper_open_output_stream(unused_audio_hw_device *dev,
         pthread_cond_init(&(out_streams[n_out_streams].in_use_cond), NULL);
 
         if (logwrapped == 1) {
-			if (logwrapped == 1) ALOGI("Wrapped an output stream: rate %d, channel_mask: %x, format: %d, addr: %p/%p",
+            if (logwrapped == 1) ALOGI("Wrapped an output stream: rate %d, channel_mask: %x, format: %d, addr: %p/%p",
                   config->sample_rate, config->channel_mask, config->format, *stream_out, lp_stream_out);
-		}
+        }
         n_out_streams++;
     }
     pthread_mutex_unlock(&out_streams_mutex);
@@ -532,77 +532,77 @@ static int wrapper_open_output_stream(unused_audio_hw_device *dev,
 /* Generic HAL */
 static int alsa_set_mic_mute(bool state)
 {
-	struct mixer *mixer;
-	struct mixer_ctl *ctl;
-	int ret = 1;
+    struct mixer *mixer;
+    struct mixer_ctl *ctl;
+    int ret = 1;
 
-	mixer = mixer_open(0);
-	if (!mixer) {
-		ALOGW("Can't open alsa mixer!");
-		return 0;
-	}
+    mixer = mixer_open(0);
+    if (!mixer) {
+        ALOGW("Can't open alsa mixer!");
+        return 0;
+    }
 
-	ctl = mixer_get_ctl_by_name(mixer, "Voice Output Switch");
-	if (!ctl) {
-		ALOGW("Can't find mixer control ");
-		mixer_close(mixer);
-		return 0;
-	}
+    ctl = mixer_get_ctl_by_name(mixer, "Voice Output Switch");
+    if (!ctl) {
+        ALOGW("Can't find mixer control ");
+        mixer_close(mixer);
+        return 0;
+    }
 
-	if (state) {
+    if (state) {
         mixer_ctl_set_value(ctl, 0, 0);
         mixer_ctl_set_value(ctl, 1, 0);
-		incall_mic_muted = 1;
-	} else {
+        incall_mic_muted = 1;
+    } else {
         mixer_ctl_set_value(ctl, 0, 1);
         mixer_ctl_set_value(ctl, 1, 1);
-		incall_mic_muted = 0;
-	}
+        incall_mic_muted = 0;
+    }
 
-	mixer_close(mixer);
+    mixer_close(mixer);
 
-	return ret;
+    return ret;
 }
 
 static int wrapper_set_mic_mute(unused_audio_hw_device *dev, bool state){
-	int ret;
+    int ret;
 
-	if (logwrapped == 1) ALOGI("set_mic_mute: %d", state);
+    if (logwrapped == 1) ALOGI("set_mic_mute: %d", state);
 
-	pthread_mutex_lock(&out_streams_mutex);
-	pthread_mutex_lock(&in_streams_mutex);
+    pthread_mutex_lock(&out_streams_mutex);
+    pthread_mutex_lock(&in_streams_mutex);
 
-	WAIT_FOR_FREE(in_use);
-	ret = lp_hw_dev->set_mic_mute(lp_hw_dev, state);
-	if (audio_mode_incall) alsa_set_mic_mute(state);
-	UNLOCK_FREE(in_use);
+    WAIT_FOR_FREE(in_use);
+    ret = lp_hw_dev->set_mic_mute(lp_hw_dev, state);
+    if (audio_mode_incall) alsa_set_mic_mute(state);
+    UNLOCK_FREE(in_use);
 
-	pthread_mutex_unlock(&in_streams_mutex);
-	pthread_mutex_unlock(&out_streams_mutex);
+    pthread_mutex_unlock(&in_streams_mutex);
+    pthread_mutex_unlock(&out_streams_mutex);
 
-	return ret;
+    return ret;
 }
 
 static int wrapper_set_mode(unused_audio_hw_device *dev, audio_mode_t mode)
 {
-	int ret;
+    int ret;
 
-	if (logwrapped == 1) ALOGI("set_mode: %d", mode);
+    if (logwrapped == 1) ALOGI("set_mode: %d", mode);
 
-	pthread_mutex_lock(&out_streams_mutex);
-	pthread_mutex_lock(&in_streams_mutex);
-	WAIT_FOR_FREE(in_use);
-	ret = lp_hw_dev->set_mode(lp_hw_dev, mode);
-	if (mode == AUDIO_MODE_IN_CALL){
-	    incall_mic_muted = 0;
-		audio_mode_incall = 1;
-	} else audio_mode_incall = 0;
+    pthread_mutex_lock(&out_streams_mutex);
+    pthread_mutex_lock(&in_streams_mutex);
+    WAIT_FOR_FREE(in_use);
+    ret = lp_hw_dev->set_mode(lp_hw_dev, mode);
+    if (mode == AUDIO_MODE_IN_CALL){
+        incall_mic_muted = 0;
+        audio_mode_incall = 1;
+    } else audio_mode_incall = 0;
 
-	UNLOCK_FREE(in_use);
-	pthread_mutex_unlock(&in_streams_mutex);
-	pthread_mutex_unlock(&out_streams_mutex);
+    UNLOCK_FREE(in_use);
+    pthread_mutex_unlock(&in_streams_mutex);
+    pthread_mutex_unlock(&out_streams_mutex);
 
-	return ret;
+    return ret;
 }
 
 WRAP_HAL_LOCKED(set_master_volume, (unused_audio_hw_device *dev, float volume),
@@ -717,7 +717,7 @@ static int wrapper_open(__attribute__((unused)) const hw_module_t* module,
         dlclose(dso_handle);
         dso_handle = NULL;
 
-		return -ENOMEM;
+        return -ENOMEM;
     }
 
     memset(*device, 0, sizeof(struct audio_hw_device));
