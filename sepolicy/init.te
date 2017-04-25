@@ -1,0 +1,1 @@
+allow init camera_device:file { relabelto setattr };
