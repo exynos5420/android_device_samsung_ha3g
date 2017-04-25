@@ -1,0 +1,1 @@
+allow nfc nfc_system_data_file:dir write;
