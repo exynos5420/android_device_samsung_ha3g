@@ -1,0 +1,9 @@
+allow kernel self:capability { dac_read_search dac_override };
+allow kernel efs_file:dir search;
+allow kernel efs_file:file read;
+allow kernel sysfs_writable:dir search;
+allow kernel app_efs_file:dir search;
+allow kernel sensors_efs_file:file read;
+allow kernel sysfs_writable:lnk_file read;
+allow kernel efs_file:file open;
+allow kernel sensors_efs_file:file open;
