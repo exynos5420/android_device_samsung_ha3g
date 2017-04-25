@@ -9,6 +9,8 @@ unix_socket_connect(cpboot-daemon, property, init)
 
 allow cpboot-daemon self:capability { dac_override setuid setgid };
 
+allow cpboot-daemon sysfs:file write;
+
 # FIXME neverallow rule
 # allow cpboot-daemon self:capability mknod;
 allow cpboot-daemon kernel:system syslog_read;
