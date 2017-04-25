@@ -1,0 +1,2 @@
+dontaudit system_app netd_service:service_manager find;
+allow system_app sensorhubservice:binder call;
