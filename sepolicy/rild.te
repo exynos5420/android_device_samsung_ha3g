@@ -35,3 +35,6 @@ allow rild radio_data_file:dir rw_dir_perms;
 allow rild radio_data_file:file create_file_perms;
 # /data/data/com.android.providers.telephony/databases/telephony.db
 allow rild radio_data_file:lnk_file r_file_perms;
+
+# /efs/nv_data.bin
+allow rild bin_nv_data_efs_file:file { read write unlink getattr };
