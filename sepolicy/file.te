@@ -1,4 +1,3 @@
 type sensors_efs_file, file_type;
 type sensorhub_dev, dev_type;
 type batch_io_device, dev_type;
-type nfc_data_file, file_type;
