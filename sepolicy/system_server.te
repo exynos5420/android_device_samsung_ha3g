@@ -1,0 +1,4 @@
+allow system_server sensors_efs_file:file { open read write };
+allow system_server sensorhub_dev:chr_file r_file_perms;
+allow system_server batch_io_device:chr_file rw_file_perms;
+allow system_server system_file:file execmod;
