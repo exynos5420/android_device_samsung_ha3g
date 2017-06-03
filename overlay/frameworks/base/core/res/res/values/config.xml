@@ -133,4 +133,6 @@
          out of setting a batch size, which fixes rotation. -->
     <bool name="config_useDefaultBatchingForAccel">false</bool>
 
+    <!-- Enable button brightness -->
+    <bool name="config_deviceHasVariableButtonBrightness">true</bool>
 </resources>
