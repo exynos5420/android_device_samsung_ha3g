@@ -127,10 +127,12 @@
     -->
     <string translatable="false" name="config_radio_access_family">GSM | WCDMA | GPRS | EDGE</string>
 
-  
     <!-- Certain sensor firmwares break with having a batch
          size set. By setting this to false, devices can opt
          out of setting a batch size, which fixes rotation. -->
     <bool name="config_useDefaultBatchingForAccel">false</bool>
 
+    <!-- If enabled, capacitive keys will only light up when pressed.
+         Otherwise, the buttons will light up whenever the user interacts with the device -->
+    <bool name="config_buttonLightOnKeypressOnly">true</bool>
 </resources>

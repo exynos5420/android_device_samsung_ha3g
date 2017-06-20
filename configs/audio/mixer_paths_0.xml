@@ -260,7 +260,7 @@
         <ctl name="Ext Input Switch" value="1 1" />
         <ctl name="Dac1 Output Volume" value="96 96" />
         <ctl name="Dac1 Output Switch" value="1 1" />
-        <ctl name="Speaker Volume" value="79 79" />
+        <ctl name="Speaker Volume" value="111 111" />
         <ctl name="Speaker Switch" value="1 1" />
         <ctl name="SP Gain" value="4" />
         <ctl name="Voice In Swap" value="Both0" />
@@ -532,7 +532,7 @@
         <ctl name="Dpath Da Switch" value="1 1" />
         <ctl name="Dac1 Output Volume" value="96 96" />
         <ctl name="Dac1 Output Switch" value="1 1" />
-        <ctl name="Speaker Volume" value="83 83" />
+        <ctl name="Speaker Volume" value="111 111" />
         <ctl name="Speaker Switch" value="1 1" />
         <ctl name="SP Gain" value="0" />
         <ctl name="Dac1 Swap" value="MonoMix" />
@@ -567,7 +567,7 @@
         <ctl name="Dac0 Output Switch" value="1 1" />
         <ctl name="Dac1 Output Volume" value="96 96" />
         <ctl name="Dac1 Output Switch" value="1 1" />
-        <ctl name="Speaker Volume" value="83 83" />
+        <ctl name="Speaker Volume" value="111 111" />
         <ctl name="Speaker Switch" value="1 1" />
         <ctl name="SP Gain" value="0" />
         <ctl name="Headphone Volume" value="48 48" />
@@ -680,7 +680,7 @@
         <ctl name="Dpath Da Switch" value="1 1" />
         <ctl name="Dac1 Output Volume" value="96 96" />
         <ctl name="Dac1 Output Switch" value="1 1" />
-        <ctl name="Speaker Volume" value="83 83" />
+        <ctl name="Speaker Volume" value="111 111" />
         <ctl name="Speaker Switch" value="1 1" />
         <ctl name="SP Gain" value="0" />
         <ctl name="Dac1 Swap" value="MonoMix" />
