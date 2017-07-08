@@ -123,9 +123,7 @@ on boot
     chmod 0660 /sys/class/input/input14/enabled
 
 # Input Boosters
-    write /sys/module/synaptics_i2c_rmi/parameters/tsp_booster_enabled 0
-    write /sys/module/cypress_touchkey/parameters/touchkey_booster_enabled 0
-    write /sys/module/wacom_i2c_func/parameters/wacom_booster_enabled 0
+    write /sys/class/sec/sec_epen/wacom_booster_enabled 0
 
 # Epen power saving mode
     write /sys/devices/virtual/sec/sec_epen/epen_saving_mode 1
