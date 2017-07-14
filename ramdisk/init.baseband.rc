@@ -34,8 +34,6 @@ service ril-daemon /system/bin/rild
     onrestart restart cpboot-daemon
     disabled
 
-
-
 on property:ro.modemloader.done=1
     start cpboot-daemon
     start ril-daemon
@@ -59,6 +57,10 @@ on post-fs-data
     # Symlink directories to access telephony.db and preferred-apn.xml required by cbd
     symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
     symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
+    chown radio radio /data/data/com.android.providers.telephony/databases
+    chmod 0771 /data/data/com.android.providers.telephony/databases
+    chown radio radio /data/data/com.android.providers.telephony/shared_prefs
+    chmod 0771 /data/data/com.android.providers.telephony/databases
 
     # restart RIL <--> modem stack to account for new locations
     restart cpboot-daemon
