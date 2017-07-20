@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2014, The CyanogenMod Project. All rights reserved.
  * Copyright (c) 2017, The LineageOS Project. All rights reserved.
+ * Copyright (c) 2017, Martin Bouchet.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,37 +38,31 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * RIL customization for Galaxy Alpha (GSM) LTE devices
+ * RIL customization for Exynos542x devices
  *
  * {@hide}
  */
-public class SlteRIL extends RIL {
+public class Exynos542xRIL extends RIL {
     static final boolean RILJ_LOGD = true;
     static final boolean RILJ_LOGV = true;
 
-    /**********************************************************
-     * SAMSUNG RESPONSE
-     **********************************************************/
-    private static final int RIL_UNSOL_STK_SEND_SMS_RESULT = 11002;
-    private static final int RIL_UNSOL_STK_CALL_CONTROL_RESULT =11003;
-    private static final int RIL_UNSOL_DEVICE_READY_NOTI = 11008;
-    private static final int RIL_UNSOL_AM = 11010;
-    private static final int RIL_UNSOL_SIM_PB_READY = 11021;
-
-    private Message mPendingGetSimStatus;
-
-    // Number of per-network elements expected in QUERY_AVAILABLE_NETWORKS's response.
-    // 4 elements is default, but many RILs actually return 5, making it impossible to
-    // divide the response array without prior knowledge of the number of elements.
-    protected int mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 4);
-
-    public SlteRIL(Context context, int preferredNetworkType, int cdmaSubscription) {
+    public Exynos542xRIL(Context context, int preferredNetworkType, int cdmaSubscription) {
         this(context, preferredNetworkType, cdmaSubscription, null);
     }
 
-    public SlteRIL(Context context, int preferredNetworkType,
+    public Exynos542xRIL(Context context, int preferredNetworkType,
                    int cdmaSubscription, Integer instanceId) {
         super(context, preferredNetworkType, cdmaSubscription, instanceId);
+    }
+
+    // Property to determine whether we are using this subclass in a nextgen modem or not.
+    protected int mSamsungNextGenModem = SystemProperties.getInt("ro.ril.telephony.samsung_nextgen_modem", 0);
+    protected int mNeedsVideocallField = SystemProperties.getInt("ro.ril.telephony.needs_videocall_field", 0);
+
+    @Override
+    public void
+    acceptCall(Message result) {
+        acceptCall(0, result);
     }
 
     public void
@@ -85,131 +80,52 @@ public class SlteRIL extends RIL {
 
     @Override
     public void
-    acceptCall(Message result) {
-        acceptCall(0, result);
-    }
-
-    /**
-     *  Translates EF_SMS status bits to a status value compatible with
-     *  SMS AT commands.  See TS 27.005 3.1.
-     */
-    private int translateStatus(int status) {
-        switch(status & 0x7) {
-            case SmsManager.STATUS_ON_ICC_READ:
-                return 1;
-            case SmsManager.STATUS_ON_ICC_UNREAD:
-                return 0;
-            case SmsManager.STATUS_ON_ICC_SENT:
-                return 3;
-            case SmsManager.STATUS_ON_ICC_UNSENT:
-                return 2;
-        }
-
-        // Default to READ.
-        return 1;
-    }
-
-    @Override
-    public void writeSmsToSim(int status, String smsc, String pdu, Message response) {
-        status = translateStatus(status);
-
-        RILRequest rr = RILRequest.obtain(RIL_REQUEST_WRITE_SMS_TO_SIM,
-                response);
-
-        rr.mParcel.writeInt(status);
-        rr.mParcel.writeString(pdu);
-        rr.mParcel.writeString(smsc);
-        rr.mParcel.writeInt(255);     /* Samsung */
-
-        if (RILJ_LOGV) {
-            riljLog(rr.serialString() + "> "
-                    + requestToString(rr.mRequest)
-                    + " " + status);
-        }
-
-        send(rr);
-    }
-
-    @Override
-    public void
-    getIccCardStatus(Message result) {
-        if (mState != RadioState.RADIO_ON) {
-            mPendingGetSimStatus = result;
-        } else {
-          //Note: This RIL request has not been renamed to ICC,
-          //       but this request is also valid for SIM and RUIM
-          RILRequest rr = RILRequest.obtain(RIL_REQUEST_GET_SIM_STATUS, result);
-
-          if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
-
-          send(rr);
-        }
-    }
-
-    public void setDataAllowed(boolean allowed, Message result) {
-        Rlog.v(RILJ_LOG_TAG, "XMM7260RIL: setDataAllowed");
-
-        if (result != null) {
-            AsyncResult.forMessage(result, 0, null);
-            result.sendToTarget();
-        }
-    }
-
-    @Override
-    public void
     dial(String address, int clirMode, UUSInfo uusInfo, Message result) {
-        RILRequest rr = RILRequest.obtain(RIL_REQUEST_DIAL, result);
-
+        RILRequest rr = RILRequest.obtain(10, result);
         rr.mParcel.writeString(address);
         rr.mParcel.writeInt(clirMode);
-        rr.mParcel.writeInt(0);     // CallDetails.call_type
-        rr.mParcel.writeInt(1);     // CallDetails.call_domain
-        rr.mParcel.writeString(""); // CallDetails.getCsvFromExtras
-
+        if (mSamsungNextGenModem == 1) {
+            rr.mParcel.writeInt(0); // Samsung CallDetails
+            rr.mParcel.writeInt(1); // Samsung CallDetails
+            rr.mParcel.writeString(""); // Samsung CallDetails
+        }
         if (uusInfo == null) {
-            rr.mParcel.writeInt(0); // UUS information is absent
+            rr.mParcel.writeInt(0);
         } else {
-            rr.mParcel.writeInt(1); // UUS information is present
+            rr.mParcel.writeInt(1);
             rr.mParcel.writeInt(uusInfo.getType());
             rr.mParcel.writeInt(uusInfo.getDcs());
             rr.mParcel.writeByteArray(uusInfo.getUserData());
         }
-
-        if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
-
+        if (RILJ_LOGV) riljLog(rr.serialString() + "> " +
+                               requestToString(rr.mRequest));
         send(rr);
     }
 
     @Override
     protected Object
     responseIccCardStatus(Parcel p) {
-        IccCardApplicationStatus appStatus;
-
         IccCardStatus cardStatus = new IccCardStatus();
         cardStatus.setCardState(p.readInt());
         cardStatus.setUniversalPinState(p.readInt());
         cardStatus.mGsmUmtsSubscriptionAppIndex = p.readInt();
         cardStatus.mCdmaSubscriptionAppIndex = p.readInt();
         cardStatus.mImsSubscriptionAppIndex = p.readInt();
-
         int numApplications = p.readInt();
-
-        // limit to maximum allowed applications
-        if (numApplications > IccCardStatus.CARD_MAX_APPS) {
-            numApplications = IccCardStatus.CARD_MAX_APPS;
+        if (numApplications > 8) {
+            numApplications = 8;
         }
         cardStatus.mApplications = new IccCardApplicationStatus[numApplications];
-
-        for (int i = 0 ; i < numApplications ; i++) {
-            appStatus = new IccCardApplicationStatus();
-            appStatus.app_type       = appStatus.AppTypeFromRILInt(p.readInt());
-            appStatus.app_state      = appStatus.AppStateFromRILInt(p.readInt());
+        for (int i = 0; i < numApplications; i++) {
+            IccCardApplicationStatus appStatus = new IccCardApplicationStatus();
+            appStatus.app_type = appStatus.AppTypeFromRILInt(p.readInt());
+            appStatus.app_state = appStatus.AppStateFromRILInt(p.readInt());
             appStatus.perso_substate = appStatus.PersoSubstateFromRILInt(p.readInt());
-            appStatus.aid            = p.readString();
-            appStatus.app_label      = p.readString();
-            appStatus.pin1_replaced  = p.readInt();
-            appStatus.pin1           = appStatus.PinStateFromRILInt(p.readInt());
-            appStatus.pin2           = appStatus.PinStateFromRILInt(p.readInt());
+            appStatus.aid = p.readString();
+            appStatus.app_label = p.readString();
+            appStatus.pin1_replaced = p.readInt();
+            appStatus.pin1 = appStatus.PinStateFromRILInt(p.readInt());
+            appStatus.pin2 = appStatus.PinStateFromRILInt(p.readInt());
             p.readInt(); // pin1_num_retries
             p.readInt(); // puk1_num_retries
             p.readInt(); // pin2_num_retries
@@ -224,131 +140,68 @@ public class SlteRIL extends RIL {
     @Override
     protected Object
     responseCallList(Parcel p) {
-        int num;
-        ArrayList<DriverCall> response;
-        DriverCall dc;
-
-        num = p.readInt();
-        response = new ArrayList<DriverCall>(num);
-
-        if (RILJ_LOGV) {
-            riljLog("responseCallList: num=" + num +
-                    " mEmergencyCallbackModeRegistrant=" + mEmergencyCallbackModeRegistrant +
-                    " mTestingEmergencyCall=" + mTestingEmergencyCall.get());
-        }
-        for (int i = 0 ; i < num ; i++) {
-            dc = new DriverCall();
-
+        int num = p.readInt();
+        ArrayList<DriverCall> response = new ArrayList(num);
+        for (int i = 0; i < num; i++) {
+            DriverCall dc = new DriverCall();
             dc.state = DriverCall.stateFromCLCC(p.readInt());
             dc.index = p.readInt() & 0xff;
             dc.TOA = p.readInt();
-            dc.isMpty = (0 != p.readInt());
-            dc.isMT = (0 != p.readInt());
+            dc.isMpty = (p.readInt() != 0);
+            dc.isMT = (p.readInt() != 0);
             dc.als = p.readInt();
-            dc.isVoice = (0 != p.readInt());
+            dc.isVoice = (p.readInt() == 0);
 
-            //int call_type = p.readInt();            // Samsung CallDetails
-            //int call_domain = p.readInt();          // Samsung CallDetails
-            //String csv = p.readString();            // Samsung CallDetails
-
-            dc.isVoicePrivacy = (0 != p.readInt());
-            dc.number = p.readString();
-            if (RILJ_LOGV) {
-                riljLog("responseCallList dc.number=" + dc.number);
+            boolean isVideo = mNeedsVideocallField ? (0 != p.readInt()) : null;
+            if (mSamsungNextGenModem == 1) {
+                int type = p.readInt(); // Samsung CallDetails
+                int domain = p.readInt(); // Samsung CallDetails
+                String extras = p.readString(); // Samsung CallDetails
             }
+
+            dc.isVoicePrivacy = (p.readInt() != 0);
+            dc.number = p.readString();
             dc.numberPresentation = DriverCall.presentationFromCLIP(p.readInt());
             dc.name = p.readString();
-            if (RILJ_LOGV) {
-                riljLog("responseCallList dc.name=" + dc.name);
-            }
-            // according to ril.h, namePresentation should be handled as numberPresentation;
+            if (RILJ_LOGD) Rlog.d(RILJ_LOG_TAG, "responseCallList dc.name" + dc.name);
             dc.namePresentation = DriverCall.presentationFromCLIP(p.readInt());
-
-            int uusInfoPresent = p.readInt();
-            if (uusInfoPresent == 1) {
+            if (p.readInt() == 1) {
+                // UUS Information is present
                 dc.uusInfo = new UUSInfo();
                 dc.uusInfo.setType(p.readInt());
                 dc.uusInfo.setDcs(p.readInt());
-                byte[] userData = p.createByteArray();
-                dc.uusInfo.setUserData(userData);
-                riljLogv(String.format("Incoming UUS : type=%d, dcs=%d, length=%d",
-                                dc.uusInfo.getType(), dc.uusInfo.getDcs(),
-                                dc.uusInfo.getUserData().length));
-                riljLogv("Incoming UUS : data (string)="
-                        + new String(dc.uusInfo.getUserData()));
-                riljLogv("Incoming UUS : data (hex): "
-                        + IccUtils.bytesToHexString(dc.uusInfo.getUserData()));
+                dc.uusInfo.setUserData(p.createByteArray());
+                if (RILJ_LOGV) {
+                    riljLogv(String.format("Incoming UUS : type=%d, dcs=%d, length=%d",
+                             new Object[]{Integer.valueOf(dc.uusInfo.getType()),
+                             Integer.valueOf(dc.uusInfo.getDcs()),
+                             Integer.valueOf(dc.uusInfo.getUserData().length)}));
+                    riljLogv("Incoming UUS : data (string)=" +
+                             new String(dc.uusInfo.getUserData()));
+                    riljLogv("Incoming UUS : data (hex): " +
+                             IccUtils.bytesToHexString(dc.uusInfo.getUserData()));
+                }
             } else {
-                riljLogv("Incoming UUS : NOT present!");
+                if (RILJ_LOGV) riljLogv("Incoming UUS : NOT present!");
             }
-
-            // Make sure there's a leading + on addresses with a TOA of 145
             dc.number = PhoneNumberUtils.stringFromStringAndTOA(dc.number, dc.TOA);
-
             response.add(dc);
-
             if (dc.isVoicePrivacy) {
                 mVoicePrivacyOnRegistrants.notifyRegistrants();
-                riljLog("InCall VoicePrivacy is enabled");
+                if (RILJ_LOGV) riljLog("InCall VoicePrivacy is enabled");
             } else {
                 mVoicePrivacyOffRegistrants.notifyRegistrants();
-                riljLog("InCall VoicePrivacy is disabled");
+                if (RILJ_LOGV) if (RILJ_LOGV) riljLog("InCall VoicePrivacy is disabled");
             }
         }
-
         Collections.sort(response);
-
-        if ((num == 0) && mTestingEmergencyCall.getAndSet(false)) {
-            if (mEmergencyCallbackModeRegistrant != null) {
-                riljLog("responseCallList: call ended, testing emergency call," +
-                            " notify ECM Registrants");
-                mEmergencyCallbackModeRegistrant.notifyRegistrant();
-            }
+        if (num == 0 && mTestingEmergencyCall.getAndSet(false) &&
+            mEmergencyCallbackModeRegistrant != null) {
+            if (RILJ_LOGV) riljLog("responseCallList: call ended, testing emergency call," +
+                                   " notify ECM Registrants");
+            mEmergencyCallbackModeRegistrant.notifyRegistrant();
         }
-
         return response;
-    }
-
-    @Override
-    protected Object
-    responseSignalStrength(Parcel p) {
-        int gsmSignalStrength = p.readInt() & 0xff;
-        int gsmBitErrorRate = p.readInt();
-        int cdmaDbm = p.readInt();
-        int cdmaEcio = p.readInt();
-        int evdoDbm = p.readInt();
-        int evdoEcio = p.readInt();
-        int evdoSnr = p.readInt();
-        int lteSignalStrength = p.readInt();
-        int lteRsrp = p.readInt();
-        int lteRsrq = p.readInt();
-        int lteRssnr = p.readInt();
-        int lteCqi = p.readInt();
-        int tdScdmaRscp = p.readInt();
-        // constructor sets default true, makeSignalStrengthFromRilParcel does not set it
-        boolean isGsm = true;
-
-        if ((lteSignalStrength & 0xff) == 255 || lteSignalStrength == 99) {
-            lteSignalStrength = 99;
-            lteRsrp = SignalStrength.INVALID;
-            lteRsrq = SignalStrength.INVALID;
-            lteRssnr = SignalStrength.INVALID;
-            lteCqi = SignalStrength.INVALID;
-        } else {
-            lteSignalStrength &= 0xff;
-        }
-
-        if (RILJ_LOGD)
-            riljLog("gsmSignalStrength:" + gsmSignalStrength + " gsmBitErrorRate:" + gsmBitErrorRate +
-                    " cdmaDbm:" + cdmaDbm + " cdmaEcio:" + cdmaEcio + " evdoDbm:" + evdoDbm +
-                    " evdoEcio: " + evdoEcio + " evdoSnr:" + evdoSnr +
-                    " lteSignalStrength:" + lteSignalStrength + " lteRsrp:" + lteRsrp +
-                    " lteRsrq:" + lteRsrq + " lteRssnr:" + lteRssnr + " lteCqi:" + lteCqi +
-                    " tdScdmaRscp:" + tdScdmaRscp + " isGsm:" + (isGsm ? "true" : "false"));
-
-        return new SignalStrength(gsmSignalStrength, gsmBitErrorRate, cdmaDbm, cdmaEcio, evdoDbm,
-                evdoEcio, evdoSnr, lteSignalStrength, lteRsrp, lteRsrq, lteRssnr, lteCqi,
-                tdScdmaRscp, isGsm);
     }
 
     private void constructGsmSendSmsRilRequest(RILRequest rr, String smscPDU, String pdu) {
@@ -363,7 +216,7 @@ public class SlteRIL extends RIL {
      */
     @Override
     public void sendSMSExpectMore(String smscPDU, String pdu, Message result) {
-        Rlog.v(RILJ_LOG_TAG, "XMM7260: sendSMSExpectMore");
+        Rlog.v(RILJ_LOG_TAG, "sendSMSExpectMore");
 
         RILRequest rr = RILRequest.obtain(RIL_REQUEST_SEND_SMS, result);
         constructGsmSendSmsRilRequest(rr, smscPDU, pdu);
@@ -393,7 +246,7 @@ public class SlteRIL extends RIL {
             String strState = strings[i+3].toLowerCase();
 
             Rlog.v(RILJ_LOG_TAG,
-                   "XMM7260: Add OperatorInfo: " + strOperatorLong +
+                   "XMM6360: Add OperatorInfo: " + strOperatorLong +
                    ", " + strOperatorLong +
                    ", " + strOperatorNumeric +
                    ", " + strState);
@@ -410,52 +263,51 @@ public class SlteRIL extends RIL {
     @Override
     protected void
     processUnsolicited(Parcel p, int type) {
+        int dataPosition = p.dataPosition(); //Let's save the parcel data position for later
         Object ret;
 
-        int dataPosition = p.dataPosition();
-        int origResponse = p.readInt();
-        int newResponse = origResponse;
-
-        /* Remap incorrect respones or ignore them */
-        switch (origResponse) {
-            case RIL_UNSOL_STK_CALL_CONTROL_RESULT:
-            case RIL_UNSOL_DEVICE_READY_NOTI: /* Registrant notification */
-            case RIL_UNSOL_SIM_PB_READY: /* Registrant notification */
-                Rlog.v(RILJ_LOG_TAG,
-                       "XMM7260: ignoring unsolicited response " +
-                       origResponse);
+        int response = p.readInt();
+        if (response >= 11000) {
+            try {
+                switch (response) {
+                    case 11002:
+                        ret = responseInts(p);
+                        break;
+                    case 11010:
+                        ret = responseString(p);
+                        break;
+                    default:
+                        Rlog.e(RILJ_LOG_TAG, "Unhandled OEM unsolicited response: " + response);
+                        return;
+                }
+            } catch (Throwable tr) {
+                Rlog.e(RILJ_LOG_TAG, "Exception processing unsol response: " + response +
+                    "Exception:" + tr.toString());
                 return;
-        }
+            }
 
-        if (newResponse != origResponse) {
-            riljLog("SlteRIL: remap unsolicited response from " +
-                    origResponse + " to " + newResponse);
+            switch (response) {
+                case 11002:
+                    unsljLogRet(response, ret);
+                    if (mCatSendSmsResultRegistrant != null) {
+                        mCatSendSmsResultRegistrant.notifyRegistrant(
+                          new AsyncResult(null, ret, null));
+                        return;
+                    }
+                    return;
+                case 11010:
+                    String str = (String)ret;
+                    Rlog.d(RILJ_LOG_TAG, "Am= " + str);
+                    return;
+                default:
+                    return;
+            }
+        } else {
+            // Not an OEM response. Lets rewind the parcel
             p.setDataPosition(dataPosition);
-            p.writeInt(newResponse);
-        }
-
-        switch (newResponse) {
-            case RIL_UNSOL_AM:
-                ret = responseString(p);
-                break;
-            case RIL_UNSOL_STK_SEND_SMS_RESULT:
-                ret = responseInts(p);
-                break;
-            default:
-                // Rewind the Parcel
-                p.setDataPosition(dataPosition);
-
-                // Forward responses that we are not overriding to the super class
-                super.processUnsolicited(p, type);
-                return;
-        }
-
-        switch (newResponse) {
-            case RIL_UNSOL_AM:
-                String strAm = (String)ret;
-                // Add debug to check if this wants to execute any useful am command
-                Rlog.v(RILJ_LOG_TAG, "XMM7260: am=" + strAm);
-                break;
+            // Now lets forward the response to the superclass so it gets handled
+            super.processUnsolicited(p, type);
+            return;
         }
     }
 }
