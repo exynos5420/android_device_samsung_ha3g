@@ -73,8 +73,8 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # SELinux
-BOARD_SEPOLICY_DIRS += device/samsung/exynos5420-common/sepolicy
-BOARD_SEPOLICY_DIRS += device/samsung/ha3g/sepolicy
+#BOARD_SEPOLICY_DIRS += device/samsung/exynos5420-common/sepolicy
+#BOARD_SEPOLICY_DIRS += device/samsung/ha3g/sepolicy
 
 # Camera: portrait orientation
 BOARD_CAMERA_FRONT_ROTATION := 270
