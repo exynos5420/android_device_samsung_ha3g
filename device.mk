@@ -101,13 +101,13 @@ PRODUCT_PACKAGES += \
     ueventd.universal5420.rc
 
 # Radio
-PRODUCT_PACKAGES += \
-    libril \
-    librilutils \
-    rild \
-    libxml2 \
-    libprotobuf-cpp-full \
-    modemloader
+#PRODUCT_PACKAGES += \
+#    libril \
+#    librilutils \
+#    rild \
+#    libxml2 \
+#    libprotobuf-cpp-full \
+#    modemloader
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.carrier=unknown
