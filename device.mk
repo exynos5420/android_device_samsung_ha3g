@@ -44,8 +44,8 @@ PRODUCT_PACKAGES += \
     macloader
 
 # GPS
-PRODUCT_PACKAGES += \
-    libdmitry
+#PRODUCT_PACKAGES += \
+#    libdmitry
 
 # GPS
 PRODUCT_COPY_FILES += \
