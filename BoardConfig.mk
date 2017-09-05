@@ -16,6 +16,7 @@
 
 LOCAL_PATH := device/samsung/ha3g
 COMMON_PATH := device/samsung/exynos5420-common
+ANDROID_COMPILE_WITH_JACK:=false
 
 # Platform
 BOARD_VENDOR := samsung
