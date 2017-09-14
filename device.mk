@@ -112,6 +112,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.carrier=unknown
 
+# Sensors wrapper
+PRODUCT_PACKAGES += \
+    sensors.universal5420
+
 # dalvik heap and hwui config
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=8m \
