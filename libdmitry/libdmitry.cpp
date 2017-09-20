@@ -1,8 +1,10 @@
 #define LOG_TAG "libdmitry"
+#include <sensor/SensorManager.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <pthread.h>
+#include <sys/types.h>
 
 #include <utils/Log.h>
 
@@ -55,27 +57,29 @@
  */
 
 //various funcs we'll need to call, in their mangled form
+extern "C" {
+  ssize_t _ZN7android13SensorManager13getSensorListEPPKPKNS_6SensorE(void* thiz, void* list);
 
 //android::String8::String8(char const*)
-extern void _ZN7android7String8C1EPKc(void **str8P, const char *str);
+  void _ZN7android7String8C1EPKc(void **str8P, const char *str);
 
 //android::String8::~String8()
-extern void _ZN7android7String8D1Ev(void **str8P);
+  void _ZN7android7String8D1Ev(void **str8P);
 
 //android::String16::String16(char const*)
-extern void _ZN7android8String16C1EPKc(void **str16P, const char *str);
+  void _ZN7android8String16C1EPKc(void **str16P, const char *str);
 
 //android::String16::~String16()
-extern void _ZN7android8String16D1Ev(void **str16P);
+  void _ZN7android8String16D1Ev(void **str16P);
 
 //android::SensorManager::~SensorManager()
-extern void _ZN7android13SensorManagerD1Ev(void *sensorMgr);
+  void _ZN7android13SensorManagerD1Ev(void *sensorMgr);
 
 //android::SensorManager::SensorManager(android::String16 const&)
-extern void _ZN7android13SensorManagerC1ERKNS_8String16E(void *sensorMgr, void **str16P);
+  void _ZN7android13SensorManagerC1ERKNS_8String16E(void *sensorMgr, void **str16P);
 
 //android::SensorManager::createEventQueue(android::String8, int)
-extern void _ZN7android13SensorManager16createEventQueueENS_7String8Ei(void **retVal, void *sensorMgr, void **str8P, int mode);
+  void _ZN7android13SensorManager16createEventQueueENS_7String8Ei(void **retVal, void *sensorMgr, void **str8P, int mode);
 
 
 //data exports we must provide for gps library to be happy
@@ -124,10 +128,6 @@ void *CRYPTO_malloc(uint32_t sz, const char *file, uint32_t line);
 //library on-load and on-unload handlers (to help us set things up and tear them down)
 void libEvtLoading(void) __attribute__((constructor));
 void libEvtUnloading(void) __attribute__((destructor));
-
-// Android N exports
-void _ZNK7android13SensorManager13getSensorListEPPKPKNS_6SensorE();
-
 
 /*
  * FUNCTION: android::SensorManager::SensorManager(void)
@@ -207,5 +207,7 @@ void libEvtUnloading(void)
     }
 }
 
-
-void _ZNK7android13SensorManager13getSensorListEPPKPKNS_6SensorE() {}
+  ssize_t _ZNK7android13SensorManager13getSensorListEPPKPKNS_6SensorE(void* thiz, void* list) {
+    return _ZN7android13SensorManager13getSensorListEPPKPKNS_6SensorE(thiz, list);
+  }
+}
