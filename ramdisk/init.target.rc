@@ -2,7 +2,7 @@ import init.baseband.rc
 
 on init
 
-export LD_SHIM_LIBS "/system/bin/gpsd|libdmitry.so"
+export LD_SHIM_LIBS "/system/bin/gpsd|libdmitry.so:/system/lib/libsec-ril.so|libsec-ril_shim.so"
 
 on post-fs-data
 
