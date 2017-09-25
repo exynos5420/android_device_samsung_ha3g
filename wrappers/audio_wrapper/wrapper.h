@@ -146,6 +146,81 @@ struct lp_audio_stream_out {
      */
     int (*get_next_write_timestamp)(const struct lp_audio_stream_out *stream,
                                     int64_t *timestamp);
+
+
+    /**
+     * set the callback function for notifying completion of non-blocking
+     * write and drain.
+     * Calling this function implies that all future write() and drain()
+     * must be non-blocking and use the callback to signal completion.
+     */
+    int (*set_callback)(struct audio_stream_out *stream,
+            stream_callback_t callback, void *cookie);
+
+    /**
+     * Notifies to the audio driver to stop playback however the queued buffers are
+     * retained by the hardware. Useful for implementing pause/resume. Empty implementation
+     * if not supported however should be implemented for hardware with non-trivial
+     * latency. In the pause state audio hardware could still be using power. User may
+     * consider calling suspend after a timeout.
+     *
+     * Implementation of this function is mandatory for offloaded playback.
+     */
+    int (*pause)(struct audio_stream_out* stream);
+
+    /**
+     * Notifies to the audio driver to resume playback following a pause.
+     * Returns error if called without matching pause.
+     *
+     * Implementation of this function is mandatory for offloaded playback.
+     */
+    int (*resume)(struct audio_stream_out* stream);
+
+    /**
+     * Requests notification when data buffered by the driver/hardware has
+     * been played. If set_callback() has previously been called to enable
+     * non-blocking mode, the drain() must not block, instead it should return
+     * quickly and completion of the drain is notified through the callback.
+     * If set_callback() has not been called, the drain() must block until
+     * completion.
+     * If type==AUDIO_DRAIN_ALL, the drain completes when all previously written
+     * data has been played.
+     * If type==AUDIO_DRAIN_EARLY_NOTIFY, the drain completes shortly before all
+     * data for the current track has played to allow time for the framework
+     * to perform a gapless track switch.
+     *
+     * Drain must return immediately on stop() and flush() call
+     *
+     * Implementation of this function is mandatory for offloaded playback.
+     */
+    int (*drain)(struct audio_stream_out* stream, audio_drain_type_t type );
+
+    /**
+     * Notifies to the audio driver to flush the queued data. Stream must already
+     * be paused before calling flush().
+     *
+     * Implementation of this function is mandatory for offloaded playback.
+     */
+   int (*flush)(struct audio_stream_out* stream);
+
+    /**
+     * Return a recent count of the number of audio frames presented to an external observer.
+     * This excludes frames which have been written but are still in the pipeline.
+     * The count is not reset to zero when output enters standby.
+     * Also returns the value of CLOCK_MONOTONIC as of this presentation count.
+     * The returned count is expected to be 'recent',
+     * but does not need to be the most recent possible value.
+     * However, the associated time should correspond to whatever count is returned.
+     * Example:  assume that N+M frames have been presented, where M is a 'small' number.
+     * Then it is permissible to return N instead of N+M,
+     * and the timestamp should correspond to N rather than N+M.
+     * The terms 'recent' and 'small' are not defined.
+     * They reflect the quality of the implementation.
+     *
+     * 3.0 and higher only.
+     */
+    int (*get_presentation_position)(const struct audio_stream_out *stream,
+            uint64_t *frames, struct timespec *timestamp);
 };
 typedef struct lp_audio_stream_out lp_audio_stream_out_t;
 
@@ -174,23 +249,6 @@ struct lp_audio_stream_in {
      * Unit: the number of input audio frames
      */
     uint32_t (*get_input_frames_lost)(struct lp_audio_stream_in *stream);
-
-    /**
-     * Return a recent count of the number of audio frames received and
-     * the clock time associated with that frame count.
-     *
-     * frames is the total frame count received. This should be as early in
-     *     the capture pipeline as possible. In general,
-     *     frames should be non-negative and should not go "backwards".
-     *
-     * time is the clock MONOTONIC time when frames was measured. In general,
-     *     time should be a positive quantity and should not go "backwards".
-     *
-     * The status returned is 0 on success, -ENOSYS if the device is not
-     * ready/available, or -EINVAL if the arguments are null or otherwise invalid.
-     */
-    int (*get_capture_position)(const struct audio_stream_in *stream,
-                                int64_t *frames, int64_t *time);
 };
 typedef struct lp_audio_stream_in lp_audio_stream_in_t;
 
@@ -302,5 +360,36 @@ struct lp_audio_hw_device {
      * method may leave it set to NULL.
      */
     int (*get_master_mute)(struct lp_audio_hw_device *dev, bool *mute);
+
+    /**
+     * Routing control
+     */
+
+    /* Creates an audio patch between several source and sink ports.
+     * The handle is allocated by the HAL and should be unique for this
+     * audio HAL module. */
+    int (*create_audio_patch)(struct audio_hw_device *dev,
+                               unsigned int num_sources,
+                               const struct audio_port_config *sources,
+                               unsigned int num_sinks,
+                               const struct audio_port_config *sinks,
+                               audio_patch_handle_t *handle);
+
+    /* Release an audio patch */
+    int (*release_audio_patch)(struct audio_hw_device *dev,
+                               audio_patch_handle_t handle);
+
+    /* Fills the list of supported attributes for a given audio port.
+     * As input, "port" contains the information (type, role, address etc...)
+     * needed by the HAL to identify the port.
+     * As output, "port" contains possible attributes (sampling rates, formats,
+     * channel masks, gain controllers...) for this port.
+     */
+    int (*get_audio_port)(struct audio_hw_device *dev,
+                          struct audio_port *port);
+
+    /* Set audio port configuration */
+    int (*set_audio_port_config)(struct audio_hw_device *dev,
+                                 const struct audio_port_config *config);
 };
 typedef struct lp_audio_hw_device lp_audio_hw_device_t;

@@ -167,6 +167,8 @@ WRAP_STREAM_LOCKED_COMMON(standby, in, int, -ENODEV, (struct audio_stream *strea
 WRAP_STREAM_LOCKED_COMMON(set_parameters, in, int, -ENODEV, (struct audio_stream *stream, const char *kv_pairs),
 (lpstream, kv_pairs), ("in_set_parameters: %s", kv_pairs))
 
+WRAP_STREAM_LOCKED(get_input_frames_lost, in, uint32_t, -ENODEV, (struct audio_stream_in *stream), (lpstream), ("in_get_input_frames_lost"))
+
 WRAP_STREAM_LOCKED_COMMON(get_sample_rate, in, uint32_t, 0, (const struct audio_stream *stream),
             (lpstream), ("in_get_sample_rate"))
 
@@ -237,11 +239,6 @@ static void wrapper_close_input_stream(unused_audio_hw_device *dev,
     pthread_mutex_unlock(&in_streams_mutex);
 }
 
-uint32_t wrapper_get_input_frames_lost(__attribute__((unused))struct audio_stream_in *stream)
-{
-        return 0;
-}
-
 static int wrapper_get_capture_position(__attribute__((unused))const struct audio_stream_in *stream,
                                    __attribute__((unused))int64_t *frames, __attribute__((unused))int64_t *time)
 {
@@ -307,7 +304,7 @@ static int wrapper_open_input_stream(unused_audio_hw_device *dev,
 
         (*stream_in)->set_gain = wrapper_in_set_gain;
         (*stream_in)->read = wrapper_in_read;
-        (*stream_in)->get_input_frames_lost = wrapper_get_input_frames_lost;
+        (*stream_in)->get_input_frames_lost = wrapper_in_get_input_frames_lost;
         (*stream_in)->get_capture_position = wrapper_get_capture_position;
 
         in_streams[n_in_streams].in_use = 0;
@@ -407,11 +404,19 @@ WRAP_STREAM_LOCKED(get_render_position, out, int, -ENODEV, (const struct audio_s
 WRAP_STREAM_LOCKED(get_next_write_timestamp, out, int, -ENODEV, (const struct audio_stream_out *stream, int64_t *timestamp),
             (lpstream_out, timestamp), NULL)
 
-int wrapper_get_presentation_position(__attribute__((unused)) const struct audio_stream_out *stream,
-                __attribute__((unused)) uint64_t *frames, __attribute__((unused)) struct timespec *timestamp)
-{
-        return 0;
-}
+WRAP_STREAM_LOCKED(set_callback, out, int, -ENODEV, (struct audio_stream_out *stream, stream_callback_t callback, void *cookie),	
+				   (lpstream_out, callback, cookie), NULL)
+
+WRAP_STREAM_LOCKED(pause, out, int, -ENODEV, (struct audio_stream_out* stream), (lpstream_out), NULL)
+
+WRAP_STREAM_LOCKED(resume, out, int, -ENODEV, (struct audio_stream_out* stream), (lpstream_out), NULL)
+
+WRAP_STREAM_LOCKED(drain, out, int, -ENODEV, (struct audio_stream_out* stream, audio_drain_type_t type ), (lpstream_out, type), NULL)
+
+WRAP_STREAM_LOCKED(flush, out, int, -ENODEV, (struct audio_stream_out* stream), (lpstream_out), NULL)
+
+WRAP_STREAM_LOCKED(get_presentation_position, out, int, -ENODEV, (const struct audio_stream_out *stream, uint64_t *frames, struct timespec *timestamp),
+            (lpstream_out, frames, timestamp), ("out_get_presentation_position"))
 
 static void wrapper_close_output_stream(unused_audio_hw_device *dev,
                             struct audio_stream_out* stream_out)
@@ -509,12 +514,12 @@ static int wrapper_open_output_stream(unused_audio_hw_device *dev,
         (*stream_out)->write = wrapper_out_write;
         (*stream_out)->get_render_position = wrapper_out_get_render_position;
         (*stream_out)->get_next_write_timestamp = wrapper_out_get_next_write_timestamp;
-        (*stream_out)->set_callback = NULL;
-        (*stream_out)->pause = NULL;
-        (*stream_out)->resume = NULL;
-        (*stream_out)->drain = NULL;
-        (*stream_out)->flush = NULL;
-        (*stream_out)->get_presentation_position = wrapper_get_presentation_position;
+        (*stream_out)->set_callback = wrapper_out_set_callback;
+        (*stream_out)->pause = wrapper_out_pause;
+        (*stream_out)->resume = wrapper_out_resume;
+        (*stream_out)->drain = wrapper_out_drain;
+        (*stream_out)->flush = wrapper_out_flush;
+        (*stream_out)->get_presentation_position = wrapper_out_get_presentation_position;
 
         out_streams[n_out_streams].in_use = 0;
         pthread_mutex_init(&(out_streams[n_out_streams].in_use_mutex), NULL);
@@ -826,6 +831,7 @@ static int wrapper_open(__attribute__((unused)) const hw_module_t* module,
     adev->open_input_stream = wrapper_open_input_stream;
     adev->close_input_stream = wrapper_close_input_stream;
 
+	// ToDo: forward this null functions to the vendor hal
     adev->dump = wrapper_dump;
     adev->set_master_mute = NULL;
     adev->get_master_mute = NULL;
