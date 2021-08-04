@@ -1,5 +1,5 @@
-#
-# Copyright (C) 2018 The LineageOS Project
+# Copyright 2016 The CyanogenMod Project
+# Copyright 2017-2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,11 +14,4 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/ha3g
-
-ifneq ($(filter ha3g,$(TARGET_DEVICE)),)
-
-  subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
-  $(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
-
-endif
+include $(call first-makefiles-under,$(call my-dir))

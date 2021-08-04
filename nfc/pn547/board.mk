@@ -14,11 +14,9 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/ha3g
+# NFC
+include device/samsung/ha3g/nfc/board.mk
 
-ifneq ($(filter ha3g,$(TARGET_DEVICE)),)
-
-  subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
-  $(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
-
-endif
+# PN547 specific flags
+BOARD_NFC_CHIPSET := pn547
+BOARD_NFC_HAL_SUFFIX := universal5420

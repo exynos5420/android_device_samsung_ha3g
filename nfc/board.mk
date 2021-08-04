@@ -14,11 +14,5 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/ha3g
-
-ifneq ($(filter ha3g,$(TARGET_DEVICE)),)
-
-  subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
-  $(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
-
-endif
+# NFC
+DEVICE_MANIFEST_FILE += $(LOCAL_PATH)/nfc/manifest.xml

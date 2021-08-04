@@ -14,11 +14,10 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/ha3g
 
-ifneq ($(filter ha3g,$(TARGET_DEVICE)),)
+PRODUCT_MAKEFILES := \
+    $(LOCAL_DIR)/lineage_ha3g.mk
 
-  subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
-  $(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
-
-endif
+COMMON_LUNCH_CHOICES := \
+  lineage_ha3g-userdebug \
+   lineage_ha3g-eng

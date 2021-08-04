@@ -1,2 +1,0 @@
-# Allow audioserver to connect to rild
-unix_socket_connect(audioserver, rild, rild)

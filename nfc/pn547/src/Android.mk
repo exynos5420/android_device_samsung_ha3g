@@ -1,5 +1,6 @@
 #
-# Copyright (C) 2018 The LineageOS Project
+# Copyright 2016 The CyanogenMod Project
+# Copyright 2017-2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,11 +15,15 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/ha3g
+LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter ha3g,$(TARGET_DEVICE)),)
+include $(CLEAR_VARS)
 
-  subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
-  $(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
+LOCAL_SRC_FILES := libpn547_fw.c
+LOCAL_MODULE := libpn547_fw
+LOCAL_MODULE_OWNER := nxp
+LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR)/firmware
+LOCAL_MODULE_TAGS := optional
+LOCAL_PACK_MODULE_RELOCATIONS := false
 
-endif
+include $(BUILD_SHARED_LIBRARY)

@@ -14,11 +14,14 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/ha3g
+# NFC
+$(call inherit-product, device/samsung/ha3g/nfc/product.mk)
 
-ifneq ($(filter ha3g,$(TARGET_DEVICE)),)
+PRODUCT_PACKAGES += \
+    android.hardware.nfc@1.0-impl \
+    libpn547_fw \
+ nfc_nci.bcm2079x.universal5420
 
-  subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
-  $(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
-
-endif
+PRODUCT_COPY_FILES += \
+    device/samsung/ha3g/nfc/pn547/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf \
+    device/samsung/ha3g/nfc/pn547/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf

@@ -1,0 +1,6 @@
+[
+    {
+        "repository": "android_device_samsung_ha3g-common",
+        "target_path": "device/samsung/ha3g-common"
+    }
+]
